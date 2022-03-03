@@ -1,0 +1,49 @@
+// Auth
+
+Log in route that has login and signup buttons.
+    Query user database, reference foreign input
+Signup route that has signup form
+    Post route to users
+
+
+
+User logs into home route
+
+// NavBar
+    Home button
+    Create new post button
+        New post modal
+        post route to /posts/user_id
+    Search bar (stretch goal)
+    Profile pic dropdown
+        User profile button
+        Logout button
+
+// Main feed (Displayed on login) GET /home
+
+    Get all posts of user and followed users
+
+    When a post is clicked on:
+        Display a modal
+        // grab user's id + postid from state
+
+
+
+
+Get route for user posts
+    query for posts that have the user's id
+    same create button that exists on home page for creating a new post
+
+// User profile --> GET /users/userId
+
+    Display all user posts
+
+    On each post:
+        Update button/route
+            Edit modal with data filled in already
+                Confirm button
+                    Dispatch Update
+        Delete button/route
+            Confirmation modal
+                Confirm button
+                    Dispatch Delete
