@@ -31,3 +31,5 @@ class User(db.Model):
 
   followers = db.relationship("Follow", secondary=follow, back_populates="followeds")
   followeds = db.relationship("Followed", secondary=follow, back_populates="followers")
+  likes = db.relationship('Like', back_populates= 'post')
+
