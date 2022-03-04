@@ -2,6 +2,20 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+follow = db.Table("follow",
+
+  db.Column("followed_id",
+    db.Integer,
+    db.ForeignKey("users.id"),
+    primary_key=True
+    ),
+
+  db.Column("follower_id",
+    db.Integer,
+    db.ForeignKey("users.id"),
+    primary_key=True
+  )
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -10,6 +24,15 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_img_src = db.Column(db.Text, nullable=False)
+
+    posts = db.relationship("Post", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
+
+    followers = db.relationship("Follow", secondary=follow, back_populates="followeds")
+    followeds = db.relationship("Followed", secondary=follow, back_populates="followers")
+    likes = db.relationship('Like', back_populates= 'post')
+
 
     @property
     def password(self):
