@@ -2,6 +2,21 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+follow = db.Table("follow",
+
+  db.Column("followed_id",
+    db.Integer,
+    db.ForeignKey("users.id"),
+    primary_key=True
+    ),
+
+  db.Column("follower_id",
+    db.Integer,
+    db.ForeignKey("users.id"),
+    primary_key=True
+  )
+)
+
 class User(db.Model):
   __tablename__ = 'users'
 
@@ -13,3 +28,6 @@ class User(db.Model):
 
   posts = db.relationship("Post", back_populates="user")
   comments = db.relationship("Comment", back_populates="user")
+
+  followers = db.relationship("Follow", secondary=follow, back_populates="followeds")
+  followeds = db.relationship("Followed", secondary=follow, back_populates="followers")
