@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { makePost } from '../store/posts';
 
 const PostForm = () => {
     const [errors, setErrors] = useState([]);
@@ -20,7 +21,7 @@ const PostForm = () => {
             location
         }
 
-        console.log(post)
+        dispatch(makePost(post))
 
 
     }

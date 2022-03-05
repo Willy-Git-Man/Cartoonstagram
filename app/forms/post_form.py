@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, ValidationError
 
 class PostForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
-    profile_img_src = StringField('profile_img_src', validators=[DataRequired()])
+    img_src = StringField('img_src', validators=[DataRequired()])
     caption_content = StringField('caption_content', validators=[DataRequired()])
-    location = StringField('location', validators=[DataRequired()])
+    location = StringField('location')
     created_at = DateTimeField('created_at')
