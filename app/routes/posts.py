@@ -1,5 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
+
+from app.models.db import db
 from app.models.post import Post
 from app.forms.post_form import PostForm
 
@@ -19,11 +21,11 @@ def create_post():
         post = Post(
             user_id=current_user.id,
             img_src=form.data['img_src'],
-            caption_content=form.data['caption_cotent'],
+            caption_content=form.data['caption_content'],
             location=form.data['location'],
             created_at=form.data['created_at']
         )
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
-    return {'errors': validation_errors_to_error_messages(post.errors)}, 401
+    
