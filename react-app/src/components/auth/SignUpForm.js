@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
@@ -9,6 +9,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [profilePicUrl, setProfilePicUrl] = useState('fff')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -38,16 +39,22 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateProfilePic = (e) => {
+    setProfilePicUrl(e.target.value)
+  }
+
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
+    <div>
+<NavLink to="/login">Login</NavLink>
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+          ))}
       </div>
       <div>
         <label>User Name</label>
@@ -56,7 +63,7 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
-        ></input>
+          ></input>
       </div>
       <div>
         <label>Email</label>
@@ -65,7 +72,7 @@ const SignUpForm = () => {
           name='email'
           onChange={updateEmail}
           value={email}
-        ></input>
+          ></input>
       </div>
       <div>
         <label>Password</label>
@@ -74,7 +81,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
-        ></input>
+          ></input>
       </div>
       <div>
         <label>Repeat Password</label>
@@ -84,10 +91,19 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+          ></input>
+
+<label>Profile Pic Url</label>
+        <input
+          type='text'
+          name='profile_pic'
+          onChange={updateProfilePic}
+          value={profilePicUrl}
+          ></input>
       </div>
       <button type='submit'>Sign Up</button>
     </form>
+          </div>
   );
 };
 
