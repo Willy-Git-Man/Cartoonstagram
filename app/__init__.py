@@ -12,6 +12,7 @@ from app.models.comments import Comment
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .routes.posts import posts
+from .routes.comments import comments
 
 from .seeds import seed_commands
 
@@ -36,6 +37,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(posts, url_prefix='/posts')
+app.register_blueprint(comments, url_prefix='/comments')
 db.init_app(app)
 Migrate(app, db)
 
