@@ -9,7 +9,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [profilePicUrl, setProfilePicUrl] = useState('fff')
+  const [profilePicUrl, setProfilePicUrl] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const SignUpForm = () => {
 
   return (
     <div>
-<NavLink to="/login">Login</NavLink>
+    <NavLink to="/login">Login</NavLink>
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
@@ -93,7 +93,7 @@ const SignUpForm = () => {
           required={true}
           ></input>
 
-<label>Profile Pic Url</label>
+        <label>Profile Pic Url</label>
         <input
           type='text'
           name='profile_pic'
