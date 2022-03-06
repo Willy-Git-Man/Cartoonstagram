@@ -1,9 +1,11 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+// import { useDispatch, useSelector } from 'react-redux';
 
-const NavBar = () => {
+
+const NavBar = ({ loaded }) => {
+
   return (
     <nav>
       <ul>
