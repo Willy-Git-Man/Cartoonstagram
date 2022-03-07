@@ -10,6 +10,7 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -28,6 +29,10 @@ const LoginForm = () => {
 
   if (user) {
     return <Redirect to='/' />;
+  }
+
+  const demoUser = () => {
+    return dispatch(login('demo@aa.io','password'))
   }
 
   return (
@@ -62,6 +67,9 @@ const LoginForm = () => {
         <button type='submit'>Login</button>
       </div>
     </form>
+          <button onClick={demoUser}>
+            Demo User
+          </button>
           </div>
   );
 };
