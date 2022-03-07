@@ -41,7 +41,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <NavBar loaded={loaded}/>
+          <NavBar />
           <h1>My Home Page</h1>
           <PostForm/>
         </ProtectedRoute>
