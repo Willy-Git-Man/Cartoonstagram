@@ -41,3 +41,15 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        return self.followed.filter(
+            follow.c.followed_id == user.id).count() > 0
