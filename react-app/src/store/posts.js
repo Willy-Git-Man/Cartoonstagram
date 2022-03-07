@@ -47,8 +47,8 @@ export default function postReducer(state = initialState, action) {
     switch (action.type){
         case GET_POSTS:
             newState = {...state}
-            action.allPost.forEach(post => newState[post.id] = post)
-            newState.posts = [...action.allPost]
+            newState.posts = [...action.allPost.posts]
+            newState.posts.forEach(post => newState[post.id] = post)
             return newState
         case CREATE_POST:
             newState={...state}

@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import PostForm from './components/PostForm';
 import { authenticate } from './store/session';
+import HomeFeed from './components/HomeFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <NavBar />
           <h1>My Home Page</h1>
+          <HomeFeed />
           <PostForm/>
         </ProtectedRoute>
       </Switch>
