@@ -15,7 +15,7 @@ const HomeFeed = () => {
 
   const allPosts = useSelector((state) => state.post.posts);
 //   const allComments = useSelector((state) => state.commenet.comments)
-  console.log("POST", allPosts);
+  console.log("at 0 img src", allPosts[0].img_src);
 
   useEffect(() => {
     dispatch(allPost());
@@ -40,7 +40,7 @@ const HomeFeed = () => {
           {showModal && (
               <Modal onClose={() => setShowModal(false)}>
               <MainPageModal closeModal={() => setShowModal(false)}/>
-              <img className="picImg" src={post.img_src} alt="Broken Img URL"/>
+              <img className="picImg" src={[allPosts[1]]?.img_src} alt="Broken Img URL"/>
               {/* <div>
                   {allComments[post_id]}
               </div> */}
