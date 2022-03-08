@@ -1,21 +1,26 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {makeLike} from '../../../../store/likes'
+import {allLike, deleteLike, makeLike} from '../../../../store/likes'
 
 
 const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
 
-  const handleLike= async(e) => {
+  useEffect(() => {
+    dispatch(allLike(modalInfo.id))
+  }, [ modalInfo.id, dispatch ])
+
+  const handleLike= async() => {
     console.log('from handleLike in MainPageModal')
     console.log(modalInfo.id)
     dispatch(makeLike(modalInfo.id))
   }
 
-  // const handleUnlike= async(e) => {
-  //   dispatch(removeFollower(userId))
-  // }
+  const handleDeleteLike= async() => {
+    dispatch(deleteLike(modalInfo.id))
+  }
+
 
   return (
     <div>
@@ -25,7 +30,10 @@ const MainPageModal = ({ modalInfo }) => {
       <div>
         {modalInfo.caption_content}
       </div>
+
       <button onClick={handleLike}>Like</button>
+      <button onClick={handleDeleteLike}>Unlike</button>
+
     </div>
   );
 }
