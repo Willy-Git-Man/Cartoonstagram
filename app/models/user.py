@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .follows import follow
+import json
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -53,3 +54,7 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return self.followed.filter(
             follow.c.followed_id == user.id).count() > 0
+        
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
