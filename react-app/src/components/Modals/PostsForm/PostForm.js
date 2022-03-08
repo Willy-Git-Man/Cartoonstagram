@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { makePost } from '../store/posts';
+import { makePost, allPost } from '../../../store/posts';
+import { useHistory } from "react-router-dom";
 
-const PostForm = () => {
+const PostForm = ({ setShowModal }) => {
     const [errors, setErrors] = useState([]);
     const [img_src, setImg] = useState('');
     const [caption_content, setCaption] = useState('');
@@ -11,6 +12,11 @@ const PostForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
+
+    useEffect(()=> {
+            allPost()
+        }, [dispatch])
+        
     const handleSubmit = async(e) => {
         e.preventDefault();
 
@@ -20,10 +26,8 @@ const PostForm = () => {
             caption_content,
             location
         }
-
-        dispatch(makePost(post))
-
-
+        
+        dispatch(makePost(post), setShowModal(false))
     }
 
     return (
