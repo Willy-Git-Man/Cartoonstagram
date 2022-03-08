@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addFollower, removeFollower, userFollowers } from '../store/followers';
 
 function User() {
   const [user, setUser] = useState({});
-  const [follow, setFollow] = useState(false);
+  // const [follow, setFollow] = useState(false);
   const { userId }  = useParams();
+  const dispatch = useDispatch()
 
   const currentUser = useSelector(state => state.session.user)
-  console.log('HELLO', currentUser)
+  const currentUserFolloweds = useSelector(state => state.follows)
 
+  console.log('consoleeeee', currentUserFolloweds[userId])
+  console.log('conditional', currentUserFolloweds[userId])
   useEffect(() => {
+    dispatch(userFollowers(parseInt(currentUser.id)))
     if (!userId) {
       return;
     }
@@ -19,26 +24,30 @@ function User() {
       const user = await response.json();
       setUser(user);
     })();
-  }, [userId]);
+  }, [userId, dispatch, currentUser.id]);
 
   if (!user) {
     return null;
   }
 
   const handleFollow = async(e) => {
-    const response = await fetch(`/follows/${userId}`,{
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-    })
-    setFollow(true)
+    // const response = await fetch(`/follows/${userId}`,{
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'application/json'},
+    // })
+    // setFollow(true)
+    dispatch(addFollower(userId))
+    // dispatch(userFollowers(parseInt(currentUser.id)))
   }
 
   const handleUnfollow = async(e) => {
-    const response = await fetch(`/follows/${userId}/unfollow`,{
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-    })
-    setFollow(false)
+    // const response = await fetch(`/follows/${userId}/unfollow`,{
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'application/json'},
+    // })
+    // setFollow(false)
+    dispatch(removeFollower(userId))
+    // dispatch(userFollowers(parseInt(currentUser.id)))
   }
 
   return (
@@ -54,9 +63,9 @@ function User() {
           <strong>Email</strong> {user.email}
         </li>
       </ul>
-      {userId !== currentUser.id && !follow &&
+      {parseInt(userId) !== parseInt(currentUser.id) && !(currentUserFolloweds[userId]) &&
       <button onClick={handleFollow}>Follow</button>}
-      {userId !== currentUser.id && follow &&
+      {parseInt(userId) !== parseInt(currentUser.id) && currentUserFolloweds[userId] &&
       <button onClick={handleUnfollow}>Unfollow</button>}
     </div>
   );
