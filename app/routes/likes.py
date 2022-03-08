@@ -18,14 +18,12 @@ likes_routes = Blueprint('likes', __name__)
 @likes_routes.route('/<int:id>', methods = ['POST'])
 @login_required
 def like(id):
+    
+    # print(post, 'looking for post id here')
     like = Like(
-        id=12,
-        user_id=1,
-        post_id=2
+        user_id=current_user.id,
+        post_id=id
     )
-    # if user == current_user:
-    #     return redirect('/')
-    # current_user.like(post)
     db.session.add(like)
     db.session.commit()
     return like.to_dict()

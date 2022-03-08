@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import {makeLike} from '../../../../store/likes'
 
 
-const MainPageModal = ({modalInfo}) => {
+const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
 
   const handleLike= async(e) => {
