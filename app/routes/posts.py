@@ -4,16 +4,19 @@ from flask_login import login_required, current_user
 
 from app.models.db import db
 from app.models.post import Post
+from app.models.user import User
 from app.forms.post_form import PostForm
+from app.models.follows import follow
 
 posts = Blueprint('posts', __name__)
 
 
 @posts.route('')
 def get_post():
-    allpost = Post.query.all()
-    print(allpost)
-    return {'posts': [post.to_dict() for post in allpost]}
+    user = current_user
+    followeds_posts = user.followed_posts()
+    print(followeds_posts)
+    return {'posts': [post.to_dict() for post in followeds_posts]}
 
 @posts.route('', methods=["POST"])
 def create_post():
@@ -31,4 +34,3 @@ def create_post():
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
-   

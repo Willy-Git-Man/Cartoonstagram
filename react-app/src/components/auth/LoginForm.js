@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './loginSignup.css'
+import { userFollowers } from '../../store/followers';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,6 +19,7 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    
   };
 
   const updateEmail = (e) => {
