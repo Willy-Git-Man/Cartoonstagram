@@ -9,11 +9,15 @@ const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const currentUserLiked = useSelector(state => state.likes);
-  const { userId } = useParams();
 
-  console.log('here we are', currentUser)
-  console.log('here we are again', currentUserLiked[userId])
-  
+  const likeValuesArr = Object.values(currentUserLiked)
+  console.log(likeValuesArr, 'please be here')
+
+
+
+  console.log(likeIncludes, "==========")
+
+  console.log('here we are', currentUserLiked)
 
   useEffect(() => {
     dispatch(allLike(modalInfo.id))
@@ -29,6 +33,15 @@ const MainPageModal = ({ modalInfo }) => {
     dispatch(deleteLike(modalInfo.id))
   }
 
+      let likeIncludes = likeValuesArr.forEach(likeObj => {
+    console.log(likeObj, 'ppppppppp')
+    console.log(likeObj.user_id, currentUser.id)
+    if (likeObj.user_id === currentUser.id) {
+      return true
+    }
+    return false
+  })
+  if (likeIncludes)
 
   return (
     <div>
@@ -39,13 +52,14 @@ const MainPageModal = ({ modalInfo }) => {
         {modalInfo.caption_content}
       </div>
 
-      {parseInt(userId) !== parseInt(currentUser.id) && !(currentUserLiked[userId]) &&
-      <button onClick={handleLike}>Like</button>}
-      {parseInt(userId) !== parseInt(currentUser.id) && currentUserLiked[userId] &&
-      <button onClick={handleDeleteLike}>Unlike</button>}
+     
+      <button onClick={handleLike}>Like</button>
+      <button onClick={handleDeleteLike}>Unlike</button>
 
     </div>
   );
+  if (!likeIncludes) return 'trying something'
+  
 }
 
 export default MainPageModal;
