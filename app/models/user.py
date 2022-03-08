@@ -55,6 +55,19 @@ class User(db.Model, UserMixin):
         return self.followed.filter(
             follow.c.followed_id == user.id).count() > 0
         
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
+
+    # def like(self, post):
+    #     if not self.is_liked(post):
+    #         self.liked.append(post)
+
+    # def unlike(self, post):
+    #     if self.is_liked(post):
+    #         self.liked.remove(post)
+
+    # def is_liked(self, post):
+    #     return self.liked.filter(
+    #         post.c.liked_id == user.id).count() > 0
+        
+    # def toJSON(self):
+    #     return json.dumps(self, default=lambda o: o.__dict__, 
+    #         sort_keys=True, indent=4)
