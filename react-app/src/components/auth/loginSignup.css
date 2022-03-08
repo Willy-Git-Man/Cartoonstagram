@@ -1,0 +1,81 @@
+.loginDiv{
+    max-width: 935px;
+    width: 100%;
+    height: 800px;
+    margin: 32px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginTitle{
+    font-family: 'cursive';
+}
+
+.loginPic{
+    width: 450px;
+    height: 550px;
+    object-fit: cover;
+}
+
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rightDiv{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    border: solid rgb(182, 179, 179) 1px;
+    height: 300px;
+}
+
+.signUpOption{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    border: solid rgb(182, 179, 179) 1px;
+    padding: 10px;
+    width: 250px;
+
+}
+
+.text{
+    margin: none;
+    font-size: small;
+}
+
+.loginInputs{
+    background-color: #fafafa;
+    border: 1px solid #dddcdc;
+    font-size: small;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.loginButtons{
+    width: 180px;
+    background-color: rgba(0,149,246,.3);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.loginButtons:hover{
+    background-color: rgba(0,149,246);
+}
+
+.buttonsDiv{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

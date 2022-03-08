@@ -4,7 +4,7 @@ const REMOVE_FOLLOWER = 'followers/UNFOLLOW'
 
 const getFollowers = (followeds) => ({
     type: GET_FOLLOWERS,
-    followeds  
+    followeds
 })
 
 const follow = (followed) => ({
@@ -46,7 +46,7 @@ export const removeFollower = (userId) => async(dispatch) => {
         const user = await response.json()
         dispatch(unfollow(user))
     }
-} 
+}
 
 const initialState = {followeds: []};
 
@@ -56,7 +56,6 @@ export default function followReducer(state = initialState, action) {
         case GET_FOLLOWERS:
             newState = {...state}
             newState.followeds = [...action.followeds.follows]
-            console.log('yaaaaaa',newState.followeds)
             newState.followeds.forEach(followed => newState[followed.id] = followed)
             return newState
         case FOLLOW:
