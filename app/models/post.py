@@ -1,4 +1,6 @@
 from .db import db
+from app.models.follows import follow
+
 class Post(db.Model):
   __tablename__ = 'posts'
 
@@ -22,3 +24,4 @@ class Post(db.Model):
         'location': self.location,
         'created_at': self.created_at
     }
+

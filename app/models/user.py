@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .follows import follow
 import json
+from app.models.post import Post
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -54,7 +55,10 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return self.followed.filter(
             follow.c.followed_id == user.id).count() > 0
-        
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
+
+    def followed_posts(self):
+        followed = Post.query.join(
+            follow, (follow.c.followed_id == Post.user_id)).filter(
+                follow.c.follower_id == self.id)
+        own = Post.query.filter_by(user_id=self.id)
+        return followed.union(own).order_by(Post.created_at.desc())
