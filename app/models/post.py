@@ -12,8 +12,8 @@ class Post(db.Model):
   created_at = db.Column(db.DateTime)
 
   user = db.relationship("User", back_populates = "posts")
-  comments = db.relationship("Comment", back_populates = "post")
-  likes = db.relationship('Like', back_populates= 'post')
+  comments = db.relationship("Comment", back_populates = "post", cascade="all,delete")
+  likes = db.relationship('Like', back_populates= 'post', cascade="all,delete")
 
   def to_dict(self):
     return {
@@ -24,4 +24,3 @@ class Post(db.Model):
         'location': self.location,
         'created_at': self.created_at
     }
-

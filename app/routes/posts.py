@@ -34,3 +34,11 @@ def create_post():
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
+
+@posts.route('/<int:id>', methods=['DELETE'])
+def delete_post(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+
+    return post.to_dict()

@@ -1,11 +1,13 @@
 
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {allLike, deleteLike, makeLike} from '../../../../store/likes'
+import DeletePostModal from '../DeletePostModel/DeletePostSetup';
 
 
 const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     dispatch(allLike(modalInfo.id))
@@ -33,6 +35,7 @@ const MainPageModal = ({ modalInfo }) => {
 
       <button onClick={handleLike}>Like</button>
       <button onClick={handleDeleteLike}>Unlike</button>
+      <DeletePostModal modalInfo={modalInfo}/>
 
     </div>
   );
