@@ -5,7 +5,6 @@ import { addFollower, removeFollower, userFollowers } from '../store/followers';
 
 function User() {
   const [user, setUser] = useState({});
-  // const [follow, setFollow] = useState(false);
   const { userId }  = useParams();
   const dispatch = useDispatch()
 
@@ -31,23 +30,11 @@ function User() {
   }
 
   const handleFollow = async(e) => {
-    // const response = await fetch(`/follows/${userId}`,{
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    // })
-    // setFollow(true)
     dispatch(addFollower(userId))
-    // dispatch(userFollowers(parseInt(currentUser.id)))
   }
 
   const handleUnfollow = async(e) => {
-    // const response = await fetch(`/follows/${userId}/unfollow`,{
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    // })
-    // setFollow(false)
     dispatch(removeFollower(userId))
-    // dispatch(userFollowers(parseInt(currentUser.id)))
   }
 
   return (
