@@ -66,7 +66,6 @@ export default function followReducer(state = initialState, action) {
             return newState
         case REMOVE_FOLLOWER:
             newState = {...state}
-            newState.followeds = [...newState.followeds]
             delete newState[action.user.id]
             return newState
         default:
