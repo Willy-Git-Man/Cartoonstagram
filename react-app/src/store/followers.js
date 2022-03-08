@@ -21,7 +21,7 @@ export const userFollowers = (userId) => async(dispatch) => {
     const response = await fetch(`/follows/${userId}`)
     if (response.ok) {
         const followeds = await response.json();
-        console.log('followeds:', followeds)
+
         dispatch(getFollowers(followeds))
     }
 }
@@ -55,11 +55,13 @@ export default function followReducer(state = initialState, action) {
     switch (action.type) {
         case GET_FOLLOWERS:
             newState = {...state}
+            newState.followeds.forEach(followed => delete newState[followed.id])
             newState.followeds = [...action.followeds.follows]
             newState.followeds.forEach(followed => newState[followed.id] = followed)
             return newState
         case FOLLOW:
             newState = {...state}
+            newState.followeds.forEach(followed => delete newState[followed.id])
             newState.followeds = [...newState.followeds, action.followed]
             newState.followeds.forEach(followed => newState[followed.id] = followed)
             return newState

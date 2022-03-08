@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { makePost, allPost } from "../store/posts";
 import "./HomeFeed.css";
+import { userFollowers } from "../store/followers";
 
 import React from "react";
 import SpecificPageModel from "./Modals/PostsForm/SpecificPost/SpecificPostModel";
@@ -11,13 +12,14 @@ const HomeFeed = () => {
 
 
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.session.user)
   const allPosts = useSelector((state) => state.post.posts);
 
 
   useEffect(() => {
     dispatch(allPost());
-  }, [dispatch]);
+    dispatch(userFollowers(user.id))
+  }, [dispatch, user]);
 
   return (
     <div className="mainHomeDiv">
