@@ -1,10 +1,11 @@
 
 import React from 'react';
 
-const MainPageModal = () => {
+const MainPageModal = ({modalInfo}) => {
+  {console.log(modalInfo)}
   
   return (
-"hello"
+    <img src={modalInfo.img_src} />
   );
 }
 
