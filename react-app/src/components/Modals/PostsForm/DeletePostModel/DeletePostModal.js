@@ -29,7 +29,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
         return(
             <>
                 <h2>Edit Post</h2>
-                <button onClick={handleEdit}>Confirm Edit</button>
+                <button onClick={handleEdit}>Confirm</button>
                 <button onClick={closeModal}>Cancel</button>
             </>
         )

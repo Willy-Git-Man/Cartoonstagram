@@ -5,7 +5,7 @@ const EDIT_POST = 'posts/EDIT_POST';
 
 const getPost = (allpost) => ({
     type: GET_POSTS,
-    allPost
+    allPost: allpost
 })
 
 
@@ -63,6 +63,7 @@ export const deleteAPost = (postId) => async(dispatch) => {
 }
 
 export const editPost = (post) => async (dispatch) => {
+    console.log('coming from edit post action')
     const response = await fetch(`/posts/${post}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
