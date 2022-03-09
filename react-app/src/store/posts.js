@@ -1,8 +1,8 @@
 const GET_POSTS = 'posts/GET_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
 const DELETE_POST = 'posts/DELETE_POST';
+const EDIT_POST = 'posts/EDIT_POST';
 
-// hi
 const getPost = (allpost) => ({
     type: GET_POSTS,
     allPost: allpost
@@ -17,6 +17,11 @@ const createPost = (post) => ({
 const deletePost = (post) => ({
     type: DELETE_POST,
     post
+})
+
+const edit = (editPost) => ({
+    type: EDIT_POST,
+    editPost
 })
 
 export const allPost = () => async(dispatch) => {
@@ -57,6 +62,22 @@ export const deleteAPost = (postId) => async(dispatch) => {
     }
 }
 
+export const editPost = (post, postId) => async (dispatch) => {
+    console.log('coming from edit post action', post)
+    const response = await fetch(`/posts/${postId}/update`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(post)
+    });
+
+    if (response.ok) {
+        const editedPost = await response.json();
+        console.log(editedPost, 'EDITED POST')
+        dispatch(edit(editedPost));
+        return 'Success!'
+    }
+}
+
 const initialState = {posts: []}
 
 export default function postReducer(state = initialState, action) {
@@ -80,6 +101,16 @@ export default function postReducer(state = initialState, action) {
                 }
             })
             newState.posts = [...newState.posts];
+            return newState
+        case EDIT_POST:
+            newState = { ...state }
+            newState[action.editPost.id] = {...action.editPost}
+            newState.posts.forEach((post, i) => {
+                if (post.id === action.editPost.id) {
+                    newState.posts.splice(i, 1);
+                }
+            })
+            newState.posts = [{...action.editPost}, ...newState.posts]
             return newState
         default:
             return state
