@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { allLike, deleteLike, makeLike } from "../../../../store/likes";
+import DeletePostModal from '../DeletePostModel/DeletePostSetup';
 
 const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.session.user);
   const currentUserLiked = useSelector((state) => state.likes.likes);
 
   console.log("currentUserLiked:", currentUserLiked);
@@ -34,6 +34,8 @@ const MainPageModal = ({ modalInfo }) => {
 
         {/* <button onClick={handleLike}>Like</button> */}
         <button onClick={handleDeleteLike}>Unlike</button>
+<DeletePostModal modalInfo={modalInfo}/>
+
       </div>
     );
   else
@@ -46,8 +48,11 @@ const MainPageModal = ({ modalInfo }) => {
 
         <button onClick={handleLike}>Like</button>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
+<DeletePostModal modalInfo={modalInfo}/>
       </div>
     );
 };
+
+
 
 export default MainPageModal;

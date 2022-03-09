@@ -1,5 +1,6 @@
 const GET_POSTS = 'posts/GET_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
+const DELETE_POST = 'posts/DELETE_POST';
 
 
 const getPost = (allpost) => ({
@@ -13,6 +14,10 @@ const createPost = (post) => ({
     newPost: post
 })
 
+const deletePost = (post) => ({
+    type: DELETE_POST,
+    post
+})
 
 export const allPost = () => async(dispatch) => {
     const response = await fetch('/posts');
@@ -40,6 +45,18 @@ export const makePost = (post) => async(dispatch) => {
     return response;
 }
 
+export const deleteAPost = (postId) => async(dispatch) => {
+    const response = await fetch(`/posts/${postId}`,{
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    })
+
+    if(response.ok){
+        const post = await response.json()
+        dispatch(deletePost(post))
+    }
+}
+
 const initialState = {posts: []}
 
 export default function postReducer(state = initialState, action) {
@@ -53,6 +70,12 @@ export default function postReducer(state = initialState, action) {
         case CREATE_POST:
             newState={...state}
             newState.posts = [...newState.posts, action.newPost];
+            return newState
+        case DELETE_POST:
+            newState = {...state};
+            delete newState[action.post.id];
+            newState.posts.splice(newState.posts.indexOf(action.post), 1);
+            newState.posts = [...newState.posts];
             return newState
         default:
             return state
