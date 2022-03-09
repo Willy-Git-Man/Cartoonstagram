@@ -30,6 +30,13 @@ def post_comments():
         db.session.commit()
     return comment.to_dict()
 
+@comments_routes.route('/<int:id>', methods=["DELETE"])
+def delete_comments(id):
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
+    return comment.to_dict()
+
 # @posts.route('', methods=["POST"])
 # def create_post():
 #     form = PostForm()
