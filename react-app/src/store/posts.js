@@ -64,8 +64,9 @@ export const deleteAPost = (postId) => async(dispatch) => {
 
 export const editPost = (post) => async (dispatch) => {
     console.log('coming from edit post action', post)
-    const response = await fetch(`/posts/${post}`, {
-        method: 'POST',
+    console.log('post id:', post.id)
+    const response = await fetch(`/posts/${post.id}`, {
+        method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(post)
     });
@@ -102,8 +103,8 @@ export default function postReducer(state = initialState, action) {
             newState.posts = [...newState.posts];
             return newState
         case EDIT_POST:
-            state = {};
-            {return { [action.editedPost.id]: action.editedPost, ...state }}
+            return {...state, editedPost: {...state.editedPost, ...action.payload}}
+            // return { [action.editedPost.id]: action.editedPost, ...state } 
         default:
             return state
     }

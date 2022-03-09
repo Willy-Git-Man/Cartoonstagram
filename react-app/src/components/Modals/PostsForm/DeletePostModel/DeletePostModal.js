@@ -9,25 +9,28 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
     const [caption_content, setCaption] = useState(modalInfo.caption_content);
     const [location, setLocation] = useState(modalInfo.location);
 
-    const user = useSelector(state => state.allpost);
+    const user = modalInfo.id;
     
 
     function handleDelete(){
         dispatch(deleteAPost(modalInfo.id))
     }
 
-    function handleEdit() {
-        dispatch(editPost(modalInfo.id))
-    }
+    // function handleEdit() {
+    //     dispatch(editPost(modalInfo.id))
+    // }
+    console.log(modalInfo.id, 'this is what im looking for')
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         
         const post = {
+            id: user,
             img_src,
             caption_content,
             location
         }
+
         dispatch(editPost(post))
     }
 
