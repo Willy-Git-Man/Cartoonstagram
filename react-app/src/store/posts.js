@@ -2,7 +2,7 @@ const GET_POSTS = 'posts/GET_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
 const DELETE_POST = 'posts/DELETE_POST';
 
-
+// hi
 const getPost = (allpost) => ({
     type: GET_POSTS,
     allPost: allpost
