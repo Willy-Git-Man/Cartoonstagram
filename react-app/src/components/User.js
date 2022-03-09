@@ -5,6 +5,7 @@ import { addFollower, removeFollower, userFollowers } from '../store/followers';
 
 function User() {
   const [user, setUser] = useState({});
+  const [userPosts, setUserPosts] = useState([]);
   const { userId }  = useParams();
   const dispatch = useDispatch()
 
@@ -21,7 +22,8 @@ function User() {
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
-      setUser(user);
+      setUser(user.user);
+      setUserPosts(user.posts)
     })();
   }, [userId, dispatch, currentUser.id]);
 
@@ -54,6 +56,10 @@ function User() {
       <button onClick={handleFollow}>Follow</button>}
       {parseInt(userId) !== parseInt(currentUser.id) && currentUserFolloweds[userId] &&
       <button onClick={handleUnfollow}>Unfollow</button>}
+      {userPosts && 
+      userPosts.map((post, i) => (
+        <img key={i} src={post.img_src} alt=''/>
+      ))}
     </div>
   );
 }
