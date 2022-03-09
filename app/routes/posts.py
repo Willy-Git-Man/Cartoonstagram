@@ -42,3 +42,8 @@ def delete_post(id):
     db.session.commit()
 
     return post.to_dict()
+
+@posts.route('/<int:id>', methods=['PUT'])
+def edit_post(id):
+    post = Post.query.get(id)
+    

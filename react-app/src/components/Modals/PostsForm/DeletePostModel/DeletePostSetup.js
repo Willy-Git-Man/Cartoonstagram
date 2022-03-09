@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DeleteEditModal from "./DeletePostModel";
+import DeleteEditModal from "./DeletePostModal";
 import { Modal } from '../../../../ModalContext/Modal'
 
 function DeletePostModal({ modalInfo }) {
@@ -16,6 +16,7 @@ function DeletePostModal({ modalInfo }) {
         setShowModal(true)
         setEdit(true)
     }
+    
     return (
         <div>
             <button onClick={handleDelete}>Delete</button>

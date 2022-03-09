@@ -1,11 +1,11 @@
 const GET_POSTS = 'posts/GET_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
 const DELETE_POST = 'posts/DELETE_POST';
+const EDIT_POST = 'posts/EDIT_POST';
 
-// hi
 const getPost = (allpost) => ({
     type: GET_POSTS,
-    allPost: allpost
+    allPost
 })
 
 
@@ -16,6 +16,11 @@ const createPost = (post) => ({
 
 const deletePost = (post) => ({
     type: DELETE_POST,
+    post
+})
+
+const edit = (post) => ({
+    type: EDIT_POST,
     post
 })
 
@@ -57,6 +62,19 @@ export const deleteAPost = (postId) => async(dispatch) => {
     }
 }
 
+export const editPost = (post) => async (dispatch) => {
+    const response = await fetch(`/posts/${post}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(post)
+    });
+    if (response.ok) {
+        const editedPost = await response.json();
+        dispatch(edit(editedPost));
+        return editedPost
+    }
+}
+
 const initialState = {posts: []}
 
 export default function postReducer(state = initialState, action) {
@@ -81,6 +99,9 @@ export default function postReducer(state = initialState, action) {
             })
             newState.posts = [...newState.posts];
             return newState
+        case EDIT_POST:
+            state = {};
+            {return { [action.editedPost.id]: action.editedPost, ...state }}
         default:
             return state
     }
