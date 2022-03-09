@@ -107,10 +107,10 @@ export default function postReducer(state = initialState, action) {
             newState[action.editPost.id] = {...action.editPost}
             newState.posts.forEach((post, i) => {
                 if (post.id === action.editPost.id) {
-                    newState.posts.splice(i, 1, {...action.editPost});
+                    newState.posts.splice(i, 1);
                 }
             })
-            newState.posts = [...newState.posts]
+            newState.posts = [{...action.editPost}, ...newState.posts]
             return newState
         default:
             return state
