@@ -33,7 +33,7 @@ const MainPageModal = ({ modalInfo }) => {
 
         {/* <button onClick={handleLike}>Like</button> */}
         <button onClick={handleDeleteLike}>Unlike</button>
-<DeletePostModal modalInfo={modalInfo}/>
+        <DeletePostModal modalInfo={modalInfo}/>
 
       </div>
     );

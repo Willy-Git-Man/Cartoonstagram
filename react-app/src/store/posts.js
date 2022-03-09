@@ -74,7 +74,7 @@ export const editPost = (post, postId) => async (dispatch) => {
         const editedPost = await response.json();
         console.log(editedPost, 'EDITED POST')
         dispatch(edit(editedPost));
-        return editedPost
+        return 'Success!'
     }
 }
 
@@ -103,8 +103,15 @@ export default function postReducer(state = initialState, action) {
             newState.posts = [...newState.posts];
             return newState
         case EDIT_POST:
-            return {...state, editedPost: {...state.editedPost, ...action.payload}}
-            // return { [action.editedPost.id]: action.editedPost, ...state } 
+            newState = { ...state }
+            newState[action.editPost.id] = {...action.editPost}
+            newState.posts.forEach((post, i) => {
+                if (post.id === action.editPost.id) {
+                    newState.posts.splice(i, 1, {...action.editPost});
+                }
+            })
+            newState.posts = [...newState.posts]
+            return newState
         default:
             return state
     }

@@ -16,10 +16,6 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
         dispatch(deleteAPost(modalInfo.id))
     }
 
-    // function handleEdit() {
-    //     dispatch(editPost(modalInfo.id))
-    // }
-    console.log(modalInfo.id, 'this is what im looking for')
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -31,7 +27,12 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
             location
         }
 
-        dispatch(editPost(post, user))
+        const result = await dispatch(editPost(post, user))
+
+        if (result === 'Success!') {
+            closeModal()
+        }
+
     }
 
     if (deletePost) {
