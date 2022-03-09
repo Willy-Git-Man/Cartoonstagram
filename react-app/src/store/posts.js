@@ -69,12 +69,16 @@ export default function postReducer(state = initialState, action) {
             return newState
         case CREATE_POST:
             newState={...state}
-            newState.posts = [...newState.posts, action.newPost];
+            newState.posts = [action.newPost, ...newState.posts];
             return newState
         case DELETE_POST:
             newState = {...state};
             delete newState[action.post.id];
-            newState.posts.splice(newState.posts.indexOf(action.post), 1);
+            newState.posts.forEach((post, i)=> {
+                if (post.id === action.post.id){
+                    newState.posts.splice(i, 1);
+                }
+            })
             newState.posts = [...newState.posts];
             return newState
         default:
