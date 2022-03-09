@@ -73,6 +73,7 @@ export const editPost = (post) => async (dispatch) => {
 
     if (response.ok) {
         const editedPost = await response.json();
+        console.log(editedPost, 'EDITED POST')
         dispatch(edit(editedPost));
         return editedPost
     }
