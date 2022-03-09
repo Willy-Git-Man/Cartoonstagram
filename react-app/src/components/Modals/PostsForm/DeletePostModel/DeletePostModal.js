@@ -25,13 +25,13 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
         e.preventDefault();
         
         const post = {
-            id: user,
+            user_id: modalInfo.user_id,
             img_src,
             caption_content,
             location
         }
 
-        dispatch(editPost(post))
+        dispatch(editPost(post, user))
     }
 
     if (deletePost) {

@@ -62,11 +62,10 @@ export const deleteAPost = (postId) => async(dispatch) => {
     }
 }
 
-export const editPost = (post) => async (dispatch) => {
+export const editPost = (post, postId) => async (dispatch) => {
     console.log('coming from edit post action', post)
-    console.log('post id:', post.id)
-    const response = await fetch(`/posts/${post.id}`, {
-        method: 'PUT',
+    const response = await fetch(`/posts/${postId}/update`, {
+        method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(post)
     });

@@ -43,8 +43,27 @@ def delete_post(id):
 
     return post.to_dict()
 
-@posts.route('/<int:id>', methods=['PUT'])
+@posts.route('/<int:id>/update', methods=['POST'])
 def edit_post(id):
+    form = PostForm()
+    # print(form.caption_content.data, "==================")
+    form['csrf_token'].data = request.cookies['csrf_token']
     post = Post.query.get(id)
+    post.img_src = form.img_src.data
+    post.caption_content = form.caption_content.data
+    post.location = form.location.data
+    post.created_at = datetime.now()
+
+    db.session.commit()
     return post.to_dict()
+
+# update(table[, whereclause, values, inline, ...], **dialect_kw)
+
+# admin = User.query.filter_by(username='admin').first()
+# admin.email = 'my_new_email@example.com'
+# db.session.commit()
+
+# user = User.query.get(5)
+# user.name = 'New Name'
+# db.session.commit()
     
