@@ -42,7 +42,8 @@ export const makeLike = (like) => async (dispatch) => {
 };
 
 export const deleteLike = (like) => async (dispatch) => {
-  const response = await fetch(`likes/${like}`, {
+
+  const response = await fetch(`/likes/${like}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
