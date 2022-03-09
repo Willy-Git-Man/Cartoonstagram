@@ -97,8 +97,10 @@ export default function commentsReducer(state = initialState, action) {
 
         case DELETE_COMMENT:
           newState= {...state, comments: {...state.comments}};
-          const id = action.comment
+          const id = action.comment.id
+          console.log('id:', id)
           delete newState.comments[id]
+
           return newState;
 
           case UPDATE_COMMENT:
