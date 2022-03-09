@@ -19,9 +19,9 @@ const deletePost = (post) => ({
     post
 })
 
-const edit = (post) => ({
+const edit = (editPost) => ({
     type: EDIT_POST,
-    post
+    editPost
 })
 
 export const allPost = () => async(dispatch) => {
@@ -63,12 +63,13 @@ export const deleteAPost = (postId) => async(dispatch) => {
 }
 
 export const editPost = (post) => async (dispatch) => {
-    console.log('coming from edit post action')
+    console.log('coming from edit post action', post)
     const response = await fetch(`/posts/${post}`, {
-        method: 'PUT',
+        method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(post)
     });
+
     if (response.ok) {
         const editedPost = await response.json();
         dispatch(edit(editedPost));

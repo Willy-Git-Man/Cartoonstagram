@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { deleteAPost, editPost } from "../../../../store/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAPost, editPost, getPost } from "../../../../store/posts";
 
 function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
     const dispatch = useDispatch();
+    const [errors, setErrors] = useState([]);
+    const [img_src, setImg] = useState(modalInfo.img_src);
+    const [caption_content, setCaption] = useState(modalInfo.caption_content);
+    const [location, setLocation] = useState(modalInfo.location);
+
+    const user = useSelector(state => state.allpost);
+    
 
     function handleDelete(){
         dispatch(deleteAPost(modalInfo.id))
@@ -11,6 +18,17 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
 
     function handleEdit() {
         dispatch(editPost(modalInfo.id))
+    }
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        
+        const post = {
+            img_src,
+            caption_content,
+            location
+        }
+        dispatch(editPost(post))
     }
 
     if (deletePost) {
@@ -29,7 +47,42 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
         return(
             <>
                 <h2>Edit Post</h2>
-                <button onClick={handleEdit}>Confirm</button>
+                <form onSubmit={handleSubmit}>
+            {/* <div className='postErrors'>
+                {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                ))}
+            </div> */}
+            <div>
+                <input
+                    type='text'
+                    name='img_src'
+                    onChange={(e) => setImg(e.target.value)}
+                    value={img_src}
+                    placeholder='Post Image Url'
+                ></input>
+            </div>
+            <div>
+                <input
+                    type='text'
+                    name='caption_content'
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption_content}
+                    placeholder='Caption'
+                ></input>
+            </div>
+            <div>
+                <input
+                    type='text'
+                    name='location'
+                    onChange={(e) => setLocation(e.target.value)}
+                    value={location}
+                    placeholder='Location'
+                ></input>
+            </div>
+            <button type='submit'>Confirm Changes</button>
+        </form>
+                {/* <button onClick={handleEdit}>Confirm Edit</button> */}
                 <button onClick={closeModal}>Cancel</button>
             </>
         )

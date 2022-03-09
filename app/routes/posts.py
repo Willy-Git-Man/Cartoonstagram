@@ -46,4 +46,5 @@ def delete_post(id):
 @posts.route('/<int:id>', methods=['PUT'])
 def edit_post(id):
     post = Post.query.get(id)
+    return post.to_dict()
     
