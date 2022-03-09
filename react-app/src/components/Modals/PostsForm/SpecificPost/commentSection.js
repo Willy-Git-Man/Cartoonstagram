@@ -7,15 +7,14 @@ import {
 } from "../../../../store/comments";
 
 function CommentSection({ modalInfo }) {
-  console.log('modalInfo:', modalInfo)
+
   const dispatch = useDispatch();
   const [commentContent, setCommentContent] = useState('');
   const currentComments = useSelector((state) => state.comments.comments);
+  // console.log('STATE COMMENTS',currentComments)
   // const currentCommentsValues = Object.values(currentComments)
   const user = useSelector(state => state.session.user);
-
-  console.log("currentComments:", currentComments);
-
+  const commentArray = Object.values(currentComments)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,9 +40,13 @@ function CommentSection({ modalInfo }) {
         ></input>
       <button type='submit'>Post Comment</button>
     </form>
-    {/* {currentComments.map(comment => {
-      <h2>{comment.comment_content}</h2>
-    })} */}
+    {commentArray.map(comment => (
+      <div>
+        <h2>{comment.comment_content}</h2>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+    ))}
         </div>
   );
 };
