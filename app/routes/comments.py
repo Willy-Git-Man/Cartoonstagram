@@ -9,9 +9,9 @@ from app.models.db import db
 comments_routes = Blueprint('comments', __name__)
 
 
-@comments_routes.route('/')
-def get_comments():
-    all_comments = Comment.query.all()
+@comments_routes.route('/<int:post_id>')
+def get_comments(post_id):
+    all_comments = Comment.query.filter(Comment.post_id == post_id).all()
     print(all_comments)
     return {'comments': [comment.to_dict() for comment in all_comments]}
 

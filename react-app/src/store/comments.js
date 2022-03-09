@@ -6,11 +6,10 @@ const DELETE_COMMENT = 'comments/DELETE_COMMENT';
 const UPDATE_COMMENT = 'comments/UPDATE_COMMENT'
 
 // hi
-const getComment = (comment) => ({
+const getComments = (postComments) => ({
     type: GET_COMMENTS,
-    comment
+    postComments
 })
-
 
 const createComment = (comment) => ({
     type: CREATE_COMMENT,
@@ -27,15 +26,14 @@ const updateComment = (comment) => ({
   comment
 })
 
-export const allComments = () => async(dispatch) => {
-    const response = await fetch('/comments');
+export const allComments = (id) => async(dispatch) => {
+    const response = await fetch(`/comments/${id}`);
 
     if(response.ok) {
-        const comments = await response.json();
-        dispatch(getComment(comments))
+        const postComments = await response.json();
+        dispatch(getComments(postComments))
     }
     return response;
-
 }
 
 export const makeComment = (comment) => async(dispatch) => {
@@ -88,16 +86,17 @@ export default function commentsReducer(state = initialState, action) {
     switch (action.type){
         case GET_COMMENTS:
           newState = {...state, comments: {}}
-          action.comment.forEach((comment) => newState.comments[comment.id] = comment)
+          console.log('the action',action)
+          console.log('the action.postComments.comments',action.postComments.comments)
+          action.postComments.comments.forEach((comment) => newState.comments[comment.id] = comment)
           return newState;
         case CREATE_COMMENT:
-          newState= {...state, comments: {...state.comments}};
+          newState= {...state, comments: {...state.comments} };
           newState.comments[action.comment.id] = {...action.comment}
           return newState;
 
         case DELETE_COMMENT:
           newState= {...state, comments: {...state.comments}};
-
           const id = action.comment
           delete newState.comments[id]
           return newState;

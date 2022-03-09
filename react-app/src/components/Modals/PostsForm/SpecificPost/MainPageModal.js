@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { allComments } from "../../../../store/comments";
 import { allLike, deleteLike, makeLike } from "../../../../store/likes";
 import DeletePostModal from '../DeletePostModel/DeletePostSetup';
 import CommentSection from "./commentSection";
@@ -12,7 +13,12 @@ const MainPageModal = ({ modalInfo }) => {
   console.log("currentUserLiked:", currentUserLiked);
   useEffect(() => {
     dispatch(allLike(modalInfo.id));
+    dispatch(allComments(modalInfo.id));
   }, [modalInfo.id, dispatch]);
+
+  // useEffect(() => {
+    
+  // }, [modalInfo.id, dispatch]);
 
   const handleLike = async () => {
     console.log("from handleLike in MainPageModal");
@@ -54,7 +60,7 @@ const MainPageModal = ({ modalInfo }) => {
         <button onClick={handleLike}>Like</button>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
         <DeletePostModal modalInfo={modalInfo}/>
-        
+
         <CommentSection modalInfo={modalInfo}/>
       </div>
     );
