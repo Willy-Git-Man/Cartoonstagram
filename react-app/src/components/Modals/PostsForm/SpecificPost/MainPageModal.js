@@ -16,7 +16,7 @@ const MainPageModal = ({ modalInfo }) => {
 
   const handleLike = async () => {
     console.log("from handleLike in MainPageModal");
-    console.log(modalInfo.id);
+    console.log('modalinfo on like',modalInfo.id);
     dispatch(makeLike(modalInfo.id));
   };
 
@@ -36,11 +36,9 @@ const MainPageModal = ({ modalInfo }) => {
         {/* <button onClick={handleLike}>Like</button> */}
         <button onClick={handleDeleteLike}>Unlike</button>
 
-<DeletePostModal modalInfo={modalInfo}/>
-        <CommentSection />
+        <DeletePostModal modalInfo={modalInfo}/>
 
-
-
+        <CommentSection modalInfo={modalInfo}/>
 
       </div>
     );
@@ -55,8 +53,9 @@ const MainPageModal = ({ modalInfo }) => {
 
         <button onClick={handleLike}>Like</button>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
-<DeletePostModal modalInfo={modalInfo}/>
-        <CommentSection />
+        <DeletePostModal modalInfo={modalInfo}/>
+        
+        <CommentSection modalInfo={modalInfo}/>
       </div>
     );
 };

@@ -10,7 +10,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
     const [location, setLocation] = useState(modalInfo.location);
 
     const user = modalInfo.id;
-    
+    console.log("deleting modalinfo", modalInfo)
 
     function handleDelete(){
         dispatch(deleteAPost(modalInfo.id))
@@ -26,6 +26,8 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
             caption_content,
             location
         }
+
+        
 
         const result = await dispatch(editPost(post, user))
 
