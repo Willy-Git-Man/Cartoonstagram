@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { allLike, deleteLike, makeLike } from "../../../../store/likes";
 import DeletePostModal from '../DeletePostModel/DeletePostSetup';
 import CommentSection from "./commentSection";
@@ -36,8 +35,12 @@ const MainPageModal = ({ modalInfo }) => {
 
         {/* <button onClick={handleLike}>Like</button> */}
         <button onClick={handleDeleteLike}>Unlike</button>
+
 <DeletePostModal modalInfo={modalInfo}/>
         <CommentSection />
+
+
+
 
       </div>
     );
