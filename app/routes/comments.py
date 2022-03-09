@@ -1,21 +1,21 @@
-from Cartoonstagram.app.forms.comments import CommentsPostForm
+from app.forms.comments import CommentsPostForm
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models.comments import Comment
-from app.models.posts import Post
+from app.models.post import Post
 
 from app.models.db import db
 
-comments = Blueprint('comments', __name__)
+comments_routes = Blueprint('comments', __name__)
 
 
-@comments.route('/')
+@comments_routes.route('/')
 def get_comments():
     all_comments = Comment.query.all()
     print(all_comments)
     return {'comments': [comment.to_dict() for comment in all_comments]}
 
-@comments.route('/<int:id>', methods=["POST"])
+@comments_routes.route('', methods=["POST"])
 def post_comments():
     # post = Post.query.get(postId)
     form = CommentsPostForm()
@@ -26,8 +26,8 @@ def post_comments():
             post_id=form.data['post_id'],
             comment_content=form.data['comment_content'],
         )
-    db.session.add()
-    db.session.commit()
+        db.session.add(comment)
+        db.session.commit()
     return comment.to_dict()
 
 # @posts.route('', methods=["POST"])

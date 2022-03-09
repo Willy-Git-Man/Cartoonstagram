@@ -1,11 +1,14 @@
+
+
 const GET_COMMENTS = 'comments/GET_COMMENTS';
 const CREATE_COMMENT = 'comments/CREATE_COMMENT';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT';
+const UPDATE_COMMENT = 'comments/UPDATE_COMMENT'
 
 // hi
-const getComment = (allComments) => ({
+const getComment = (comment) => ({
     type: GET_COMMENTS,
-    allComments: allComments
+    comment
 })
 
 
@@ -17,6 +20,11 @@ const createComment = (comment) => ({
 const deleteComment = (comment) => ({
     type: DELETE_COMMENT,
     comment
+})
+
+const updateComment = (comment) => ({
+  type: UPDATE_COMMENT,
+  comment
 })
 
 export const allComments = () => async(dispatch) => {
@@ -31,8 +39,12 @@ export const allComments = () => async(dispatch) => {
 }
 
 export const makeComment = (comment) => async(dispatch) => {
-    console.log('JHEll', comment)
-    const response = await fetch('/comments', {
+    console.log('comment', comment)
+    console.log('comment.post_id:', comment.post_id)
+
+    // const response = await fetch(`/comments/${comment.post_id}`, {
+    const response = await fetch(`/comments`, {
+
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(comment)
@@ -57,30 +69,44 @@ export const deleteCommentThunk = (commentId) => async(dispatch) => {
     }
 }
 
-const initialState = {comments: []}
+export const updateCommentThunk = (updatedComment) => async (dispatch) => {
+  const response = await fetch(`/comments/${+updatedComment.id}`, {
+    method: "PUT",
+    body: JSON.stringify(updatedComment),
+  });
+  if (response.ok) {
+    const updatedCommentRequest = await response.json();
+    dispatch(updateComment(updatedCommentRequest));
+    return updatedCommentRequest
+  }
+};
+
+const initialState = {comments: {}}
 
 export default function commentsReducer(state = initialState, action) {
     let newState;
     switch (action.type){
-        // case GET_COMMENTS:
-        //     newState = {...state}
-        //     newState.posts = [...action.allPost.posts]
-        //     newState.posts.forEach(post => newState[post.id] = post)
-        //     return newState
-        // case CREATE_COMMENT:
-        //     newState={...state}
-        //     newState.posts = [action.newPost, ...newState.posts];
-        //     return newState
-        // case DELETE_COMMENT:
-        //     newState = {...state};
-        //     delete newState[action.post.id];
-        //     newState.posts.forEach((post, i)=> {
-        //         if (post.id === action.post.id){
-        //             newState.posts.splice(i, 1);
-        //         }
-        //     })
-        //     newState.posts = [...newState.posts];
-        //     return newState
+        case GET_COMMENTS:
+          newState = {...state, comments: {}}
+          action.comment.forEach((comment) => newState.comments[comment.id] = comment)
+          return newState;
+        case CREATE_COMMENT:
+          newState= {...state, comments: {...state.comments}};
+          newState.comments[action.comment.id] = {...action.comment}
+          return newState;
+
+        case DELETE_COMMENT:
+          newState= {...state, comments: {...state.comments}};
+
+          const id = action.comment
+          delete newState.comments[id]
+          return newState;
+
+          case UPDATE_COMMENT:
+            newState = {...state, comments: {...state.comments}};
+            newState.comments[action.comment.id] = {...action.comment}
+            return newState
+
         default:
             return state
     }

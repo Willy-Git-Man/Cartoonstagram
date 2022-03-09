@@ -8,6 +8,7 @@ import CommentSection from "./commentSection";
 const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
   const currentUserLiked = useSelector((state) => state.likes.likes);
+  // const commentState = useSelector((state) => state.comments.comments)
 
   console.log("currentUserLiked:", currentUserLiked);
   useEffect(() => {
@@ -31,12 +32,12 @@ const MainPageModal = ({ modalInfo }) => {
         <div>
           <img src={modalInfo.img_src} alt="Faulty Url"/>
         </div>
-        <CommentSection />
         <div>{modalInfo.caption_content}</div>
 
         {/* <button onClick={handleLike}>Like</button> */}
         <button onClick={handleDeleteLike}>Unlike</button>
 <DeletePostModal modalInfo={modalInfo}/>
+        <CommentSection />
 
       </div>
     );
@@ -46,13 +47,13 @@ const MainPageModal = ({ modalInfo }) => {
         <div>
           <img src={modalInfo.img_src} alt="Falty Url"/>
         </div>
-        <CommentSection />
 
         <div>{modalInfo.caption_content}</div>
 
         <button onClick={handleLike}>Like</button>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
 <DeletePostModal modalInfo={modalInfo}/>
+        <CommentSection />
       </div>
     );
 };
