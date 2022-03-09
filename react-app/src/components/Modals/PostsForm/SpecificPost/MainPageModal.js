@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { allLike, deleteLike, makeLike } from "../../../../store/likes";
 import DeletePostModal from '../DeletePostModel/DeletePostSetup';
+import CommentSection from "./commentSection";
 
 const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
@@ -28,8 +29,9 @@ const MainPageModal = ({ modalInfo }) => {
     return (
       <div>
         <div>
-          <img src={modalInfo.img_src} alt="Falty Url"/>
+          <img src={modalInfo.img_src} alt="Faulty Url"/>
         </div>
+        <CommentSection />
         <div>{modalInfo.caption_content}</div>
 
         {/* <button onClick={handleLike}>Like</button> */}
@@ -44,6 +46,8 @@ const MainPageModal = ({ modalInfo }) => {
         <div>
           <img src={modalInfo.img_src} alt="Falty Url"/>
         </div>
+        <CommentSection />
+
         <div>{modalInfo.caption_content}</div>
 
         <button onClick={handleLike}>Like</button>
