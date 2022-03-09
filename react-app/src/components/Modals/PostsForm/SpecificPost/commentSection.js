@@ -6,24 +6,27 @@ import {
   makeComment,
 } from "../../../../store/comments";
 
-const CommentSection = ({ modalInfo }) => {
+function CommentSection({ modalInfo }) {
+  console.log('modalInfo:', modalInfo)
   const dispatch = useDispatch();
+  const [commentContent, setCommentContent] = useState('');
   const currentComments = useSelector((state) => state.comments.comments);
   // const currentCommentsValues = Object.values(currentComments)
   const user = useSelector(state => state.session.user);
 
   console.log("currentComments:", currentComments);
 
-  const [comment, setComment] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const comment = {
       user_id: user.id,
-      post_id: 13,
-      comment_content: "hello",
+      post_id: modalInfo.id,
+      comment_content: commentContent
     };
+
+    setCommentContent("")
 
     dispatch(makeComment(comment));
   };
@@ -33,14 +36,14 @@ const CommentSection = ({ modalInfo }) => {
       <input
         type="text"
         name="comment"
-        onChange={(e) => setComment(e.target.value)}
-        value={comment}
+        onChange={(e) => setCommentContent(e.target.value)}
+        value={commentContent}
         ></input>
       <button type='submit'>Post Comment</button>
     </form>
-    {/* {currentCommentsValues.map((comment) => (
-      <h1>comment.comment_content</h1>
-    ))} */}
+    {/* {currentComments.map(comment => {
+      <h2>{comment.comment_content}</h2>
+    })} */}
         </div>
   );
 };
