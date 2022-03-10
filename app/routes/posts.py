@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
+from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 from app.models.db import db
 from app.models.post import Post
@@ -19,21 +20,45 @@ def get_post():
     return {'posts': [post.to_dict() for post in followeds_posts]}
 
 @posts.route('', methods=["POST"])
+@login_required
 def create_post():
-    form = PostForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        print('Helloee')
-        post = Post(
-            user_id=form.data['user_id'],
-            img_src=form.data['img_src'],
-            caption_content=form.data['caption_content'],
-            location=form.data['location'],
-            created_at=datetime.now()
-        )
-        db.session.add(post)
-        db.session.commit()
-        return post.to_dict()
+    if "img_src" not in request.files:
+
+        return {"errors": "image required"}, 400
+
+    img_src = request.files['img_src']
+    
+
+    if not allowed_file(img_src.filename):
+
+        return {"errors": "file type not permitted"}, 400
+
+    img_src.filename = get_unique_filename(img_src.filename)
+
+    upload = upload_file_to_s3(img_src)
+
+    if "url" not in upload:
+
+        return upload, 400
+
+    user_id = current_user.id
+    img_src = upload["url"]
+    caption_content = request.form["caption_content"]
+    location = request.form["location"]
+
+    post = Post(
+        user_id=user_id,
+        img_src=img_src,
+        caption_content=caption_content,
+        location=location,
+        created_at=datetime.now()
+    )
+
+    db.session.add(post)
+    db.session.commit()
+    return post.to_dict()
+
+
 
 @posts.route('/<int:id>', methods=['DELETE'])
 def delete_post(id):
@@ -46,7 +71,7 @@ def delete_post(id):
 @posts.route('/<int:id>/update', methods=['POST'])
 def edit_post(id):
     form = PostForm()
-    # print(form.caption_content.data, "==================")
+
     form['csrf_token'].data = request.cookies['csrf_token']
     post = Post.query.get(id)
     post.img_src = form.img_src.data
@@ -56,14 +81,3 @@ def edit_post(id):
 
     db.session.commit()
     return post.to_dict()
-
-# update(table[, whereclause, values, inline, ...], **dialect_kw)
-
-# admin = User.query.filter_by(username='admin').first()
-# admin.email = 'my_new_email@example.com'
-# db.session.commit()
-
-# user = User.query.get(5)
-# user.name = 'New Name'
-# db.session.commit()
-    
