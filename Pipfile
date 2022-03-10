@@ -48,6 +48,7 @@ zict = "==2.1.0"
 HeapDict = "==1.0.1"
 Pillow = "==9.0.1"
 PyYAML = "==6.0"
+boto3 = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
