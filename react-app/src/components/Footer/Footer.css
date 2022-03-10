@@ -10,6 +10,7 @@ justify-content: center;
 .footer-header {
 font-size: 20px;
 padding: 5px;
+text-decoration: none;
 }
 
 .footer-icons a {
@@ -24,4 +25,14 @@ display: flex;
 font-size: 12px;
 padding-top: 9px;
 justify-content: center;
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:active { text-decoration: none; }
+
+.footer-header:visited {
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: none;
 }
