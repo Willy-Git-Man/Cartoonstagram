@@ -7,4 +7,4 @@ class CommentsPostForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     post_id = IntegerField('post_id', validators=[DataRequired()])
     # comment_content = StringField('comment_content', validators=[DataRequired()])
-    comment_content = TextAreaField('comment_content', validators=[DataRequired()])
+    comment_content = StringField('comment_content', validators=[DataRequired()])

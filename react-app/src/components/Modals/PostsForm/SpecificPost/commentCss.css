@@ -1,0 +1,78 @@
+.commentArrayDiv {
+  /* position: absolute; */
+  /* display: flex; */
+  /* flex: column; */
+  margin-top: 5%;
+  outline: 5px black solid;
+  /* background-color: grey; */
+}
+
+.postDiv {
+  /* background-color: black; */
+  /* display: inline-block; */
+  /* flex-direction: column; */
+  height: 50vh;
+  width: 70vw;
+  overflow: hidden scroll;
+}
+
+
+
+.commentsDiv {
+
+}
+
+
+.pictureMainDiv {
+  background-color: black;
+  outline: 50px black solid;
+}
+
+.modalImage {
+  /* position: absolute;
+  top: 0; */
+
+}
+
+.commentSection {
+  position: absolute;
+  height: 50vh;
+  overflow: hidden scroll;
+  width: 50%;
+  right: 0;
+
+}
+
+.commentForm {
+  background-color: black;
+  position: absolute;
+}
+
+.leftPanel {
+  /* background-color: black; */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 50vh;
+
+}
+
+.commenstMap {
+  position: absolute;
+  overflow: scroll ;
+}
+
+.commentUserName {
+  margin: 0;
+}
+
+
+/* .formDiv {
+  display: flex;
+  flex-direction: column;
+} */
+
+.commentProfilePic {
+  height: 50px;
+}

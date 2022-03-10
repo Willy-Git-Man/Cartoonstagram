@@ -67,13 +67,16 @@ export const deleteCommentThunk = (commentId) => async(dispatch) => {
     }
 }
 
-export const updateCommentThunk = (updatedComment) => async (dispatch) => {
-  const response = await fetch(`/comments/${+updatedComment.id}`, {
-    method: "PUT",
+export const updateCommentThunk = (updatedComment, commentId) => async (dispatch) => {
+  console.log('updatedComment:', updatedComment)
+  const response = await fetch(`/comments/${commentId}`, {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(updatedComment),
   });
   if (response.ok) {
     const updatedCommentRequest = await response.json();
+    console.log('updatedCommentRequest:', updatedCommentRequest)
     dispatch(updateComment(updatedCommentRequest));
     return updatedCommentRequest
   }

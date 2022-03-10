@@ -26,7 +26,7 @@ const HomeFeed = () => {
       <h1>Coming from HomeFeed</h1>
       {allPosts.map((post) => (
         <div
-          className="postDiv"
+          className="postsDiv"
           key={post.id}
 
         >
