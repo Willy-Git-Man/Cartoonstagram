@@ -10,6 +10,7 @@ import User from './components/User';
 import PostFormModal from './components/Modals/PostsForm/Modal';
 import { authenticate } from './store/session';
 import HomeFeed from './components/HomeFeed';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,29 +28,32 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <NavBar />
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <NavBar />
-          <h1>My Home Page</h1>
-          <HomeFeed />
-          <PostFormModal />
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <NavBar />
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path='/' exact={true} >
+            <NavBar />
+            <h1>My Home Page</h1>
+            <HomeFeed />
+            <PostFormModal />
+          </ProtectedRoute>
+        </Switch>
+      </BrowserRouter>
+      <Footer />
+    </>
   );
 }
 
