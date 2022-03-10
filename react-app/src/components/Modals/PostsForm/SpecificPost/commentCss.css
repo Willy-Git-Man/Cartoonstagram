@@ -32,6 +32,10 @@
   /* position: absolute;
   top: 0; */
 
+  object-fit: cover;
+  width: 35vw;
+  height: 50vh;
+
 }
 
 .commentSection {
@@ -75,4 +79,26 @@
 
 .commentProfilePic {
   height: 50px;
+}
+
+.commentCaption {
+   color: white;
+}
+
+.leftPannelButtons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+}
+
+.likeButton {
+  /* position: absolute; */
+  /* right: 0; */
+
+}
+
+.unlikeButton {
+
+
 }
