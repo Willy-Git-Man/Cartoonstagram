@@ -1,4 +1,5 @@
 from .db import db
+from flask_login import current_user
 
 class Comment(db.Model):
   __tablename__ = 'comments'
@@ -16,5 +17,5 @@ class Comment(db.Model):
       'id': self.id,
       'user_id': self.user_id,
       'post_id': self.post_id,
-      'comment_content': self.comment_content,
+      'comment_content': self.comment_content
  }

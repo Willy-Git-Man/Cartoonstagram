@@ -11,13 +11,13 @@ function CommentSection({ modalInfo }) {
   const dispatch = useDispatch();
   const [commentContent, setCommentContent] = useState('');
   const currentComments = useSelector((state) => state.comments.comments);
+  const all_users = useSelector((state) => state.comments.users)
   console.log('currentComments:', currentComments)
   // console.log('STATE COMMENTS',currentComments)
   // const currentCommentsValues = Object.values(currentComments)
   const user = useSelector(state => state.session.user);
   const commentArray = Object.values(currentComments)
-
-
+console.log(all_users)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +45,8 @@ function CommentSection({ modalInfo }) {
     </form>
     {commentArray.map(comment => (
       <div className="commentArrayDiv" key={comment.id}>
+        <h1>{all_users[comment.user_id].username}</h1>
+        <img src={all_users[comment.user_id].profile_img_src} alt=''/>
         <h2>{comment.comment_content}</h2>
         <button>Edit</button>
         <button onClick={() => dispatch(deleteCommentThunk(comment.id))} >Delete</button>
