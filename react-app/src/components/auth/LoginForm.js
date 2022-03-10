@@ -19,7 +19,6 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
-    
   };
 
   const updateEmail = (e) => {
@@ -35,6 +34,8 @@ const LoginForm = () => {
   }
 
   const demoUser = () => {
+    setEmail('demo@aa.io')
+    setPassword('password')
     return dispatch(login('demo@aa.io','password'))
   }
 

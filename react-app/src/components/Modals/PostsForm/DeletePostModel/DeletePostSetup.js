@@ -37,5 +37,4 @@ function DeletePostModal({ modalInfo }) {
     )
 }
 
-
 export default DeletePostModal;
