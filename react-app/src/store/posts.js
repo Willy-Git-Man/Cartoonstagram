@@ -65,8 +65,7 @@ export const editPost = (post, postId) => async (dispatch) => {
     console.log('coming from edit post action', post)
     const response = await fetch(`/posts/${postId}/update`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
+        body: post
     });
 
     if (response.ok) {

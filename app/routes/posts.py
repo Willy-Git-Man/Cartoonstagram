@@ -27,7 +27,7 @@ def create_post():
         return {"errors": "image required"}, 400
 
     img_src = request.files['img_src']
-    
+
 
     if not allowed_file(img_src.filename):
 
@@ -70,13 +70,37 @@ def delete_post(id):
 
 @posts.route('/<int:id>/update', methods=['POST'])
 def edit_post(id):
-    form = PostForm()
+    print(request , "+++++++++++")
+    if "img_src" not in request.files:
+        print('hello')
+        return {"errors": "image required"}, 400
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+    img_src = request.files['img_src']
+
+
+    if not allowed_file(img_src.filename):
+        print('hello2')
+        return {"errors": "file type not permitted"}, 400
+
+    img_src.filename = get_unique_filename(img_src.filename)
+
+    upload = upload_file_to_s3(img_src)
+
+    if "url" not in upload:
+        print('hello3')
+        return upload, 400
+
     post = Post.query.get(id)
-    post.img_src = form.img_src.data
-    post.caption_content = form.caption_content.data
-    post.location = form.location.data
+
+    user_id = current_user.id
+    img_src = upload["url"]
+    caption_content = request.form["caption_content"]
+    location = request.form["location"]
+
+    post.user_id = user_id
+    post.img_src = img_src
+    post.caption_content = caption_content
+    post.location = location
     post.created_at = datetime.now()
 
     db.session.commit()
