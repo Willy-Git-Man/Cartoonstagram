@@ -32,10 +32,15 @@
   /* position: absolute;
   top: 0; */
 
+  object-fit: cover;
+  width: 35vw;
+  height: 50vh;
+
 }
 
 .commentSection {
   position: absolute;
+  display: flex;
   height: 50vh;
   overflow: hidden scroll;
   width: 50%;
@@ -68,11 +73,78 @@
 }
 
 
-/* .formDiv {
-  display: flex;
-  flex-direction: column;
-} */
+.formDivComments {
+padding: 1px;
+width: 100%;
+background-color: black;
+margin-bottom: 50px;
+position: fixed;
+bottom:  0;
+
+}
 
 .commentProfilePic {
-  height: 50px;
+  height: 2.5vh;
+  border-radius: 50%;
+}
+
+.commentCaption {
+   color: white
+}
+
+.leftPannelButtons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+}
+
+.likeButton {
+  position: absolute;
+  z-index: 1000;
+
+  /* position: absolute; */
+  /* right: 0; */
+
+}
+
+
+
+.unlikeButton {
+background-color: red;
+position: absolute;
+
+}
+
+
+.commentPicAndName {
+  display: flex;
+  height: 3vh;
+}
+
+.buttonsDiv {
+  display: flex;
+
+  background-color: black;
+}
+
+.deleteCommentButton {
+  width: 25%;
+  position: absolute;
+  right: 0;
+  height: 3vh;
+
+}
+
+.updateCommentModalButton {
+  width: 25%;
+  position: absolute;
+  right: 25%;
+  height: 3vh;
+}
+
+
+.commentMap {
+  /* background-color: black; */
+  margin-bottom: 50px;
 }

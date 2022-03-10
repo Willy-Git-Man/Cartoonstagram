@@ -28,6 +28,7 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
     setShowModal(false)
   };
 
+
   return (
     <div className="createNewCommentDiv">
       <form className="createNewCommentForm" onSubmit={handleCommentEdit}>
@@ -41,7 +42,7 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
           onChange={handleNewComment}
           required
         />
-
+      
         <button className="updateCommentFormButton" type="submit">Update</button>
       </form>
     </div>

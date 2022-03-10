@@ -6,24 +6,37 @@ import {
   makeComment,
   updateCommentThunk,
 } from "../../../../store/comments";
+import { deleteLike, makeLike } from "../../../../store/likes";
 import UpdateCommentModal from "../EditCommentModal/editCommentModal";
 
-import './commentCss.css'
+import "./commentCss.css";
 
 function CommentSection({ modalInfo }) {
-
   const dispatch = useDispatch();
-  const [commentContent, setCommentContent] = useState('');
-  const [commentEditContent, setCommentEditContent] = useState('');
+  const [commentContent, setCommentContent] = useState("");
+  const [commentEditContent, setCommentEditContent] = useState("");
 
   const currentComments = useSelector((state) => state.comments.comments);
-  const all_users = useSelector((state) => state.comments.users)
-  console.log('currentComments:', currentComments)
+  const all_users = useSelector((state) => state.comments.users);
+  console.log("currentComments:", currentComments);
   // console.log('STATE COMMENTS',currentComments)
   // const currentCommentsValues = Object.values(currentComments)
-  const user = useSelector(state => state.session.user);
-  const commentArray = Object.values(currentComments)
-console.log(all_users)
+
+  const currentUserLiked = useSelector((state) => state.likes.likes);
+
+  const user = useSelector((state) => state.session.user);
+  const commentArray = Object.values(currentComments);
+  console.log(all_users);
+  const currentUser = useSelector((state) => state.session.user);
+  const handleDeleteLike = async () => {
+    dispatch(deleteLike(modalInfo.id));
+  };
+
+  const handleLike = async () => {
+    console.log("from handleLike in MainPageModal");
+    console.log("modalinfo on like", modalInfo.id);
+    dispatch(makeLike(modalInfo.id));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,63 +44,76 @@ console.log(all_users)
     const comment = {
       user_id: user.id,
       post_id: modalInfo.id,
-      comment_content: commentContent
+      comment_content: commentContent,
     };
 
-    setCommentContent("")
+    setCommentContent("");
 
     dispatch(makeComment(comment));
   };
 
-//   const handleCommentEdit = async (comment) => {
-// console.log('comment:', comment)
-// // setCommentContent(comment.comment_content)
-
-//     const newComment = {
-//       user_id: user.id,
-//       post_id: modalInfo.id,
-//       comment_content: "hello",
-//       id: comment.id
-//     };
-
-//     console.log('newComment:', newComment)
-
-
-//     dispatch(updateCommentThunk(newComment.id));
-
-//   };
   return (
     <div className="commentSection">
-    <div className="commentMap">
-    {commentArray.map(comment => (
-      <div className="commentArrayDiv" key={comment.id}>
-        <div className="commentPicAndName">
-        <h1 className="commentUserName">{all_users[comment.user_id].username}</h1>
-        <img className="commentProfilePic" src={all_users[comment.user_id].profile_img_src} alt=''/>
-        <h2>{comment.comment_content}</h2>
-        </div>
-        {/* <button>Edit</button> */}
-        <div className="buttonsDiv">
-        <button onClick={() => dispatch(deleteCommentThunk(comment.id))} >Delete</button>
-        {/* <button onClick={() => handleCommentEdit(comment)}>Edit</button> */}
-        <UpdateCommentModal modalInfo={comment}/>
-        </div>
+      <div className="commentMap">
+        {commentArray.map((comment) => (
+          <div className="commentArrayDiv" key={comment.id}>
+            <div className="commentPicAndName">
+              <img
+                className="commentProfilePic"
+                src={all_users[comment.user_id].profile_img_src}
+                alt=""
+              />
+              <h1 className="commentUserName">
+                {all_users[comment.user_id].username}: {comment.comment_content}
+              </h1>
+              {/* <h2>{comment.comment_content}</h2> */}
+              {/* <button>Edit</button> */}
+              <div className="buttonsDiv">
+                {comment.user_id === user.id && (
+                  <button
+                    className="deleteCommentButton"
+                    onClick={() => dispatch(deleteCommentThunk(comment.id))}
+                  >
+                    Delete
+                  </button>
+                )}
+
+                {comment.user_id === user.id && (
+                  <UpdateCommentModal
+                    className="editCommentButton"
+                    modalInfo={comment}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-    ))}
+      <div className="formDivComments">
+        <form className="commentForm" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="comment"
+            onChange={(e) => setCommentContent(e.target.value)}
+            value={commentContent}
+          ></input>
+          <button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
+          {/* <i className="unlikeButton" onClick={handleDeleteLike} class="fas fa-heart"></i> */}
+          {/* <i className="likeButton" onClick={handleLike} class="fas fa-heart"></i> */}
+        </form>
+        {currentUserLiked.length < 1 && (
+          <button className="likeButton" onClick={handleLike}>
+            <i class="fas fa-heart"></i>
+          </button>
+        )}
+        {currentUserLiked.length > 0 && (
+          <button className="unlikeButton" onClick={handleDeleteLike}>
+            <i className="likeButton" class="fas fa-heart"></i>
+          </button>
+        )}
+      </div>
     </div>
-    <div className="formDiv">
-    <form className="commentForm" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="comment"
-        onChange={(e) => setCommentContent(e.target.value)}
-        value={commentContent}
-        ></input>
-      <button type='submit'>Post Comment</button>
-    </form>
-        </div>
-        </div>
   );
-};
+}
 
 export default CommentSection;
