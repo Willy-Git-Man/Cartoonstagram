@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { makePost, allPost } from '../../../store/posts';
-import { useHistory } from "react-router-dom";
+import { makePost } from '../../../store/posts';
+
 
 const PostForm = ({ setShowModal }) => {
     const [errors, setErrors] = useState([]);
-    const [img_src, setImg] = useState('');
+    const [img_src, setImg] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
     const [caption_content, setCaption] = useState('');
     const [location, setLocation] = useState('');
 
@@ -13,21 +14,25 @@ const PostForm = ({ setShowModal }) => {
     const dispatch = useDispatch();
 
 
-    useEffect(()=> {
-            allPost()
-        }, [dispatch])
-        
     const handleSubmit = async(e) => {
         e.preventDefault();
+        const formData = new FormData();
 
-        const post = {
-            user_id: user.id,
-            img_src,
-            caption_content,
-            location
+        formData.append("img_src", img_src);
+        formData.append("caption_content", caption_content);
+        formData.append("location", location)
+
+        const results = await dispatch(makePost(formData))
+        if (results === 'Success'){
+            setImageLoading(false)
+            setShowModal(false)
         }
-        
-        dispatch(makePost(post), setShowModal(false))
+
+    }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImg(file);
     }
 
     return (
@@ -39,11 +44,10 @@ const PostForm = ({ setShowModal }) => {
             </div>
             <div>
                 <input
-                    type='text'
+                    type='file'
+                    accept='image/*'
                     name='img_src'
-                    onChange={(e) => setImg(e.target.value)}
-                    value={img_src}
-                    placeholder='Post Image Url'
+                    onChange={updateImage}
                 ></input>
             </div>
             <div>
@@ -65,6 +69,7 @@ const PostForm = ({ setShowModal }) => {
                 ></input>
             </div>
             <button type='submit'>Post</button>
+            {(imageLoading)&& <p>Loading...</p>}
         </form>
     )
 }

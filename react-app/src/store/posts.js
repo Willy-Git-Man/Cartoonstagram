@@ -35,19 +35,18 @@ export const allPost = () => async(dispatch) => {
 
 }
 
-export const makePost = (post) => async(dispatch) => {
-    console.log('JHEll', post)
+export const makePost = (formData) => async(dispatch) => {
+
     const response = await fetch('/posts', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
+        body: formData
     })
 
     if(response.ok){
         const newPost = await response.json();
         dispatch(createPost(newPost))
+        return 'Success';
     }
-    return response;
 }
 
 export const deleteAPost = (postId) => async(dispatch) => {
