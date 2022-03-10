@@ -41,14 +41,14 @@ def delete_comments(id):
     db.session.commit()
     return comment.to_dict()
 
-@comments_routes.route('/<int:id>', methods=['PUT'])
+@comments_routes.route('/<int:id>', methods=['POST'])
 def edit_post(id):
     form = CommentsPostForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
     comment = Comment.query.get(id)
-
-    comment.comment_content = comment.comment_content + "@"
+    print('commen#########################################t:', form.comment_content)
+    comment.comment_content = form.comment_content.data
 
     #  post.caption_content = form.caption_content.data
     # db.session.add(comment)

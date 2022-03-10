@@ -8,7 +8,7 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
 
   const user = useSelector((state) => state.session.user);
 
-  const [newCommentEdit, setNewCommentEdit] = useState("");
+  const [newCommentEdit, setNewCommentEdit] = useState(modalInfo.comment_content);
   const handleNewComment = (e) => setNewCommentEdit(e.target.value);
 
   const handleCommentEdit = async (e) => {
@@ -18,12 +18,14 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
     const newComment = {
       user_id: user.id,
       post_id: modalInfo.post_id,
-      comment_content: "heffllo",
-      id: modalInfo.id
+      comment_content: newCommentEdit
+      // id: modalInfo.id
     };
     console.log("newComment:", newComment);
 
-    dispatch(updateCommentThunk(newComment));
+    dispatch(updateCommentThunk(newComment, modalInfo.id));
+
+    setShowModal(false)
   };
 
   return (
