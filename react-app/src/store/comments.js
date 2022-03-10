@@ -85,10 +85,11 @@ export default function commentsReducer(state = initialState, action) {
     let newState;
     switch (action.type){
         case GET_COMMENTS:
-          newState = {...state, comments: {}}
+          newState = {...state, comments: {}, users: {}}
           console.log('the action',action)
           console.log('the action.postComments.comments',action.postComments.comments)
           action.postComments.comments.forEach((comment) => newState.comments[comment.id] = comment)
+          action.postComments.users.forEach(user => newState.users[user.id] = user)
           return newState;
         case CREATE_COMMENT:
           newState= {...state, comments: {...state.comments} };
