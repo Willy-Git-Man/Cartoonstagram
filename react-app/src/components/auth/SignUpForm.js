@@ -18,10 +18,18 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, profile_img_src));
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password)
+      formData.append("profile_img_src", profile_img_src)
+   
+      const data = await dispatch(signUp(formData));
       if (data) {
         setErrors(data)
       }
+    }else{
+      setErrors(['Passwords do not match.'])
     }
 
   };
@@ -43,7 +51,8 @@ const SignUpForm = () => {
   };
 
   const updateProfilePic = (e) => {
-    setProfilePicUrl(e.target.value)
+    const file = e.target.files[0];
+    setProfilePicUrl(file)
   }
 
   if (user) {
@@ -107,11 +116,11 @@ const SignUpForm = () => {
         </div>
         <div>
           <input
-          placeholder='Profile Picture URL'
-          type='text'
-          name='profile_pic'
-          onChange={updateProfilePic}
-          value={profile_img_src}
+            className='loginInputs'
+            type='file'
+            accept='image/*'
+            name='img_src'
+            onChange={updateProfilePic}
           ></input>
         </div>
         <button className='loginButtons singupButton' type='submit'>Sign Up</button>
