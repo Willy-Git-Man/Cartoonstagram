@@ -4,12 +4,18 @@ import {
   allComments,
   deleteCommentThunk,
   makeComment,
+  updateCommentThunk,
 } from "../../../../store/comments";
+import UpdateCommentModal from "../EditCommentModal/editCommentModal";
+
+import './commentCss.css'
 
 function CommentSection({ modalInfo }) {
 
   const dispatch = useDispatch();
   const [commentContent, setCommentContent] = useState('');
+  const [commentEditContent, setCommentEditContent] = useState('');
+
   const currentComments = useSelector((state) => state.comments.comments);
   const all_users = useSelector((state) => state.comments.users)
   console.log('currentComments:', currentComments)
@@ -32,9 +38,45 @@ console.log(all_users)
 
     dispatch(makeComment(comment));
   };
+
+//   const handleCommentEdit = async (comment) => {
+// console.log('comment:', comment)
+// // setCommentContent(comment.comment_content)
+
+//     const newComment = {
+//       user_id: user.id,
+//       post_id: modalInfo.id,
+//       comment_content: "hello",
+//       id: comment.id
+//     };
+
+//     console.log('newComment:', newComment)
+
+
+//     dispatch(updateCommentThunk(newComment.id));
+
+//   };
   return (
     <div className="commentSection">
-    <form onSubmit={handleSubmit}>
+    <div className="commentMap">
+    {commentArray.map(comment => (
+      <div className="commentArrayDiv" key={comment.id}>
+        <div className="commentPicAndName">
+        <h1 className="commentUserName">{all_users[comment.user_id].username}</h1>
+        <img className="commentProfilePic" src={all_users[comment.user_id].profile_img_src} alt=''/>
+        <h2>{comment.comment_content}</h2>
+        </div>
+        {/* <button>Edit</button> */}
+        <div className="buttonsDiv">
+        <button onClick={() => dispatch(deleteCommentThunk(comment.id))} >Delete</button>
+        {/* <button onClick={() => handleCommentEdit(comment)}>Edit</button> */}
+        <UpdateCommentModal modalInfo={comment}/>
+        </div>
+      </div>
+    ))}
+    </div>
+    <div className="formDiv">
+    <form className="commentForm" onSubmit={handleSubmit}>
       <input
         type="text"
         name="comment"
@@ -43,15 +85,7 @@ console.log(all_users)
         ></input>
       <button type='submit'>Post Comment</button>
     </form>
-    {commentArray.map(comment => (
-      <div className="commentArrayDiv" key={comment.id}>
-        <h1>{all_users[comment.user_id].username}</h1>
-        <img src={all_users[comment.user_id].profile_img_src} alt=''/>
-        <h2>{comment.comment_content}</h2>
-        <button>Edit</button>
-        <button onClick={() => dispatch(deleteCommentThunk(comment.id))} >Delete</button>
-      </div>
-    ))}
+        </div>
         </div>
   );
 };

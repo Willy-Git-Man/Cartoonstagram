@@ -41,19 +41,16 @@ def delete_comments(id):
     db.session.commit()
     return comment.to_dict()
 
-# @posts.route('', methods=["POST"])
-# def create_post():
-#     form = PostForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         print('Helloee')
-#         post = Post(
-#             user_id=form.data['user_id'],
-#             img_src=form.data['img_src'],
-#             caption_content=form.data['caption_content'],
-#             location=form.data['location'],
-#             created_at=datetime.now()
-#         )
-#         db.session.add(post)
-#         db.session.commit()
-#         return post.to_dict()
+@comments_routes.route('/<int:id>', methods=['POST'])
+def edit_post(id):
+    form = CommentsPostForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    comment = Comment.query.get(id)
+    print('commen#########################################t:', form.comment_content)
+    comment.comment_content = form.comment_content.data
+
+    #  post.caption_content = form.caption_content.data
+    # db.session.add(comment)
+    db.session.commit()
+    return comment.to_dict()
