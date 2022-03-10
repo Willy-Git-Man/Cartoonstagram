@@ -60,7 +60,7 @@ const MainPageModal = ({ modalInfo }) => {
         <p className="commentCaption">{modalInfo.caption_content}</p>
 
         {/* <button className="likeButton"onClick={handleLike}>Like</button> */}
-        <i className="unlikeButton" onClick={handleDeleteLike} class="fas fa-heart"></i>
+        {/* <i className="unlikeButton" onClick={handleDeleteLike} class="fas fa-heart"></i> */}
 
         </div>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
@@ -82,7 +82,7 @@ const MainPageModal = ({ modalInfo }) => {
       <div className="leftPannelButtons">
         <p className="commentCaption">{modalInfo.caption_content}</p>
 
-        <button className="likeButton"onClick={handleLike}><i class="fas fa-heart"></i></button>
+        {/* <button className="likeButton"onClick={handleLike}><i class="fas fa-heart"></i></button> */}
         </div>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
         {currentUser.id === modalInfo.user_id && (
