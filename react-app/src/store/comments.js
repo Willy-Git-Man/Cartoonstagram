@@ -68,7 +68,8 @@ export const deleteCommentThunk = (commentId) => async(dispatch) => {
 }
 
 export const updateCommentThunk = (updatedComment) => async (dispatch) => {
-  const response = await fetch(`/comments/${+updatedComment.id}`, {
+  console.log('updatedComment:', updatedComment)
+  const response = await fetch(`/comments/${updatedComment.id}`, {
     method: "PUT",
     body: JSON.stringify(updatedComment),
   });

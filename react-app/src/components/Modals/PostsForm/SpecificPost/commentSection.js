@@ -4,12 +4,16 @@ import {
   allComments,
   deleteCommentThunk,
   makeComment,
+  updateCommentThunk,
 } from "../../../../store/comments";
+import UpdateCommentModal from "../EditCommentModal/editCommentModal";
 
 function CommentSection({ modalInfo }) {
 
   const dispatch = useDispatch();
   const [commentContent, setCommentContent] = useState('');
+  const [commentEditContent, setCommentEditContent] = useState('');
+
   const currentComments = useSelector((state) => state.comments.comments);
   const all_users = useSelector((state) => state.comments.users)
   console.log('currentComments:', currentComments)
@@ -32,6 +36,24 @@ console.log(all_users)
 
     dispatch(makeComment(comment));
   };
+
+//   const handleCommentEdit = async (comment) => {
+// console.log('comment:', comment)
+// // setCommentContent(comment.comment_content)
+
+//     const newComment = {
+//       user_id: user.id,
+//       post_id: modalInfo.id,
+//       comment_content: "hello",
+//       id: comment.id
+//     };
+
+//     console.log('newComment:', newComment)
+
+
+//     dispatch(updateCommentThunk(newComment.id));
+
+//   };
   return (
     <div className="commentSection">
     <form onSubmit={handleSubmit}>
@@ -48,8 +70,10 @@ console.log(all_users)
         <h1>{all_users[comment.user_id].username}</h1>
         <img src={all_users[comment.user_id].profile_img_src} alt=''/>
         <h2>{comment.comment_content}</h2>
-        <button>Edit</button>
+        {/* <button>Edit</button> */}
         <button onClick={() => dispatch(deleteCommentThunk(comment.id))} >Delete</button>
+        {/* <button onClick={() => handleCommentEdit(comment)}>Edit</button> */}
+        <UpdateCommentModal modalInfo={comment}/>
       </div>
     ))}
         </div>
