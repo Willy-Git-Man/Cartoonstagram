@@ -16,6 +16,12 @@ function DeletePostModal({ modalInfo }) {
         setShowModal(true)
         setEdit(true)
     }
+
+    function handleModalClose() {
+        setShowModal(false)
+        setDelete(false)
+        setEdit(false)
+    }
     
     return (
         <div>
@@ -23,7 +29,7 @@ function DeletePostModal({ modalInfo }) {
             <button onClick={handleEdit}>Edit</button>
 
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <Modal onClose={(handleModalClose)}>
                     <DeleteEditModal closeModal={() => setShowModal(false) } modalInfo={modalInfo} deletePost={deletePost} edit={edit}/>
                 </Modal>
             )}
