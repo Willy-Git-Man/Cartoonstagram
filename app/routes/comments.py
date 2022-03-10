@@ -5,6 +5,7 @@ from app.models.comments import Comment
 from app.models.post import Post
 
 from app.models.db import db
+from app.models.user import User
 
 comments_routes = Blueprint('comments', __name__)
 
@@ -12,8 +13,11 @@ comments_routes = Blueprint('comments', __name__)
 @comments_routes.route('/<int:post_id>')
 def get_comments(post_id):
     all_comments = Comment.query.filter(Comment.post_id == post_id).all()
+    all_users = User.query.all()
+    # print(all_comments)
+    # all_comments = db.session.query(Comment.id, Comment.user_id, Comment.post_id, Comment.comment_content, User.username, User.profile_img_src).join(User).filter(Comment.post_id == post_id).all()
     print(all_comments)
-    return {'comments': [comment.to_dict() for comment in all_comments]}
+    return {'comments': [comment.to_dict() for comment in all_comments], 'users': [user.to_dict() for user in all_users]}
 
 @comments_routes.route('', methods=["POST"])
 def post_comments():

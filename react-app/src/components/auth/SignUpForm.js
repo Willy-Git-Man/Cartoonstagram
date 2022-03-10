@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './loginSignup.css'
 import { userFollowers } from '../../store/followers';
 
 const SignUpForm = () => {
@@ -10,19 +11,19 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [profilePicUrl, setProfilePicUrl] = useState('');
+  const [profile_img_src, setProfilePicUrl] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, profile_img_src));
       if (data) {
         setErrors(data)
       }
     }
-  
+
   };
 
   const updateUsername = (e) => {
@@ -50,62 +51,77 @@ const SignUpForm = () => {
   }
 
   return (
-    <div>
-    <NavLink to="/login">Login</NavLink>
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-          ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-          ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-          ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-          ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-          ></input>
+    <div className='wholeDivSignUp'>
 
-        <label>Profile Pic Url</label>
-        <input
+    <div className='signupForm'>
+      <div>
+      <h2 className='signupTitle'>Cartoonstagram</h2>
+      <h5 className='signUpMessage'>Sign up to see photos of your friends.</h5>
+      </div>
+      <form className='formSignUp' onSubmit={onSignUp}>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+            ))}
+        </div>
+        <div>
+          <input
+            className='loginInputs'
+            placeholder='Username'
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            ></input>
+        </div>
+        <div>
+          <input
+            className='loginInputs'
+            placeholder='Email'
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            ></input>
+        </div>
+        <div>
+          <input
+            className='loginInputs'
+            placeholder='Password'
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            ></input>
+        </div>
+        <div>
+          <input
+            className='loginInputs'
+            placeholder='Confirm Password'
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            ></input>
+        </div>
+        <div>
+          <input
+          placeholder='Profile Picture URL'
           type='text'
           name='profile_pic'
           onChange={updateProfilePic}
-          value={profilePicUrl}
+          value={profile_img_src}
           ></input>
+        </div>
+        <button className='loginButtons singupButton' type='submit'>Sign Up</button>
+      </form>
+    </div>
+      <div className='lowerSignUp'>
+        <p className='text'>Have an account?</p>
+        <NavLink to="/login">Login</NavLink>
       </div>
-      <button type='submit'>Sign Up</button>
-    </form>
-          </div>
+    </div>
   );
 };
 

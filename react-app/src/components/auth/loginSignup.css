@@ -79,3 +79,59 @@
     flex-direction: column;
     gap: 5px;
 }
+
+
+/* **************Sign up Form Section***************** */
+
+.signupForm{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid rgb(182, 179, 179) 1px;
+    height: 350px;
+    width: 250px;
+    gap: 20px;
+}
+
+.wholeDivSignUp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    gap: 10px;
+}
+
+.lowerSignUp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: white;
+    border: solid rgb(182, 179, 179) 1px;
+    width: 250px;
+}
+
+.formSignUp{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.singupButton{
+    margin-top: 5px;
+}
+
+.signUpMessage{
+    margin: 5px auto 5px;
+    width: 180px;
+    text-align: center;
+    color:rgb(109, 109, 109);
+}
+
+.signupTitle{
+    margin: 5px 0;
+    text-align: center;
+}
