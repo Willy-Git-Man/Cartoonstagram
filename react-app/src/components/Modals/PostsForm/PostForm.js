@@ -21,7 +21,7 @@ const PostForm = ({ setShowModal }) => {
         formData.append("img_src", img_src);
         formData.append("caption_content", caption_content);
         formData.append("location", location)
-
+        
         const results = await dispatch(makePost(formData))
         if (results === 'Success'){
             setImageLoading(false)
