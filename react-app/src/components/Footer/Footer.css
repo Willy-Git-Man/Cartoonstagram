@@ -1,0 +1,27 @@
+.footer-content {
+align-items: center;
+/* color: #C7CFD9; */
+display: flex;
+flex-direction: column;
+height: 90px;
+justify-content: center;
+}
+
+.footer-header {
+font-size: 20px;
+padding: 5px;
+}
+
+.footer-icons a {
+/* color: #C7CFD9; */
+font-size: 30px;
+padding: 0 10px;
+text-decoration: none;
+}
+
+.footer-technologies {
+display: flex;
+font-size: 12px;
+padding-top: 9px;
+justify-content: center;
+}
