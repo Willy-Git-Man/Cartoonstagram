@@ -11,88 +11,26 @@ const MainPageModal = ({ modalInfo }) => {
   const currentUser = useSelector((state) => state.session.user);
   const currentUserLiked = useSelector((state) => state.likes.likes);
 
-  console.log(modalInfo, "this is the modalInfo");
-
-  console.log("currentUserLiked:", currentUserLiked);
   useEffect(() => {
     dispatch(allLike(modalInfo.id));
     dispatch(allComments(modalInfo.id));
   }, [modalInfo.id, dispatch]);
 
-  const handleLike = async () => {
-    console.log("from handleLike in MainPageModal");
-    console.log("modalinfo on like", modalInfo.id);
-    dispatch(makeLike(modalInfo.id));
-  };
-
-  const handleDeleteLike = async () => {
-    dispatch(deleteLike(modalInfo.id));
-  };
-  // if ((currentUserLiked[0].user_id === currentUser.id) === true)
-  // if (likeValuesArr[0]/)
-  if (currentUserLiked.length > 0)
-    return (
-      // <div className="entireModal">
-      // <div className="pictureMainDiv">
-      //   <div>
-      //     <img className="modalImage" src={modalInfo.img_src} alt="Faulty Url" />
-      //   </div>
-      //   <div>{modalInfo.caption_content}</div>
-
-      //   {/* <button onClick={handleLike}>Like</button> */}
-      //   <button className="unlikeButton" onClick={handleDeleteLike}>Unlike</button>
-
-      //   {currentUser.id === modalInfo.user_id && (
-      //     <DeletePostModal modalInfo={modalInfo} />
-      //     )}
-
-      //   <div className="commentsDiv">
-      //     <CommentSection modalInfo={modalInfo} />
-      //   </div>
-      // </div>
-      //     </div>
-
-
-      <div className="postDiv">
-        <div className="leftPanel">
-          <img className="modalImage" src={modalInfo.img_src} alt="Faulty Url" />
-      <div className="leftPannelButtons">
-        <p className="commentCaption">{modalInfo.caption_content}</p>
-
-        {/* <button className="likeButton"onClick={handleLike}>Like</button> */}
-        {/* <i className="unlikeButton" onClick={handleDeleteLike} class="fas fa-heart"></i> */}
-
-        </div>
-        {/* <button onClick={handleDeleteLike}>Unlike</button> */}
-        {currentUser.id === modalInfo.user_id && (
-          <DeletePostModal modalInfo={modalInfo} />
-          )}
-          </div>
-        {/* <DeletePostModal modalInfo={modalInfo}/> */}
-        <CommentSection className="commentSection" modalInfo={modalInfo} />
+  return (
+    <div className="postDiv">
+          <h3 className="commentCaption">{modalInfo.caption_content}</h3>
+      <div className="leftPanel">
+        <img className="modalImage" src={modalInfo.img_src} alt="Faulty Url" />
       </div>
-    );
-  else
-    return (
-
-
-      <div className="postDiv">
-        <div className="leftPanel">
-          <img className="modalImage" src={modalInfo.img_src} alt="Faulty Url" />
-      <div className="leftPannelButtons">
-        <p className="commentCaption">{modalInfo.caption_content}</p>
-
-        {/* <button className="likeButton"onClick={handleLike}><i class="fas fa-heart"></i></button> */}
-        </div>
-        {/* <button onClick={handleDeleteLike}>Unlike</button> */}
-        {currentUser.id === modalInfo.user_id && (
-          <DeletePostModal modalInfo={modalInfo} />
+        <div className="leftPannelButtons">
+          <div className="modalMainButtons"></div>
+          {currentUser.id === modalInfo.user_id && (
+            <DeletePostModal modalInfo={modalInfo} />
           )}
-          </div>
-        {/* <DeletePostModal modalInfo={modalInfo}/> */}
-        <CommentSection className="commentSection" modalInfo={modalInfo} />
-      </div>
-    );
+        </div>
+      <CommentSection className="commentSection" modalInfo={modalInfo} />
+    </div>
+  );
 };
 
 export default MainPageModal;

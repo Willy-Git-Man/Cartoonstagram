@@ -2,7 +2,7 @@
   /* position: absolute; */
   /* display: flex; */
   /* flex: column; */
-  margin-top: 5%;
+  margin-top: 2.5%;
   outline: 5px black solid;
   /* background-color: grey; */
 }
@@ -41,10 +41,12 @@
 .commentSection {
   position: absolute;
   display: flex;
-  height: 50vh;
+  height: 45vh;
   overflow: hidden scroll;
   width: 50%;
   right: 0;
+  top: 5%;
+  border-top: 5px black solid;
 
 }
 
@@ -70,16 +72,29 @@
 
 .commentUserName {
   margin: 0;
+  font-size: 20px ;
+}
+
+.leftPannelButtons {
+  /* position: absolute; */
+  display: flex;
+  right: 0;
 }
 
 
 .formDivComments {
 padding: 1px;
-width: 100%;
+width: 50vw;
+/* outline:15px black solid; */
+/* position: absolute; */
+margin-left: 35vw;
+margin-top: 47.5vh;
 background-color: black;
-margin-bottom: 50px;
-position: fixed;
-bottom:  0;
+/* margin-bottom: 54vh; */
+position: sticky;
+bottom: 50%;
+/* right: 50%; */
+z-index: 1000;
 
 }
 
@@ -89,37 +104,48 @@ bottom:  0;
 }
 
 .commentCaption {
-   color: white
+   color: black;
+   position: absolute;
+   top: 0;
+   right: 40%;
+   margin: 0;
 }
 
 .leftPannelButtons {
   position: absolute;
   display: flex;
   justify-content: space-between;
-  bottom: 0;
+  top: 0;
+
 }
 
 .likeButton {
-  position: absolute;
-  z-index: 1000;
+  /* position: absolute; */
+  /* z-index: 1000; */
 
   /* position: absolute; */
   /* right: 0; */
-
+  background-color: red;
+  position: absolute;
+  left: 2.5%;
 }
 
 
 
 .unlikeButton {
-background-color: red;
+/* background-color: red; */
 position: absolute;
+left: 5%;
 
 }
 
 
 .commentPicAndName {
   display: flex;
+  align-items: center;
+
   height: 3vh;
+  width: 34vw;
 }
 
 .buttonsDiv {
@@ -129,7 +155,7 @@ position: absolute;
 }
 
 .deleteCommentButton {
-  width: 25%;
+  width: 10%;
   position: absolute;
   right: 0;
   height: 3vh;
@@ -137,14 +163,14 @@ position: absolute;
 }
 
 .updateCommentModalButton {
-  width: 25%;
+  width: 10%;
   position: absolute;
-  right: 25%;
+  right: 10%;
   height: 3vh;
 }
 
 
 .commentMap {
   /* background-color: black; */
-  margin-bottom: 50px;
+  margin-bottom: 1%;
 }

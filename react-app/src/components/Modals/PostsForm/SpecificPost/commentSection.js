@@ -53,7 +53,31 @@ function CommentSection({ modalInfo }) {
   };
 
   return (
+    <div>
+
+      <div className="formDivComments">
+        <form className="commentForm" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="comment"
+            onChange={(e) => setCommentContent(e.target.value)}
+            value={commentContent}
+            ></input>
+          <button type="submit">
+            <i class="fa fa-comments" aria-hidden="true"></i>
+          </button>
+        </form>
+        <button className="likeButton" onClick={handleLike}>
+          <i class="fas fa-heart"></i>
+        </button>
+        <button className="unlikeButton" onClick={handleDeleteLike}>
+          <i className="likeButton" class="fas fa-heart"></i>
+        </button>
+      </div>
     <div className="commentSection">
+
+
+
       <div className="commentMap">
         {commentArray.map((comment) => (
           <div className="commentArrayDiv" key={comment.id}>
@@ -62,17 +86,17 @@ function CommentSection({ modalInfo }) {
                 className="commentProfilePic"
                 src={all_users[comment.user_id].profile_img_src}
                 alt=""
-              />
-              <h1 className="commentUserName">
+                />
+              <h3 className="commentUserName">
                 {all_users[comment.user_id].username}: {comment.comment_content}
-              </h1>
+              </h3>
               {/* <h2>{comment.comment_content}</h2> */}
               {/* <button>Edit</button> */}
-              <div className="buttonsDiv">
+              {/* <div className="buttonsDiv"> */}
                 {comment.user_id === user.id && (
                   <button
-                    className="deleteCommentButton"
-                    onClick={() => dispatch(deleteCommentThunk(comment.id))}
+                  className="deleteCommentButton"
+                  onClick={() => dispatch(deleteCommentThunk(comment.id))}
                   >
                     Delete
                   </button>
@@ -80,39 +104,34 @@ function CommentSection({ modalInfo }) {
 
                 {comment.user_id === user.id && (
                   <UpdateCommentModal
-                    className="editCommentButton"
-                    modalInfo={comment}
+                  className="editCommentButton"
+                  modalInfo={comment}
                   />
-                )}
+                  )}
               </div>
             </div>
-          </div>
+          // </div>
         ))}
       </div>
-      <div className="formDivComments">
+      {/* <div className="formDivComments">
         <form className="commentForm" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="comment"
-            onChange={(e) => setCommentContent(e.target.value)}
-            value={commentContent}
-          ></input>
-          <button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
-          {/* <i className="unlikeButton" onClick={handleDeleteLike} class="fas fa-heart"></i> */}
-          {/* <i className="likeButton" onClick={handleLike} class="fas fa-heart"></i> */}
+        <input
+        type="text"
+        name="comment"
+        onChange={(e) => setCommentContent(e.target.value)}
+        value={commentContent}
+        ></input>
+        <button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
         </form>
-        {currentUserLiked.length < 1 && (
-          <button className="likeButton" onClick={handleLike}>
-            <i class="fas fa-heart"></i>
-          </button>
-        )}
-        {currentUserLiked.length > 0 && (
-          <button className="unlikeButton" onClick={handleDeleteLike}>
-            <i className="likeButton" class="fas fa-heart"></i>
-          </button>
-        )}
-      </div>
+        <button className="likeButton" onClick={handleLike}>
+        <i class="fas fa-heart"></i>
+        </button>
+        <button className="unlikeButton" onClick={handleDeleteLike}>
+        <i className="likeButton" class="fas fa-heart"></i>
+        </button>
+      </div> */}
     </div>
+      </div>
   );
 }
 
