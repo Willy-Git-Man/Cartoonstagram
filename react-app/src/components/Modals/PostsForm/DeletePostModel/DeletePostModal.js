@@ -14,8 +14,8 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
 
     function handleDelete(){
         dispatch(deleteAPost(modalInfo.id))
+        closeModal()
     }
-
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -26,8 +26,6 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
             caption_content,
             location
         }
-
-        
 
         const result = await dispatch(editPost(post, user))
 
@@ -88,7 +86,6 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
             </div>
             <button type='submit'>Confirm Changes</button>
         </form>
-                {/* <button onClick={handleEdit}>Confirm Edit</button> */}
                 <button onClick={closeModal}>Cancel</button>
             </>
         )

@@ -7,18 +7,16 @@ import CommentSection from "./commentSection";
 
 const MainPageModal = ({ modalInfo }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user)
   const currentUserLiked = useSelector((state) => state.likes.likes);
-  // const commentState = useSelector((state) => state.comments.comments)
+
+  console.log(modalInfo, 'this is the modalInfo')
 
   console.log("currentUserLiked:", currentUserLiked);
   useEffect(() => {
     dispatch(allLike(modalInfo.id));
     dispatch(allComments(modalInfo.id));
   }, [modalInfo.id, dispatch]);
-
-  // useEffect(() => {
-    
-  // }, [modalInfo.id, dispatch]);
 
   const handleLike = async () => {
     console.log("from handleLike in MainPageModal");
@@ -42,7 +40,7 @@ const MainPageModal = ({ modalInfo }) => {
         {/* <button onClick={handleLike}>Like</button> */}
         <button onClick={handleDeleteLike}>Unlike</button>
 
-        <DeletePostModal modalInfo={modalInfo}/>
+        {(currentUser.id === modalInfo.user_id) && <DeletePostModal modalInfo={modalInfo}/>} 
 
         <CommentSection modalInfo={modalInfo}/>
 
@@ -52,15 +50,15 @@ const MainPageModal = ({ modalInfo }) => {
     return (
       <div>
         <div>
-          <img src={modalInfo.img_src} alt="Falty Url"/>
+          <img src={modalInfo.img_src} alt="Faulty Url"/>
         </div>
 
         <div>{modalInfo.caption_content}</div>
 
         <button onClick={handleLike}>Like</button>
         {/* <button onClick={handleDeleteLike}>Unlike</button> */}
-        <DeletePostModal modalInfo={modalInfo}/>
-
+        {(currentUser.id === modalInfo.user_id) && <DeletePostModal modalInfo={modalInfo}/>} 
+        {/* <DeletePostModal modalInfo={modalInfo}/> */}
         <CommentSection modalInfo={modalInfo}/>
       </div>
     );
