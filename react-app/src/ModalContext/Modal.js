@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ModalContext = React.createContext();
 
@@ -28,7 +29,9 @@ export function Modal({ onClose, children }) {
 
   return ReactDOM.createPortal(
     <div id="modal">
-      <div id="modal-background" onClick={onClose} />
+      <div id="modal-background" onClick={onClose}>
+        <div className='xButtonDiv'><FontAwesomeIcon className='xButton' size='2x' icon="xmark" onClick={onClose}/></div>
+      </div>
       <div id="modal-content">
         {children}
       </div>

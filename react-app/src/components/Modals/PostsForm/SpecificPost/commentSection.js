@@ -8,6 +8,7 @@ import {
 } from "../../../../store/comments";
 import { deleteLike, makeLike } from "../../../../store/likes";
 import UpdateCommentModal from "../EditCommentModal/editCommentModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./commentCss.css";
 
@@ -64,15 +65,16 @@ function CommentSection({ modalInfo }) {
             value={commentContent}
             ></input>
           <button className="messageIconButton"type="submit">
+            {/* <FontAwesomeIcon icon="heart" aria-hidden="true"/> */}
             <i class="fa fa-comments" aria-hidden="true"></i>
           </button>
         </form>
-        <button className="likeButton" onClick={handleLike}>
-          <i class="fas fa-heart"></i>
-        </button>
-        <button className="unlikeButton" onClick={handleDeleteLike}>
-          <i className="likeButton" class="fas fa-heart"></i>
-        </button>
+        {/* <button className="likeButton" onClick={handleLike}> */}
+        <FontAwesomeIcon icon="heart" onClick={handleLike} aria-hidden="true"/>
+        {/* </button> */}
+        {/* <button className="unlikeButton" onClick={handleDeleteLike}> */}
+          <FontAwesomeIcon icon="heart" onClick={handleDeleteLike} aria-hidden="true"/>
+        {/* </button> */}
       </div>
     <div className="commentSection">
 
