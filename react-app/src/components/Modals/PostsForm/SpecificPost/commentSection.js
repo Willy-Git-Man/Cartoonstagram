@@ -57,13 +57,13 @@ function CommentSection({ modalInfo }) {
 
       <div className="formDivComments">
         <form className="commentForm" onSubmit={handleSubmit}>
-          <input
+          <input className="addCommentInput"
             type="text"
             name="comment"
             onChange={(e) => setCommentContent(e.target.value)}
             value={commentContent}
             ></input>
-          <button type="submit">
+          <button className="messageIconButton"type="submit">
             <i class="fa fa-comments" aria-hidden="true"></i>
           </button>
         </form>

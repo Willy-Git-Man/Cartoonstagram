@@ -51,8 +51,9 @@
 }
 
 .commentForm {
-  background-color: black;
+  background-color: grey;
   position: absolute;
+  width: 35vw;
 }
 
 .leftPanel {
@@ -127,7 +128,16 @@ z-index: 1000;
   /* right: 0; */
   background-color: red;
   position: absolute;
-  left: 2.5%;
+  left: 2.5vw;
+  height: 3.5vh;
+width: 2.5vw;
+
+
+}
+
+.messageIconButton {
+  height: 3.5vh;
+
 }
 
 
@@ -135,7 +145,10 @@ z-index: 1000;
 .unlikeButton {
 /* background-color: red; */
 position: absolute;
-left: 5%;
+/* left: 5%; */
+height: 3.5vh;
+width: 2.5vw;
+
 
 }
 
@@ -173,4 +186,13 @@ left: 5%;
 .commentMap {
   /* background-color: black; */
   margin-bottom: 1%;
+}
+
+
+.addCommentInput {
+  width: 29.5vw;
+  margin-left: 5%;
+  height: 3vh;
+
+  /* height: 5vh; */
 }
