@@ -8,7 +8,7 @@ function SpecificPageModel({ modelInfo }) {
 
     return (
         <div>
-            <img className="picImg" src={modelInfo.img_src} alt="Broken Img URL" onClick={() => setShowModal(true)}/>
+            <img className='profile-img' src={modelInfo.img_src} alt="Broken Img URL" onClick={() => setShowModal(true)}/>
 
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

@@ -17,5 +17,5 @@ def users():
 @login_required
 def user(id):
     user = User.query.get(id)
-    user_posts = Post.query.filter(Post.user_id == id).all()
+    user_posts = Post.query.filter(Post.user_id == id).order_by(Post.created_at.desc()).all()
     return {'user': user.to_dict() ,'posts': [post.to_dict() for post in user_posts]}

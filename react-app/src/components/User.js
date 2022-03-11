@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addFollower, removeFollower, userFollowers } from '../store/followers';
 import './userStyles.css'
+import SpecificPageModel from "./Modals/PostsForm/SpecificPost/SpecificPostModel";
 
 function User() {
   const [user, setUser] = useState({});
@@ -94,7 +95,8 @@ function User() {
       <div className='profile-img-container'>
       { userPosts && 
         userPosts.map((post, i) => (
-          <img className='profile-img' key={i} src={post.img_src} alt=''/>
+          <SpecificPageModel key={i}  modelInfo={post}/>
+          // <img className='profile-img' key={i} src={post.img_src} alt=''/>
         ))}
       </div>
     </div>
