@@ -6,11 +6,11 @@ import "./userList.css";
 function UsersList() {
 
 
-  const [user, setUser] = useState({});
-  const [userPosts, setUserPosts] = useState([]);
-  const [followeds, setFolloweds] = useState([]);
-  const [followers, setFollowers] = useState([]);
-  const { userId }  = useParams();
+  // const [user, setUser] = useState({});
+  // const [userPosts, setUserPosts] = useState([]);
+  // const [followeds, setFolloweds] = useState([]);
+  // const [followers, setFollowers] = useState([]);
+  // const { userId }  = useParams();
 
 
 
@@ -27,34 +27,34 @@ function UsersList() {
 
 
 
-  useEffect(() => {
-    dispatch(userFollowers(parseInt(currentUser.id)))
+  // useEffect(() => {
+  //   dispatch(userFollowers(parseInt(currentUser.id)))
 
-    if (!userId) {
-      return;
-    }
+  //   if (!userId) {
+  //     return;
+  //   }
 
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user.user);
-      setUserPosts(user.posts)
+  //   (async () => {
+  //     const response = await fetch(`/api/users/${userId}`);
+  //     const user = await response.json();
+  //     setUser(user.user);
+  //     setUserPosts(user.posts)
 
-    })();
+  //   })();
 
-    (async () => {
-      const response = await fetch(`/follows/${userId}/followeds`)
-      const followeds = await response.json()
-      setFolloweds(followeds.follows);
-    })();
+  //   (async () => {
+  //     const response = await fetch(`/follows/${userId}/followeds`)
+  //     const followeds = await response.json()
+  //     setFolloweds(followeds.follows);
+  //   })();
 
-    (async () => {
-      const response = await fetch(`/follows/${userId}/followers`)
-      const followers = await response.json()
-      setFollowers(followers.followers.length);
-    })();
+  //   (async () => {
+  //     const response = await fetch(`/follows/${userId}/followers`)
+  //     const followers = await response.json()
+  //     setFollowers(followers.followers.length);
+  //   })();
 
-  }, [userId, dispatch, currentUser.id]);
+  // }, [userId, dispatch, currentUser.id]);
 
   const userComponents = users.map((user) => {
     return (
