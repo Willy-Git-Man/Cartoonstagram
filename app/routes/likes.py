@@ -11,10 +11,7 @@ likes_routes = Blueprint('likes', __name__)
 @login_required
 def get_likes(id):
     post = Post.query.get(id)
-    print(post.id, 'postIdffffffffffffffffffffff')
-    print(id)
     likes = Like.query.filter(Like.post_id == post.id).all()
-    print(likes, 'in the likes route')
     return {'likes': [like.to_dict() for like in likes]}
 
 @likes_routes.route('/<int:id>', methods = ['POST'])
