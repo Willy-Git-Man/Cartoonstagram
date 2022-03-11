@@ -15,8 +15,7 @@ const HomeFeed = () => {
   const dispatch = useDispatch();
 
   const allPosts = useSelector((state) => state.post.posts);
-//   const allComments = useSelector((state) => state.commenet.comments)
-//   console.log("at 0 img src", allPosts[0].img_src);
+
 
   useEffect(() => {
     dispatch(allPost());
@@ -29,29 +28,19 @@ const HomeFeed = () => {
         <div
           className="postDiv"
           key={post.id}
-        //   onClick={() => setShowModal(true)}
+
         >
           <ul>
             <li>{post.id}</li>
             <li>{post.user_id}</li>
-            {/* <li>{post.img_src}</li> */}
             <img className="picImg" src={post.img_src} alt="Broken Img URL" onClick={() => setShowModal(true)}/>
 
           {showModal && (
               <Modal onClose={() => setShowModal(false)}>
               <MainPageModal closeModal={() => setShowModal(false) } modalInfo={post}/>
-              {/* <img className="picImg" src={[allPosts[1]]?.img_src} alt="Broken Img URL"/> */}
-              {/* <div>
-                  {allComments[post_id]}
-              </div> */}
 
             </Modal>
           )}
-            {/* <button className='edit-button' onClick={() => setShowModal(true)}>Edit</button> */}
-
-
-
-
 
             <li>{post.caption_content}</li>
             <li>{post.location}</li>
@@ -66,14 +55,3 @@ const HomeFeed = () => {
 export default HomeFeed;
 
 
-
-// {showModal && (
-//     <Modal onClose={() => setShowModal(false)}>
-//       <MainPageModal closeModal={() => setShowModal(false)} />
-//       <img
-//         className="picImg"
-//         src={post.img_src}
-//         alt="Broken Img URL"
-//       />
-//     </Modal>
-//   )}

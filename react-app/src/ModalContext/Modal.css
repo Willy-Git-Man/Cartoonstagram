@@ -23,3 +23,14 @@
   position: absolute;
   background-color:white;
 }
+
+.xButton{
+  color: white;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.xButtonDiv{
+  display: flex;
+  justify-content: flex-end;
+}

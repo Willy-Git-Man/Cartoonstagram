@@ -1,0 +1,35 @@
+.navBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: gray 1px solid;
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+
+
+}
+
+
+.navLinks{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.navLinkColor{
+    color: black;
+}
+
+.navProfilePic{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.navTitle{
+    margin:0;
+}

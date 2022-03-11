@@ -7,10 +7,11 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import PostFormModal from './components/Modals/PostsForm/Modal';
 import { authenticate } from './store/session';
 import HomeFeed from './components/HomeFeed';
 import Footer from './components/Footer/Footer';
+
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,7 +49,6 @@ function App() {
             <NavBar />
             <h1>My Home Page</h1>
             <HomeFeed />
-            <PostFormModal />
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>
