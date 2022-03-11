@@ -22,12 +22,14 @@ const HomeFeed = () => {
   }, [dispatch, user]);
 
   return (
+    <div className="mainPageDivs">
+
     <div className="mainHomeDiv">
       <h1>Coming from HomeFeed</h1>
       {allPosts.map((post) => (
         <div
-          className="postsDiv"
-          key={post.id}
+        className="postsDiv"
+        key={post.id}
 
         >
           <SpecificPageModel modelInfo={post}/>
@@ -41,6 +43,11 @@ const HomeFeed = () => {
         </div>
       ))}
     </div>
+
+    <div className="followerDiv">
+      <p>HELLO WORLD</p>
+      </div>
+      </div>
   );
 };
 
