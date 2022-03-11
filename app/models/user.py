@@ -25,6 +25,12 @@ class User(db.Model, UserMixin):
         secondaryjoin=(follow.c.followed_id == id),
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
+    # not_followed = db.relationship(
+    #     'User', secondary=follow,
+    #     primaryjoin=(follow.c.follower_id == id),
+    #     secondaryjoin=(follow.c.followed_id == id),
+    #     backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+
 
     @property
     def password(self):
@@ -56,6 +62,11 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return self.followed.filter(
             follow.c.followed_id == user.id).count() > 0
+
+    def not_follower(self, user):
+        return self.followed.filter(
+            follow.c.follower_id != user.id
+        )
 
     def followed_posts(self):
         followed = Post.query.join(
