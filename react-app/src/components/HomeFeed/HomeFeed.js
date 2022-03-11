@@ -23,7 +23,7 @@ const HomeFeed = () => {
 
   return (
     <div className="mainHomeDiv">
-      <h1>Coming from HomeFeed</h1>
+      {/* <h1>Coming from HomeFeed</h1> */}
       {allPosts.map((post) => (
         <div
           className="postDiv"
@@ -53,5 +53,3 @@ const HomeFeed = () => {
 };
 
 export default HomeFeed;
-
-

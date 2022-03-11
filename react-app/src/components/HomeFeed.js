@@ -15,6 +15,7 @@ const HomeFeed = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
   const allPosts = useSelector((state) => state.post.posts);
+  const userARr = Object.values(user)
 
 
   const currentUserFolloweds = useSelector(state => state.follows)
@@ -31,22 +32,26 @@ const HomeFeed = () => {
 
   return (
     <div className="mainPageDivs">
-
     <div className="mainHomeDiv">
-      <h1>Coming from HomeFeed</h1>
+{/* <h1>hello</h1> */}
+      {/* <h1>Coming from HomeFeed</h1> */}
       {allPosts.map((post) => (
         <div
         className="postsDiv"
         key={post.id}
 
         >
+          {/* {userARr.map((usr) => (
+            <h1>usr.username</h1>
+          ))} */}
+
           <SpecificPageModel modelInfo={post}/>
-          <ul>
- 
+
+          <ul className="postInfo">
+
             <li>{post.caption_content}</li>
             <li>{post.location}</li>
           </ul>
-
         </div>
       ))}
     </div>

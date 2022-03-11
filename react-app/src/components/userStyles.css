@@ -50,6 +50,14 @@
     object-fit: cover;
 }
 
+.profile-img {
+    width: 40vw;
+    /* max-width: 400px; */
+    height: 30vh;
+    padding: 11px;
+    object-fit: cover;
+}
+
 .profile-username-and-follow-container{
     display: flex;
     align-items: center;
