@@ -6,10 +6,11 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const [img_src, setImg] = useState(modalInfo.img_src);
+    const [imageLoading, setImageLoading] = useState(false);
     const [caption_content, setCaption] = useState(modalInfo.caption_content);
     const [location, setLocation] = useState(modalInfo.location);
 
-    const user = modalInfo.id;
+    const postId = modalInfo.id;
     console.log("deleting modalinfo", modalInfo)
 
     function handleDelete(){
@@ -19,20 +20,25 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
-        const post = {
-            user_id: modalInfo.user_id,
-            img_src,
-            caption_content,
-            location
-        }
 
-        const result = await dispatch(editPost(post, user))
+        const formData = new FormData();
+
+        formData.append("img_src", img_src);
+        formData.append("caption_content", caption_content);
+        formData.append("location", location)
+
+
+        const result = await dispatch(editPost(formData, postId))
 
         if (result === 'Success!') {
             closeModal()
         }
 
+    }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImg(file);
     }
 
     if (deletePost) {
@@ -52,19 +58,14 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
             <>
                 <h2>Edit Post</h2>
                 <form onSubmit={handleSubmit}>
-            {/* <div className='postErrors'>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div> */}
             <div>
                 <input
-                    type='text'
+                    type='file'
+                    accept="image/*"
                     name='img_src'
-                    onChange={(e) => setImg(e.target.value)}
-                    value={img_src}
-                    placeholder='Post Image Url'
+                    onChange={updateImage}
                 ></input>
+                {/* <p>{img_src}</p> */}
             </div>
             <div>
                 <input

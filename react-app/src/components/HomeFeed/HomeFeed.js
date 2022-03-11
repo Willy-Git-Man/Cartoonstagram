@@ -7,6 +7,7 @@ import "./HomeFeed.css";
 import React, { useState } from "react";
 import { Modal } from "../Modals/ModalContext/Modal";
 import MainPageModal from "../Modals/MainPageModal";
+import Footer from "../Footer/Footer";
 
 const HomeFeed = () => {
   const [showModal, setShowModal] = useState(false);
@@ -57,6 +58,7 @@ const HomeFeed = () => {
           </ul>
         </div>
       ))}
+    <Footer />
     </div>
   );
 };
