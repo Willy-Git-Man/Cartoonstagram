@@ -13,12 +13,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden scroll;
+  height: 80vh;
+  /* padding-bottom: 5vh; */
+  /* height: 75vh; */
 
 }
 
 .mainPageDivs {
   display: flex;
   outline: black solid 5px;
+  height: 80vh;
+
   /* background-color: black; */
   /* height: 90vh; */
 
@@ -26,8 +32,43 @@
 
 .followerDiv {
   width: 30vw;
-  background-color: black;
+  background-color: grey;
   margin-left: 7.5vw;
   height: 45vh;
+  overflow: hidden scroll;
 
+}
+
+
+.followerDivRight {
+  display: flex;
+  /* flex-direction: column; */
+  background-color: black;
+  width: 40vw;
+  height: 40vh;
+}
+
+
+.followerNavLinks {
+  color: white;
+  margin-right: 10px;
+}
+
+.followerMap {
+  display: flex;
+  flex-direction: column;
+  /* background-color: black; */
+  background-color: white;
+  width: 40vw;
+  min-width: 200px;
+  height: 40vh;
+  /* align-items: center; */
+  /* margin-bottom: 5vh; */
+}
+
+.followerNavLinks {
+  margin-bottom: 1vw;
+  /* justify-content: center; */
+  /* justify-self: center; */
+  align-items: center;
 }

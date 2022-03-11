@@ -14,6 +14,15 @@ def get_followers(id):
     print(followeds, 'were in the follow route')
     return {'follows': [follow.to_dict() for follow in followeds]}
 
+
+# @follow_routes.route('/<int:id>', methods = ['GET'])
+# @login_required
+# def get_not_followers(id):
+#     user = User.query.get(id)
+#     followeds = user.not_follower()
+#     print(followeds, 'were in the follow route')
+#     return {'follows': [follow.to_dict() for follow in followeds]}
+
 @follow_routes.route('/<int:id>', methods = ['POST'])
 @login_required
 def follow(id):
