@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addFollower, removeFollower, userFollowers } from '../store/followers';
+import './userStyles.css'
 
 function User() {
   const [user, setUser] = useState({});
@@ -12,8 +13,7 @@ function User() {
   const currentUser = useSelector(state => state.session.user)
   const currentUserFolloweds = useSelector(state => state.follows)
 
-  console.log('consoleeeee', currentUserFolloweds[userId])
-  console.log('conditional', currentUserFolloweds[userId])
+  console.log('currentuser', currentUser)
   useEffect(() => {
     dispatch(userFollowers(parseInt(currentUser.id)))
     if (!userId) {
@@ -30,7 +30,6 @@ function User() {
   if (!user) {
     return null;
   }
-
   const handleFollow = async(e) => {
     dispatch(addFollower(userId))
   }
@@ -40,26 +39,29 @@ function User() {
   }
 
   return (
-    <div>
-      <ul>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul>
+    <div className='profile-page-container'>
+      <div className='profile-user-info'>
+        <img className='profile-profile-pic' src={user.profile_img_src} alt=''/>
+        <ul className='user-info'>
+          <li className='profile-username'>
+           {user.username}
+          </li>
+          <li>
+            {userPosts.length} posts
+          </li>
+        </ul>
+        <div className='empty-div'></div>
+      </div>
       {parseInt(userId) !== parseInt(currentUser.id) && !(currentUserFolloweds[userId]) &&
       <button onClick={handleFollow}>Follow</button>}
       {parseInt(userId) !== parseInt(currentUser.id) && currentUserFolloweds[userId] &&
       <button onClick={handleUnfollow}>Unfollow</button>}
-      {userPosts && 
-      userPosts.map((post, i) => (
-        <img key={i} src={post.img_src} alt=''/>
-      ))}
+      <div className='profile-img-container'>
+      { userPosts && 
+        userPosts.map((post, i) => (
+          <img className='profile-img' key={i} src={post.img_src} alt=''/>
+        ))}
+      </div>
     </div>
   );
 }
