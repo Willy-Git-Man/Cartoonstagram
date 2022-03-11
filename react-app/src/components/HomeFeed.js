@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { makePost, allPost } from "../store/posts";
 import "./HomeFeed.css";
-import { userFollowers } from "../store/followers";
+import followReducer, { userFollowers } from "../store/followers";
 
 import React from "react";
 import SpecificPageModel from "./Modals/PostsForm/SpecificPost/SpecificPostModel";
+import UsersList from "./UserList/UsersList";
 
 const HomeFeed = () => {
 
@@ -14,6 +15,13 @@ const HomeFeed = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
   const allPosts = useSelector((state) => state.post.posts);
+
+
+  const currentUserFolloweds = useSelector(state => state.follows)
+  console.log('currentUserFolloweds:', currentUserFolloweds)
+
+  const followeObj = Object.values(currentUserFolloweds)
+  console.log('followeObj:', followeObj)
 
 
   useEffect(() => {
@@ -34,8 +42,7 @@ const HomeFeed = () => {
         >
           <SpecificPageModel modelInfo={post}/>
           <ul>
-            <li>{post.id}</li>
-            <li>{post.user_id}</li>
+ 
             <li>{post.caption_content}</li>
             <li>{post.location}</li>
           </ul>
@@ -44,8 +51,15 @@ const HomeFeed = () => {
       ))}
     </div>
 
-    <div className="followerDiv">
-      <p>HELLO WORLD</p>
+    <div className="followerDivRight">
+      <div className="followerMap">
+      {/* {followeObj.map((follow) => (
+        // <h1>{follow.follower_id}</h1>
+        <NavLink className="followerNavLinks" to={`/users/${follow.id}`}>{follow.username}</NavLink>
+      ))} */}
+
+      <UsersList />
+      </div>
       </div>
       </div>
   );
