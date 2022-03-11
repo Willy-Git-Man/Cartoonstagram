@@ -8,4 +8,26 @@
 .mainHomeDiv {
   outline: black solid 5px;
   margin-bottom: 60px;
+  width: 50vw;
+  margin-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.mainPageDivs {
+  display: flex;
+  outline: black solid 5px;
+  /* background-color: black; */
+  /* height: 90vh; */
+
+}
+
+.followerDiv {
+  width: 30vw;
+  background-color: black;
+  margin-left: 7.5vw;
+  height: 45vh;
+
 }
