@@ -74,3 +74,4 @@ class User(db.Model, UserMixin):
                 follow.c.follower_id == self.id)
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.created_at.desc())
+    #hi
