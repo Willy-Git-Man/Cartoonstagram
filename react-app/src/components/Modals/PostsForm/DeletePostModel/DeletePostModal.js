@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteAPost, editPost, getPost } from "../../../../store/posts";
+import { useDispatch} from "react-redux";
+import { deleteAPost, editPost} from "../../../../store/posts";
 
 function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
     const dispatch = useDispatch();
