@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DeleteEditModal from "./DeletePostModal";
 import { Modal } from '../../../../ModalContext/Modal'
+import './DeletePostSetup.css'
 
 function DeletePostModal({ modalInfo }) {
     const [showModal, setShowModal] = useState(false);
@@ -24,7 +25,9 @@ function DeletePostModal({ modalInfo }) {
     }
     
     return (
-        <div>
+        <div className='edit-delete-modal-container'>
+            <div className='edit-delete-modal-buttons'>
+
             <button onClick={handleDelete}>Delete</button>
             <button onClick={handleEdit}>Edit</button>
 
@@ -33,6 +36,7 @@ function DeletePostModal({ modalInfo }) {
                     <DeleteEditModal closeModal={() => setShowModal(false) } modalInfo={modalInfo} deletePost={deletePost} edit={edit}/>
                 </Modal>
             )}
+            </div>
         </div>
     )
 }
