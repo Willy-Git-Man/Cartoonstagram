@@ -10,10 +10,10 @@
 
 .createNewCommentForm {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    /* padding-right: 10px;
-    padding-left: 10px */
+    padding-top: 10px;
+    padding-bottom: 10px
 }
 
 .updateCommentFormButton {
