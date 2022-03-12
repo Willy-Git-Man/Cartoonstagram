@@ -20,7 +20,6 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
       user_id: user.id,
       post_id: modalInfo.post_id,
       comment_content: newCommentEdit
-      // id: modalInfo.id
     };
     console.log("newComment:", newComment);
 

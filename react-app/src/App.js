@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(getUsers())
-
       await dispatch(authenticate());
       setLoaded(true);
     })();

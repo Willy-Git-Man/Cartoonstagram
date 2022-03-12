@@ -16,6 +16,9 @@ const HomeFeed = () => {
   const user = useSelector((state) => state.session.user);
   console.log("user:", user);
   const allPosts = useSelector((state) => state.post.posts);
+
+  const userARr = Object.values(user)
+
   const currentUserFolloweds = useSelector((state) => state.follows);
   console.log("currentUserFolloweds:", currentUserFolloweds);
 
