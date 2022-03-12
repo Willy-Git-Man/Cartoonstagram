@@ -9,7 +9,7 @@ const PostFormModal = () => {
 
   return (
     <>
-      <i class="fa-regular fa-square-plus" onClick={() => setShowModal(true)}></i>
+      <i className="fa-regular fa-square-plus" onClick={() => setShowModal(true)}></i>
       {/* <button className='edit-button' onClick={() => setShowModal(true)}>Create Post</button> */}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

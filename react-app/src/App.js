@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import { authenticate } from './store/session';
+import { authenticate, getUsers } from './store/session';
 import HomeFeed from './components/HomeFeed';
 import Footer from './components/Footer/Footer';
 
@@ -20,6 +20,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getUsers())
       setLoaded(true);
     })();
   }, [dispatch]);

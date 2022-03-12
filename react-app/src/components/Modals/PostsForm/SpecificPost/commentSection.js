@@ -9,33 +9,34 @@ import {
 import { deleteLike, makeLike } from "../../../../store/likes";
 import UpdateCommentModal from "../EditCommentModal/editCommentModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getUsers } from "../../../../store/session";
+import DeletePostModal from "../DeletePostModel/DeletePostSetup";
 
 import "./commentCss.css";
 
 function CommentSection({ modalInfo }) {
   const dispatch = useDispatch();
+
   const [commentContent, setCommentContent] = useState("");
-  const [commentEditContent, setCommentEditContent] = useState("");
-
+  const all_users = useSelector(state => state.session.allUsers)
   const currentComments = useSelector((state) => state.comments.comments);
-  const all_users = useSelector((state) => state.comments.users);
-  console.log("currentComments:", currentComments);
-  // console.log('STATE COMMENTS',currentComments)
-  // const currentCommentsValues = Object.values(currentComments)
-
-  const currentUserLiked = useSelector((state) => state.likes.likes);
-
   const user = useSelector((state) => state.session.user);
   const commentArray = Object.values(currentComments);
-  console.log(all_users);
-  const currentUser = useSelector((state) => state.session.user);
+
+
+  useEffect(() => {
+    dispatch(allComments(modalInfo.id))
+    dispatch(getUsers())
+  }, [dispatch, modalInfo.id])
+
+
+
   const handleDeleteLike = async () => {
     dispatch(deleteLike(modalInfo.id));
   };
 
   const handleLike = async () => {
     console.log("from handleLike in MainPageModal");
-    console.log("modalinfo on like", modalInfo.id);
     dispatch(makeLike(modalInfo.id));
   };
 
@@ -49,91 +50,71 @@ function CommentSection({ modalInfo }) {
     };
 
     setCommentContent("");
-
     dispatch(makeComment(comment));
   };
 
   return (
+
     <div>
+      <div className="rightTopPostCreator">
+        <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
 
-      <div className="formDivComments">
-        <form className="commentForm" onSubmit={handleSubmit}>
-          <input className="addCommentInput"
-            type="text"
-            name="comment"
-            onChange={(e) => setCommentContent(e.target.value)}
-            value={commentContent}
-            ></input>
-          <button className="messageIconButton"type="submit">
-            {/* <FontAwesomeIcon icon="heart" aria-hidden="true"/> */}
-            <i class="fa fa-comments" aria-hidden="true"></i>
-          </button>
-        </form>
-        {/* <button className="likeButton" onClick={handleLike}> */}
-        <FontAwesomeIcon icon="heart" onClick={handleLike} aria-hidden="true"/>
-        {/* </button> */}
-        {/* <button className="unlikeButton" onClick={handleDeleteLike}> */}
-          <FontAwesomeIcon icon="heart" onClick={handleDeleteLike} aria-hidden="true"/>
-        {/* </button> */}
-      </div>
-    <div className="commentSection">
+          {all_users[modalInfo.user_id].username}
+          {user.id === modalInfo.user_id && <DeletePostModal modalInfo={modalInfo}/>}
+
+        </div>
 
 
+        {commentArray.map((comment, i) => (
+          <div className="commentDivMainPostModal" key={i}>
+            <img
+              className="imageForIndividualComments"
+              src={all_users[comment.user_id].profile_img_src}
+              alt=""
+              />
+            <h3 className="">
+              {all_users[comment.user_id].username}: {comment.comment_content}
+            </h3>
 
-      <div className="commentMap">
-        {commentArray.map((comment) => (
-          <div className="commentArrayDiv" key={comment.id}>
-            <div className="commentPicAndName">
-              <img
-                className="commentProfilePic"
-                src={all_users[comment.user_id].profile_img_src}
-                alt=""
+              {comment.user_id === user.id && (
+                <button
+                className=""
+                onClick={() => dispatch(deleteCommentThunk(comment.id))}
+                >
+                  Delete
+                </button>
+              )}
+
+              {comment.user_id === user.id && (
+                <UpdateCommentModal
+                className=""
+                modalInfo={comment}
                 />
-              <h3 className="commentUserName">
-                {all_users[comment.user_id].username}: {comment.comment_content}
-              </h3>
-              {/* <h2>{comment.comment_content}</h2> */}
-              {/* <button>Edit</button> */}
-              {/* <div className="buttonsDiv"> */}
-                {comment.user_id === user.id && (
-                  <button
-                  className="deleteCommentButton"
-                  onClick={() => dispatch(deleteCommentThunk(comment.id))}
-                  >
-                    Delete
-                  </button>
                 )}
 
-                {comment.user_id === user.id && (
-                  <UpdateCommentModal
-                  className="editCommentButton"
-                  modalInfo={comment}
-                  />
-                  )}
-              </div>
-            </div>
-          // </div>
-        ))}
+          </div>))}
+
+
+
+
+      <div>
+        <i className="fa-regular fa-heart" onClick={handleLike}></i>
+        <i className="fa-regular fa-heart" onClick={handleDeleteLike}></i>
       </div>
-      {/* <div className="formDivComments">
-        <form className="commentForm" onSubmit={handleSubmit}>
-        <input
-        type="text"
-        name="comment"
-        onChange={(e) => setCommentContent(e.target.value)}
-        value={commentContent}
+      <form className="" onSubmit={handleSubmit}>
+        <input className=""
+          type="text"
+          name="comment"
+          onChange={(e) => setCommentContent(e.target.value)}
+          value={commentContent}
         ></input>
-        <button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
-        </form>
-        <button className="likeButton" onClick={handleLike}>
-        <i class="fas fa-heart"></i>
+        <button className="" type="submit">
+          <i className="fa fa-comments" aria-hidden="true"></i>
         </button>
-        <button className="unlikeButton" onClick={handleDeleteLike}>
-        <i className="likeButton" class="fas fa-heart"></i>
-        </button>
-      </div> */}
+      </form>
     </div>
-      </div>
+
+
   );
 }
 
