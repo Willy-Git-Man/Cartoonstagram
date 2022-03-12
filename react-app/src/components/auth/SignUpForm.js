@@ -124,7 +124,7 @@ const SignUpForm = () => {
             onChange={updateProfilePic}
             hidden='hidden'
           ></input>
-          <button for='chooseFileInput' className='chooseFileInputCss'>Choose file...</button>
+          <button for='chooseFileInput' className='chooseFileInputCss' >Choose file...</button>
         </div>
         <button className='loginButtons singupButton' type='submit'>Sign Up</button>
       </form>
