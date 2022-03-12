@@ -15,29 +15,20 @@ function User() {
 
   const currentUser = useSelector(state => state.session.user)
   const currentUserFolloweds = useSelector(state => state.follows)
-  // let follows;
-  // const userFollowing = async (userId) => {
-    
-  // }
-
-  // userFollowing(userId)
-
-  // console.log(follows)
 
   useEffect(() => {
     dispatch(userFollowers(parseInt(currentUser.id)))
-    
+    getUserPost()
     if (!userId) {
       return;
     }
 
-    (async () => {
+    async function getUserPost() {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user.user);
       setUserPosts(user.posts)
-      
-    })();
+    };
 
     (async () => {
       const response = await fetch(`/follows/${userId}/followeds`)
@@ -51,7 +42,7 @@ function User() {
       setFollowers(followers.followers.length);
     })();
 
-  }, [userId, dispatch, currentUser.id]);
+  }, [userId, dispatch, currentUser.id, user, userPosts]);
 
 
   if (!user) {

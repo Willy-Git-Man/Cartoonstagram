@@ -32,7 +32,7 @@ function DeletePostModal({ modalInfo }) {
             <i className="fa-regular fa-pen-to-square" onClick={handleEdit}></i>
             {showModal && (
                 <Modal onClose={(handleModalClose)}>
-                    <DeleteEditModal closeModal={() => setShowModal(false) } modalInfo={modalInfo} deletePost={deletePost} edit={edit}/>
+                    <DeleteEditModal closeModal={() => setShowModal(false) } setDelete={setDelete} setEdit={setEdit} modalInfo={modalInfo} deletePost={deletePost} edit={edit}/>
                 </Modal>
             )}
             </div>

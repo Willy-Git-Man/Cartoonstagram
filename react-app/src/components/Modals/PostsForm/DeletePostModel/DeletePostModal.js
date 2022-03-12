@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAPost, editPost, getPost } from "../../../../store/posts";
 import './DeletePostModal.css'
+import { useParams } from 'react-router-dom';
 
-function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
+
+function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, setEdit}){
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const [img_src, setImg] = useState(modalInfo.img_src);
     const [imageLoading, setImageLoading] = useState(false);
     const [caption_content, setCaption] = useState(modalInfo.caption_content);
     const [location, setLocation] = useState(modalInfo.location);
+    const {userId} = useParams();
 
     const postId = modalInfo.id;
     console.log("deleting modalinfo", modalInfo)
@@ -37,6 +40,12 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
 
     }
 
+    const handleCancel = () => {
+        closeModal()
+        setDelete(false)
+        setEdit(false)
+    }
+
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImg(file);
@@ -47,7 +56,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
             <>  
              <div className='delete-popup-container'>
                 <button onClick={handleDelete} className='delete-button'>Confirm Delete</button>
-                <button onClick={closeModal} className='cancel-button'>Cancel</button>
+                <button onClick={handleCancel} className='cancel-button'>Cancel</button>
              </div>
             </>
         )
@@ -87,7 +96,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
                             ></input>
                     </div>
                     <button className='confirm-changes-button' type='submit'>Confirm Changes</button>
-                    <button className='cancel-changes-button' onClick={closeModal}>Cancel</button>
+                    <button className='cancel-changes-button' onClick={handleCancel}>Cancel</button>
                 </form>
             </div>
             </>

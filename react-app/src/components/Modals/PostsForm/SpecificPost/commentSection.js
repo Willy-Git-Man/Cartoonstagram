@@ -28,7 +28,7 @@ function CommentSection({ modalInfo }) {
     dispatch(allLike(modalInfo.id))
   }, [dispatch, modalInfo.id])
 
-
+  
 
   const handleDeleteLike = async () => {
     dispatch(deleteLike(modalInfo.id));
