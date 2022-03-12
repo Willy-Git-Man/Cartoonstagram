@@ -65,22 +65,22 @@ export default function likeReducer(state = initialState, action) {
     case GET_LIKES:
       console.log(action, "what is the action");
       newState = { ...state };
-      newState.likes.forEach((like) => delete newState[like.id]);
+      newState.likes.forEach((like) => delete newState[like.user_id]);
       newState.likes = [...action.allLike.likes];
-      newState.likes.forEach((like) => (newState[like.id] = like));
+      newState.likes.forEach((like) => (newState[like.user_id] = like));
       return newState;
 
 
     case CREATE_LIKE:
       newState = { ...state };
-      newState.likes.forEach((like) => delete newState[like.id]);
+      newState.likes.forEach((like) => delete newState[like.user_id]);
       newState.likes = [...newState.likes, action.newLike];
-      newState.likes.forEach((like) => (newState[like.id] = like));
+      newState.likes.forEach((like) => (newState[like.user_id] = like));
       return newState;
 
     case REMOVE_LIKE:
       newState = { ...state };
-      delete newState[action.oldLike.id];
+      delete newState[action.oldLike.user_id];
       newState.likes.splice(newState.likes.indexOf(action.oldLike), 1);
       newState.likes = [...newState.likes]
       return newState;

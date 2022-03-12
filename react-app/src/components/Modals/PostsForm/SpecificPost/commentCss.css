@@ -4,28 +4,112 @@
 
 .rightTopPostCreator{
   display: flex;
+  align-items: center;
+  border-bottom: 1px rgb(161, 161, 161) solid;
+  justify-content: space-between;
 }
 
 .modalImage{
-  width: 25vw;
-
-
+  width: 30vw;
+  height: 65vh;
+  object-fit: cover;
+  min-width: 300px;
 }
 
 .imageOnMainPostModal{
   border-radius: 50%;
   width: 25px;
   height: 25px;
+
 }
 
 .commentDivMainPostModal{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.commentDivMainPostModal:hover{
+  background-color: rgb(216, 216, 216);
 }
 
 .imageForIndividualComments{
   border-radius: 50%;
   width: 25px;
   height: 25px;
+}
+
+.leftSideModal{
+  width: 20vw;
+  min-width: 250px;
+}
+
+.profilePicUsernameModal{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.profileCommentUsernameSection{
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 5px;
+}
+
+.usernameCommentOnCommentSection{
+  overflow-wrap: anywhere;
+  display: inline;
+  align-items: center;
+  font-size: small;
+  gap: 5px;
+}
+
+.usernameOnSection{
+  font-weight:700;
+  color: rgb(70, 69, 69);
+  margin-right: 5px;
+}
+
+.getAllCommentsScroll{
+  overflow-y: scroll;
+  min-height: 55vh;
+  max-height: 55vh;
+}
+
+.deleteEditCommentDiv{
+  display: flex;
+  gap:5px;
+  padding-right: 10px;
+}
+
+.lowerSectionCreateLikeComment{
+  border-top: 1px rgb(161, 161, 161) solid;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.commentInput{
+  border:none;
+  outline: none;
+  width: 225px;
+}
+.commentPostButton{
+  border:none;
+  background-color: white;
+  color: rgba(0,149,246,.3);
+  font-weight: 700;
+}
+
+.commentPostButton:hover{
+  color:rgba(0,149,246);
+}
+
+.commentFormForPost{
+  display: flex;
+}
+
+.colorHeart{
+  color:red;
 }
