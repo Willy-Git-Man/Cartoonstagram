@@ -4,3 +4,7 @@ body{
   background-color: #fafafa;
   margin: 0;
 }
+
+html {
+  font-family: sans-serif;
+}
