@@ -68,7 +68,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
                 <form className='form-inputs' onSubmit={handleSubmit}>
                     <div>
                         <input
-                            className='choose-file-button'
+                            // className='choose-file-button'
                             type='file'
                             accept="image/*"
                             name='img_src'
