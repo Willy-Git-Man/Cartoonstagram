@@ -86,10 +86,6 @@ function UsersList() {
   });
 
   return (
-<<<<<<< HEAD
-    <>
-      <h3 className="followDivH1">Suggestions for you</h3>
-=======
     <div>
       {/* <div className="followerUserNav">
     <img className="picImgUserFollower" src={user.profile_img_src} alt="Broken Img URL"/>
@@ -100,7 +96,6 @@ function UsersList() {
       <div>
 
       </div>
->>>>>>> main
       <ul className="navlinkUl">{userComponents}</ul>
       {/* <div>{followeds.length} following</div> */}
     </div>
