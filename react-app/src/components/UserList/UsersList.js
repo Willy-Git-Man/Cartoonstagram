@@ -69,11 +69,6 @@ function UsersList() {
 
   return (
     <>
-      {/* <div className="followerUserNav">
-    <img className="picImgUserFollower" src={user.profile_img_src} alt="Broken Img URL"/>
-    <h1>{user.username}</h1>
-  <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-      </div> */}
       <h3 className="followDivH1">Suggestions for you</h3>
       <ul className="navlinkUl">{userComponents}</ul>
     </>
