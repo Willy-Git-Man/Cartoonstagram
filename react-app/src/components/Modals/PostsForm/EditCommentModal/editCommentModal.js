@@ -7,13 +7,14 @@ function UpdateCommentModal({  modalInfo }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button
+      {/* <button
         className={"updateCommentModalButton"}
         onClick={() => setShowModal(true)}
       >
         Edit
 
-      </button>
+      </button> */}
+      <i className="fa-regular fa-pen-to-square" onClick={() => setShowModal(true)}></i>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateCommentForm setShowModal={setShowModal} modalInfo={modalInfo}/>

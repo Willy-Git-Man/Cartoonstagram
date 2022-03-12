@@ -1,3 +1,58 @@
-.edit-delete-modal-container {
-    
+.edit-form-container {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* background-color: white; */
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    /* border: solid black 1px; */
+    outline: 5px whitesmoke solid;
+    /* border: solid black 1px; */
+}
+
+.choose-file-button {
+    margin: 5px;
+}
+
+.form-inputs {
+    display:flex;
+    background-color: white;
+    border: 10px;
+    width: 100%;
+    outline: 1px white solid;
+    font-family: sans-serif;
+}
+
+.edit-delete-modal-buttons {
+    display: flex;
+    align-items: center;
+    gap:5px;
+    padding: 10px;
+}
+
+.caption-content-field {
+   margin: 5px;
+}
+
+.location-content-field {
+    margin: 5px
+}
+
+.confirm-changes-button {
+    background-color: white;
+    padding: 7px;
+    width: 100%;
+    outline: 1px white solid;
+    font-family: sans-serif;
+}
+
+.cancel-changes-button {
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 7px;
+    width: 100%;
+    outline: 1px white solid;
+    font-family: sans-serif;
 }

@@ -56,21 +56,21 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
         return(
             <>
             <div className='edit-form-container'>
-
                 <form className='form-inputs' onSubmit={handleSubmit}>
                     <div>
                         <input
+                            className='choose-file-button'
                             type='file'
                             accept="image/*"
                             name='img_src'
                             onChange={updateImage}
                             ></input>
-                        {/* <p>{img_src}</p> */}
                     </div>
                     <div>
                         <input
                             type='text'
                             name='caption_content'
+                            className='caption-content-field'
                             onChange={(e) => setCaption(e.target.value)}
                             value={caption_content}
                             placeholder='Caption'
@@ -80,13 +80,14 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit}){
                         <input
                             type='text'
                             name='location'
+                            className='location-content-field'
                             onChange={(e) => setLocation(e.target.value)}
                             value={location}
                             placeholder='Location'
                             ></input>
                     </div>
-                    <button type='submit'>Confirm Changes</button>
-                    <button onClick={closeModal}>Cancel</button>
+                    <button className='confirm-changes-button' type='submit'>Confirm Changes</button>
+                    <button className='cancel-changes-button' onClick={closeModal}>Cancel</button>
                 </form>
             </div>
             </>

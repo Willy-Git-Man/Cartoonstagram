@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+import { getUsers, login } from '../../store/session';
 import './loginSignup.css'
 import { userFollowers } from '../../store/followers';
 
@@ -15,6 +15,7 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
