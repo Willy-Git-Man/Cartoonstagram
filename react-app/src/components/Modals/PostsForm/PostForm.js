@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { makePost } from '../../../store/posts';
-
+import './PostForm.css'
 
 const PostForm = ({ setShowModal }) => {
     const [errors, setErrors] = useState([]);
@@ -36,14 +36,17 @@ const PostForm = ({ setShowModal }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div className='post-form-container'>
+
+        <form className='post-form' onSubmit={handleSubmit}>
             <div className='postErrors'>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
-                ))}
+                    ))}
             </div>
             <div>
                 <input
+                    className='choose-file-button'
                     type='file'
                     accept='image/*'
                     name='img_src'
@@ -53,24 +56,27 @@ const PostForm = ({ setShowModal }) => {
             <div>
                 <input
                     type='text'
+                    className='caption-content-field'
                     name='caption_content'
                     onChange={(e) => setCaption(e.target.value)}
                     value={caption_content}
                     placeholder='Caption'
-                ></input>
+                    ></input>
             </div>
             <div>
                 <input
                     type='text'
                     name='location'
+                    className='location-field'
                     onChange={(e) => setLocation(e.target.value)}
                     value={location}
                     placeholder='Location'
-                ></input>
+                    ></input>
             </div>
-            <button type='submit'>Post</button>
+            <button className='post-submit-button' type='submit'>Post</button>
             {(imageLoading)&& <p>Loading...</p>}
         </form>
+        </div>
     )
 }
 

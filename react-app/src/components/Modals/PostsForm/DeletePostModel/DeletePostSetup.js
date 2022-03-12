@@ -28,12 +28,8 @@ function DeletePostModal({ modalInfo }) {
     return (
         <div className='edit-delete-modal-container'>
             <div className='edit-delete-modal-buttons'>
-
-            {/* <button onClick={handleDelete}>Delete</button> */}
-            {/* <button onClick={handleEdit}>Edit</button> */}
             <i className="fa-regular fa-trash-can"onClick={handleDelete}></i>
             <i className="fa-regular fa-pen-to-square" onClick={handleEdit}></i>
-
             {showModal && (
                 <Modal onClose={(handleModalClose)}>
                     <DeleteEditModal closeModal={() => setShowModal(false) } modalInfo={modalInfo} deletePost={deletePost} edit={edit}/>
