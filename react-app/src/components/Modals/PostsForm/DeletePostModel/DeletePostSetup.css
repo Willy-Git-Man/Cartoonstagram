@@ -1,3 +1,6 @@
-.edit-delete-modal-container {
-    
+.edit-delete-modal-buttons {
+    display: flex;
+    align-items: center;
+    gap:5px;
+    padding: 10px;
 }

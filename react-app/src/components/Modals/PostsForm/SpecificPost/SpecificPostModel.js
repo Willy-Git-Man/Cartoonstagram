@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainPageModal from "./MainPageModal";
 import { Modal } from '../../../../ModalContext/Modal'
+import { useDispatch } from "react-redux";
+import {getUsers} from '../../../../store/session'
 
 
 function SpecificPageModel({ modelInfo }) {
     const [showModal, setShowModal] = useState(false);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUsers())
+    }, [dispatch, modelInfo.id])
 
     return (
         <div>
