@@ -94,7 +94,28 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 0;
-  border: 5px solid black;
+  /* height: 3vh; */
+  border: 1px solid black;
   border-top: none;
   width: 40vw;
+}
+
+.postProfileImg {
+  height: 2.5vh;
+  width: 2.5vw;
+}
+
+
+.postCaption {
+  margin: 2.5%;
+}
+
+.postTop {
+  width: 40vw;
+  display: flex;
+}
+
+.locationAndName {
+  display: flex;
+  flex-direction: column;
 }
