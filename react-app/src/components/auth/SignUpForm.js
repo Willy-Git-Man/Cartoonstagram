@@ -23,7 +23,7 @@ const SignUpForm = () => {
       formData.append("email", email);
       formData.append("password", password)
       formData.append("profile_img_src", profile_img_src)
-   
+
       const data = await dispatch(signUp(formData));
       if (data) {
         setErrors(data)
@@ -116,12 +116,15 @@ const SignUpForm = () => {
         </div>
         <div>
           <input
-            className='loginInputs'
+            className='loginInputs fileChooseInput'
             type='file'
+            id='chooseFileInput'
             accept='image/*'
             name='img_src'
             onChange={updateProfilePic}
+            hidden='hidden'
           ></input>
+          <button for='chooseFileInput' className='chooseFileInputCss'>Choose file...</button>
         </div>
         <button className='loginButtons singupButton' type='submit'>Sign Up</button>
       </form>

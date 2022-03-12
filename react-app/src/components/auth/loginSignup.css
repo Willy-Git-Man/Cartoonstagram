@@ -136,3 +136,15 @@
     margin: 5px 0;
     text-align: center;
 }
+
+.chooseFileInputCss{
+    width: 180px;
+    background-color: rgba(0,149,246,.3);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+}
+.chooseFileInputCss:hover{
+    background-color: rgba(0,149,246);
+}

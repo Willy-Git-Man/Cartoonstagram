@@ -15,6 +15,7 @@ const HomeFeed = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
   const allPosts = useSelector((state) => state.post.posts);
+
   const userARr = Object.values(user)
 
 
