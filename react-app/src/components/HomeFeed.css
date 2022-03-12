@@ -6,7 +6,7 @@
 } */
 
 .mainHomeDiv {
-  outline: black solid 5px;
+  /* outline: black solid 5px; */
   margin-bottom: 60px;
   width: 50vw;
   margin-left: 5vw;
@@ -22,7 +22,7 @@
 
 .mainPageDivs {
   display: flex;
-  outline: black solid 5px;
+  /* outline: black solid 5px; */
   height: 80vh;
 
   /* background-color: black; */
@@ -43,9 +43,13 @@
 .followerDivRight {
   display: flex;
   /* flex-direction: column; */
-  background-color: black;
-  width: 40vw;
+  justify-content: center;
+  /* background-color: black; */
+  /* width: 40vw; */
   height: 40vh;
+  margin-left: 5vw;
+  /* margin-right: 5vw; */
+
 }
 
 
@@ -59,9 +63,12 @@
   flex-direction: column;
   /* background-color: black; */
   background-color: white;
-  width: 40vw;
+  width: 35vw;
   min-width: 200px;
   height: 40vh;
+  overflow: hidden scroll;
+  margin-top: 3vh;
+  /* padding-top: 50px; */
   /* align-items: center; */
   /* margin-bottom: 5vh; */
 }
@@ -71,4 +78,23 @@
   /* justify-content: center; */
   /* justify-self: center; */
   align-items: center;
+}
+
+.postsDiv {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.postInfo {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  border: 5px solid black;
+  border-top: none;
+  width: 40vw;
 }

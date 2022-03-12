@@ -35,9 +35,13 @@ function App() {
         <Switch>
           <Route path='/login' exact={true}>
             <LoginForm />
+      <Footer />
+
           </Route>
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
+      <Footer />
+
           </Route>
           <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
@@ -48,12 +52,11 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
             <NavBar />
-            <h1>My Home Page</h1>
             <HomeFeed />
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

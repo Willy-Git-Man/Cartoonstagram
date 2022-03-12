@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCommentThunk } from "../../../../store/comments";
+import './editCommentForm.css'
 
 export default function UpdateCommentForm({ modalInfo, setShowModal }) {
   console.log('modalInfo:', modalInfo)
@@ -34,10 +35,10 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
       <form className="createNewCommentForm" onSubmit={handleCommentEdit}>
 
 
-        <label htmlFor="commentLabel">New Comment : </label>
-        <input
+        <label htmlFor="commentLabel"></label>
+        <textarea
           type="text"
-          name="comment"
+          className='edit-comment-box'
           value={newCommentEdit}
           onChange={handleNewComment}
           required

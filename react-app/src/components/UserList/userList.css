@@ -20,13 +20,19 @@
 
 .pictureImg {
   padding: 0;
-  width: 5px;
+  width: 3vw;
+  width: 5vw;
+  height: 5vh;
   margin: 0;
   margin-right: 5vw;
+  border-radius: 50%;
 }
 
 .followDivH1 {
   color: black;
+  position: fixed;
+  top: 3.5vh;
+  /* margin-left: 20vw; */
 }
 
 .followerUserNav {
@@ -37,5 +43,9 @@
 
 .picImgUserFollower {
   height: 5vh;
-  
+
+}
+
+.followerDivEach {
+  /* padding-top: 100px; */
 }
