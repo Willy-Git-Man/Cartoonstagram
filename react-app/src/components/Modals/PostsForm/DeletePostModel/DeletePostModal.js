@@ -15,7 +15,6 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
     const {userId} = useParams();
 
     const postId = modalInfo.id;
-    console.log("deleting modalinfo", modalInfo)
 
     function handleDelete(){
         dispatch(deleteAPost(modalInfo.id))
@@ -68,7 +67,6 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
                 <form className='form-inputs' onSubmit={handleSubmit}>
                     <div className='choose-file-button-container'>
                         <input
-                            // className='choose-file-button'
                             type='file'
                             id='choose-file-button'
                             accept="image/*"
@@ -77,7 +75,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
                             hidden='hidden'
                             ></input>
                             <label htmlFor='choose-file-button' className='choose-file-button2' type='button'>Picture Upload</label>
-                            <div className='nameOfFileForChooseInput'>{img_src ? img_src : ''}</div>
+                            <div className='choose-file-name'>{img_src ? img_src : ''}</div>
                     </div>
                     <div>
                         <input
