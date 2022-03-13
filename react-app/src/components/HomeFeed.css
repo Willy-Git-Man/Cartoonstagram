@@ -1,5 +1,6 @@
 .postDiv {
   outline: black solid 5px;
+  background-color: white;
   /* margin-top: 5vh; */
 }
 /* .postDiv {
@@ -15,7 +16,10 @@
   flex-direction: column;
   /* justify-content: center; */
   /* justify-content: center; */
-  overflow: hidden scroll;
+  overflow: scroll;
+  /* over */
+  overflow-y: hidden;
+  overflow-x: hidden;
   height: 80vh;
   /* padding-bottom: 5vh; */
   /* height: 75vh; */
@@ -85,10 +89,11 @@
 .postsDiv {
   display: flex;
   flex-direction: column;
+  background-color: white;
   /* justify-content: center; */
   align-items: center;
   margin-top: 2.5vh;
-  /* outline: lightgrey 10px solid; */
+  border: lightgrey 4px solid;
   width: 40vw;
   /* margin-left: 1vw;
   wid 40vw
