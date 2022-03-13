@@ -63,7 +63,6 @@ export default function likeReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_LIKES:
-      console.log(action, "what is the action");
       newState = { ...state };
       newState.likes.forEach((like) => delete newState[like.user_id]);
       newState.likes = [...action.allLike.likes];

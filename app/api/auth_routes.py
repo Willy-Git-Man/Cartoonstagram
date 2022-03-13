@@ -61,14 +61,12 @@ def sign_up():
     Creates a new user and logs them in
     """
     if "profile_img_src" not in request.files:
-        print('hello')
         return {"errors": "image required"}, 400
 
     img_src = request.files['profile_img_src']
 
 
     if not allowed_file(img_src.filename):
-        print('hello2')
         return {"errors": "file type not permitted"}, 400
 
     img_src.filename = get_unique_filename(img_src.filename)
@@ -76,7 +74,6 @@ def sign_up():
     upload = upload_file_to_s3(img_src)
 
     if "url" not in upload:
-        print('hello3')
         return upload, 400
     
     form = SignUpForm()

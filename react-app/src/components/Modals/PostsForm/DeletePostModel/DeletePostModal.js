@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteAPost, editPost, getPost, getUserPosts } from "../../../../store/posts";
+import { useDispatch } from "react-redux";
+import { deleteAPost, editPost, getUserPosts } from "../../../../store/posts";
 import './DeletePostModal.css'
-import { useParams } from 'react-router-dom';
 
 
 function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, setEdit}){
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState([]);
     const [img_src, setImg] = useState(modalInfo.img_src);
-    const [imageLoading, setImageLoading] = useState(false);
     const [caption_content, setCaption] = useState(modalInfo.caption_content);
     const [location, setLocation] = useState(modalInfo.location);
-    const {userId} = useParams();
-
+   
     const postId = modalInfo.id;
 
     function handleDelete(){

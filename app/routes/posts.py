@@ -16,7 +16,6 @@ posts = Blueprint('posts', __name__)
 def get_post():
     user = current_user
     followeds_posts = user.followed_posts()
-    print(followeds_posts)
     return {'posts': [post.to_dict() for post in followeds_posts]}
 
 @posts.route('', methods=["POST"])
@@ -70,7 +69,6 @@ def delete_post(id):
 
 @posts.route('/<int:id>/update', methods=['POST'])
 def edit_post(id):
-    print(request , "+++++++++++")
     if "img_src" not in request.files:
         post = Post.query.get(id)
 
@@ -91,7 +89,6 @@ def edit_post(id):
 
 
         if not allowed_file(img_src.filename):
-            print('hello2')
             return {"errors": "file type not permitted"}, 400
 
         img_src.filename = get_unique_filename(img_src.filename)
@@ -99,7 +96,6 @@ def edit_post(id):
         upload = upload_file_to_s3(img_src)
 
         if "url" not in upload:
-            print('hello3')
             return upload, 400
 
         post = Post.query.get(id)

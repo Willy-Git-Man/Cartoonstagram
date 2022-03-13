@@ -79,7 +79,6 @@ export const deleteAPost = (postId) => async(dispatch) => {
 }
 
 export const editPost = (post, postId) => async (dispatch) => {
-    console.log('coming from edit post action', post)
     const response = await fetch(`/posts/${postId}/update`, {
         method: 'POST',
         body: post
@@ -87,7 +86,6 @@ export const editPost = (post, postId) => async (dispatch) => {
 
     if (response.ok) {
         const editedPost = await response.json();
-        console.log(editedPost, 'EDITED POST')
         dispatch(edit(editedPost));
         return 'Success!'
     }

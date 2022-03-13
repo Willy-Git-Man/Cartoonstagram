@@ -13,19 +13,8 @@ import { NavLink } from "react-router-dom";
 const HomeFeed = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  console.log("user:", user);
   const allPosts = useSelector((state) => state.post.posts);
-
-
-  const currentUserFolloweds = useSelector((state) => state.follows);
-  console.log("currentUserFolloweds:", currentUserFolloweds);
-
-  const followeObj = Object.values(currentUserFolloweds);
-  console.log("followeObj:", followeObj);
-
   const allUsers = useSelector((state) => state.session.allUsers);
-  console.log("allUsers:", allUsers[1]);
-
 
   useEffect(() => {
     dispatch(allPost());

@@ -14,14 +14,10 @@ comments_routes = Blueprint('comments', __name__)
 def get_comments(post_id):
     all_comments = Comment.query.filter(Comment.post_id == post_id).all()
     all_users = User.query.all()
-    # print(all_comments)
-    # all_comments = db.session.query(Comment.id, Comment.user_id, Comment.post_id, Comment.comment_content, User.username, User.profile_img_src).join(User).filter(Comment.post_id == post_id).all()
-    print(all_comments)
     return {'comments': [comment.to_dict() for comment in all_comments], 'users': [user.to_dict() for user in all_users]}
 
 @comments_routes.route('', methods=["POST"])
 def post_comments():
-    # post = Post.query.get(postId)
     form = CommentsPostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -47,10 +43,7 @@ def edit_post(id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     comment = Comment.query.get(id)
-    print('commen#########################################t:', form.comment_content)
     comment.comment_content = form.comment_content.data
-
-    #  post.caption_content = form.caption_content.data
-    # db.session.add(comment)
+    
     db.session.commit()
     return comment.to_dict()

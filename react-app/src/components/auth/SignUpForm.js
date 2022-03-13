@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './loginSignup.css'
-import { userFollowers } from '../../store/followers';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -52,7 +51,6 @@ const SignUpForm = () => {
 
   const updateProfilePic = (e) => {
     const file = e.target.files[0];
-    // console.log(file, '========')
     setProfilePicUrl(file)
   }
 

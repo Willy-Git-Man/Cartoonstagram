@@ -9,7 +9,6 @@ import { getUserPosts } from '../store/posts';
 function User() {
   const [followeds, setFolloweds] = useState([]);
   const [followers, setFollowers] = useState([]);
-  const [userPage, setUserPage] = useState();
   const { userId }  = useParams();
   const dispatch = useDispatch()
 
