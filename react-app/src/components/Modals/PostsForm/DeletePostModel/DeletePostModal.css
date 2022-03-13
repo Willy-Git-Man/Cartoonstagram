@@ -33,13 +33,16 @@
 
 .edit-form-container {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .form-inputs {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
+    align-items: center;
+}
+
+.choose-file-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
