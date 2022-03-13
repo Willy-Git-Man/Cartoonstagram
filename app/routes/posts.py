@@ -72,36 +72,48 @@ def delete_post(id):
 def edit_post(id):
     print(request , "+++++++++++")
     if "img_src" not in request.files:
-        print('hello')
-        return {"errors": "image required"}, 400
+        post = Post.query.get(id)
 
-    img_src = request.files['img_src']
+        user_id = current_user.id
+        caption_content = request.form["caption_content"]
+        location = request.form["location"]
+
+        post.user_id = user_id
+        post.caption_content = caption_content
+        post.location = location
+        post.created_at = datetime.now()
+
+        db.session.commit()
+        return post.to_dict()
+
+    else:
+        img_src = request.files['img_src']
 
 
-    if not allowed_file(img_src.filename):
-        print('hello2')
-        return {"errors": "file type not permitted"}, 400
+        if not allowed_file(img_src.filename):
+            print('hello2')
+            return {"errors": "file type not permitted"}, 400
 
-    img_src.filename = get_unique_filename(img_src.filename)
+        img_src.filename = get_unique_filename(img_src.filename)
 
-    upload = upload_file_to_s3(img_src)
+        upload = upload_file_to_s3(img_src)
 
-    if "url" not in upload:
-        print('hello3')
-        return upload, 400
+        if "url" not in upload:
+            print('hello3')
+            return upload, 400
 
-    post = Post.query.get(id)
+        post = Post.query.get(id)
 
-    user_id = current_user.id
-    img_src = upload["url"]
-    caption_content = request.form["caption_content"]
-    location = request.form["location"]
+        user_id = current_user.id
+        img_src = upload["url"]
+        caption_content = request.form["caption_content"]
+        location = request.form["location"]
 
-    post.user_id = user_id
-    post.img_src = img_src
-    post.caption_content = caption_content
-    post.location = location
-    post.created_at = datetime.now()
+        post.user_id = user_id
+        post.img_src = img_src
+        post.caption_content = caption_content
+        post.location = location
+        post.created_at = datetime.now()
 
-    db.session.commit()
-    return post.to_dict()
+        db.session.commit()
+        return post.to_dict()
