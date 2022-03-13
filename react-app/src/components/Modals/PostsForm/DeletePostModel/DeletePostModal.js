@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAPost, editPost, getPost } from "../../../../store/posts";
+import { deleteAPost, editPost, getPost, getUserPosts } from "../../../../store/posts";
 import './DeletePostModal.css'
 import { useParams } from 'react-router-dom';
 
@@ -19,6 +19,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
 
     function handleDelete(){
         dispatch(deleteAPost(modalInfo.id))
+        dispatch(getUserPosts(modalInfo.user_id))
         closeModal()
     }
 
@@ -53,7 +54,7 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
 
     if (deletePost) {
         return(
-            <>  
+            <>
              <div className='delete-popup-container'>
                 <button onClick={handleDelete} className='delete-button'>Confirm Delete</button>
                 <button onClick={handleCancel} className='cancel-button'>Cancel</button>

@@ -28,7 +28,7 @@ function CommentSection({ modalInfo }) {
     dispatch(allLike(modalInfo.id))
   }, [dispatch, modalInfo.id])
 
-  
+
 
   const handleDeleteLike = async () => {
     dispatch(deleteLike(modalInfo.id));
@@ -63,7 +63,13 @@ function CommentSection({ modalInfo }) {
           {user.id === modalInfo.user_id && <DeletePostModal modalInfo={modalInfo}/>}
 
         </div>
-
+        <div className="profileCommentUsernameSection">
+          <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
+          <div className='usernameCommentOnCommentSection'>
+            <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
+            <span>{modalInfo.caption_content}</span>
+          </div>
+        </div>
         <div className="getAllCommentsScroll">
         {commentArray.map((comment, i) => (
           <MouseOverComment comment={comment} key={i}/>
