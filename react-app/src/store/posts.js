@@ -62,6 +62,7 @@ export const makePost = (formData) => async(dispatch) => {
         dispatch(createPost(newPost))
         return 'Success';
     }
+    return response
 }
 
 export const deleteAPost = (postId) => async(dispatch) => {

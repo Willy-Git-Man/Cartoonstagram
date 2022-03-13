@@ -3,27 +3,12 @@
   background-color: white;
   /* margin-top: 5vh; */
 }
-/* .postDiv {
-
-} */
 
 .mainHomeDiv {
-  /* outline: black solid 5px; */
-  margin-bottom: 60px;
-  width:40vw;
-  margin-left: 10vw;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* justify-content: center; */
   overflow-y: scroll;
-  /* over */
-
-
   height: 80vh;
-  /* padding-bottom: 5vh; */
-  /* height: 75vh; f*/
-
 }
 
 .mainHomeDiv::-webkit-scrollbar {
@@ -33,13 +18,8 @@
 
 .mainPageDivs {
   display: flex;
-  /* outline: black solid 5px; */
+  justify-content: center;
   height: 80vh;
-  /* overflow: hidden; */
-
-  /* background-color: black; */
-  /* height: 90vh; */
-
 }
 
 .followerDiv {
@@ -54,14 +34,9 @@
 
 .followerDivRight {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  /* background-color: black; */
-  /* width: 40vw; */
   height: 40vh;
   margin-left: 5vw;
-  /* margin-right: 5vw; */
-
 }
 
 
@@ -73,22 +48,20 @@
 .followerMap {
   display: flex;
   flex-direction: column;
-  /* background-color: black; */
-  background-color: white;
   width: 25vw;
   min-width: 200px;
   height: 40vh;
-  overflow: hidden scroll;
-  margin-top: 3vh;
-  /* padding-top: 50px; */
-  /* align-items: center; */
-  /* margin-bottom: 5vh; */
+  overflow-y: scroll;
+  margin-top: 25px;
+}
+
+.followerMap::-webkit-scrollbar {
+  display: none;
 }
 
 .followerNavLinks {
   margin-bottom: 1vw;
-  /* justify-content: center; */
-  /* justify-self: center; */
+
   align-items: center;
 }
 
@@ -96,14 +69,11 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  /* justify-content: center; */
-  align-items: center;
   margin-top: 2.5vh;
-  border: lightgrey 4px solid;
-  width: 40vw;
-  /* margin-left: 1vw;
-  wid 40vw
-  margin-right: 1vw; */
+  border: lightgrey 1px solid;
+  width: 400px;
+  height: 700px;
+
 
 }
 
@@ -114,7 +84,6 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 0;
-  /* height: 3vh; */
   border: 1px solid black;
   border-top: none;
   width: 40vw;
@@ -123,8 +92,8 @@
 .postProfileImg {
   border-radius: 50%;
   width: 25px;
-  height: 3.125vh;
-  width: 3.125vw;
+  height: 25px;
+
 }
 
 
@@ -133,10 +102,10 @@
 }
 
 .postTop {
-  width: 40vw;
+
   display: flex;
   gap: 20px;
-  outline: lightgrey 1px solid;
+  border-bottom: lightgrey 1px solid;
 
 }
 
@@ -149,4 +118,22 @@
 .postLocationHeader{
   font-size: 15px;
   margin: 0;
+}
+
+
+.profileCommentUsernameSectionHomeFeed{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-top: lightgrey 1px solid;
+}
+
+.profilePicUsernameModalFeed{
+  display: flex;
+  align-items: center;
+  grid-gap: 5px;
+  gap: 5px;
+  padding: 10px;
+  border-bottom: lightgrey 1px solid;
 }

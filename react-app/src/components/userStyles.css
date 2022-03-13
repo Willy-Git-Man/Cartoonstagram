@@ -44,16 +44,16 @@
 }
 
 .profile-img {
-    width: 275px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     padding: 11px;
     object-fit: cover;
 }
 
 .profile-img {
-    width: 40vw;
+    /* width: 40vw;
     /* max-width: 400px; */
-    height: 30vh;
+    /* height: 30vh; */
     padding: 11px;
     object-fit: cover;
 }
