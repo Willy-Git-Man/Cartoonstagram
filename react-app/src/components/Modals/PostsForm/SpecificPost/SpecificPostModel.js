@@ -14,7 +14,7 @@ function SpecificPageModel({ modelInfo }) {
 
     return (
         <div>
-        
+
             <img className='profile-img' src={modelInfo.img_src} alt="Broken Img URL" onClick={() => setShowModal(true)}/>
 
             {showModal && (

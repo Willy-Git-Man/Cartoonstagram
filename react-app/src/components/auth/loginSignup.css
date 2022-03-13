@@ -138,13 +138,32 @@
 }
 
 .chooseFileInputCss{
-    width: 180px;
     background-color: rgba(0,149,246,.3);
     color: white;
     border: none;
     border-radius: 3px;
     padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 160px;
+    text-align: center;
+
 }
 .chooseFileInputCss:hover{
     background-color: rgba(0,149,246);
+}
+
+.chooseFileNameAndLabel{
+    margin-top: 5px;
+    max-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nameOfFileForChooseInput{
+    font-size: small;
+    overflow-wrap: anywhere;
+    color: rgb(114, 114, 114);
 }

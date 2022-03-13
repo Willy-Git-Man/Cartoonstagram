@@ -52,6 +52,7 @@ const SignUpForm = () => {
 
   const updateProfilePic = (e) => {
     const file = e.target.files[0];
+    // console.log(file, '========')
     setProfilePicUrl(file)
   }
 
@@ -124,7 +125,10 @@ const SignUpForm = () => {
             onChange={updateProfilePic}
             hidden='hidden'
           ></input>
-          <button for='chooseFileInput' className='chooseFileInputCss' >Choose file...</button>
+          <div className='chooseFileNameAndLabel'>
+            <label htmlFor='chooseFileInput' className='chooseFileInputCss' type='button'>Choose file...</label>
+            <div className='nameOfFileForChooseInput'>{profile_img_src ? profile_img_src.name : ''}</div>
+          </div>
         </div>
         <button className='loginButtons singupButton' type='submit'>Sign Up</button>
       </form>
