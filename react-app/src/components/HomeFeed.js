@@ -63,7 +63,7 @@ const HomeFeed = () => {
                 >
                   {allUsers[post.user_id].username}
                 </NavLink>
-                <span>{post.location}</span>
+                <p className="postLocationHeader">{post.location}</p>
               </div>
             </div>
             <SpecificPageModel modelInfo={post} />

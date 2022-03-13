@@ -1,5 +1,6 @@
 .postDiv {
   outline: black solid 5px;
+  /* margin-top: 5vh; */
 }
 /* .postDiv {
 
@@ -8,10 +9,11 @@
 .mainHomeDiv {
   /* outline: black solid 5px; */
   margin-bottom: 60px;
-  width: 50vw;
-  margin-left: 5vw;
+  width:40vw;
+  margin-left: 10vw;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   /* justify-content: center; */
   overflow: hidden scroll;
   height: 80vh;
@@ -85,6 +87,13 @@
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  margin-top: 2.5vh;
+  /* outline: lightgrey 10px solid; */
+  width: 40vw;
+  /* margin-left: 1vw;
+  wid 40vw
+  margin-right: 1vw; */
+
 }
 
 .postInfo {
@@ -101,8 +110,10 @@
 }
 
 .postProfileImg {
-  height: 2.5vh;
-  width: 2.5vw;
+  border-radius: 50%;
+  width: 25px;
+  height: 3.125vh;
+  width: 3.125vw;
 }
 
 
@@ -113,9 +124,18 @@
 .postTop {
   width: 40vw;
   display: flex;
+  gap: 20px;
+  outline: lightgrey 1px solid;
+
 }
 
 .locationAndName {
   display: flex;
   flex-direction: column;
+
+}
+
+.postLocationHeader{
+  font-size: 15px;
+  margin: 0;
 }
