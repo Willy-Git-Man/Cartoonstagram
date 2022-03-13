@@ -107,6 +107,7 @@
 
 .commentFormForPost{
   display: flex;
+  justify-content: space-between;
 }
 
 .colorHeart{
