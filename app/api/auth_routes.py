@@ -78,7 +78,7 @@ def sign_up():
     if "url" not in upload:
         print('hello3')
         return upload, 400
-
+    
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
