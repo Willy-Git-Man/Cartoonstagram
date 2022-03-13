@@ -3,12 +3,9 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    /* background-color: white; */
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    /* border: solid black 1px; */
     outline: 5px whitesmoke solid;
-    /* border: solid black 1px; */
 }
 
 .choose-file-button {

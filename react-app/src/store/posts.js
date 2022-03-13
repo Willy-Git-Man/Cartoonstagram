@@ -2,6 +2,7 @@ const GET_POSTS = 'posts/GET_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
 const DELETE_POST = 'posts/DELETE_POST';
 const EDIT_POST = 'posts/EDIT_POST';
+const GET_USER_POST = 'posts/GET_USER_POST';
 
 const getPost = (allpost) => ({
     type: GET_POSTS,
@@ -23,6 +24,20 @@ const edit = (editPost) => ({
     type: EDIT_POST,
     editPost
 })
+
+const userPosts = (userPosts) => ({
+    type: GET_USER_POST,
+    userPosts
+})
+
+export const getUserPosts = (userId) => async(dispatch) => {
+    const response = await fetch(`/api/users/${userId}`)
+
+    if(response.ok){
+        const data = await response.json();
+        dispatch(userPosts(data))
+    }
+}
 
 export const allPost = () => async(dispatch) => {
     const response = await fetch('/posts');
@@ -59,6 +74,7 @@ export const deleteAPost = (postId) => async(dispatch) => {
         const post = await response.json()
         dispatch(deletePost(post))
     }
+
 }
 
 export const editPost = (post, postId) => async (dispatch) => {
@@ -76,7 +92,7 @@ export const editPost = (post, postId) => async (dispatch) => {
     }
 }
 
-const initialState = {posts: []}
+const initialState = {posts: [], userPosts: []}
 
 export default function postReducer(state = initialState, action) {
     let newState;
@@ -89,6 +105,7 @@ export default function postReducer(state = initialState, action) {
         case CREATE_POST:
             newState={...state}
             newState.posts = [action.newPost, ...newState.posts];
+            newState.userPosts = [...newState.userPosts, action.newPost]
             return newState
         case DELETE_POST:
             newState = {...state};
@@ -98,7 +115,13 @@ export default function postReducer(state = initialState, action) {
                     newState.posts.splice(i, 1);
                 }
             })
+            newState.userPosts.forEach((post, i)=> {
+                if (post.id === action.post.id){
+                    newState.userPosts.splice(i, 1);
+                }
+            })
             newState.posts = [...newState.posts];
+            newState.userPosts = [...newState.userPosts]
             return newState
         case EDIT_POST:
             newState = { ...state }
@@ -108,8 +131,19 @@ export default function postReducer(state = initialState, action) {
                     newState.posts.splice(i, 1);
                 }
             })
+            newState.userPosts.forEach((post, i)=> {
+                if (post.id === action.editPost.id){
+                    newState.userPosts.splice(i, 1);
+                }
+            })
             newState.posts = [{...action.editPost}, ...newState.posts]
+            newState.userPosts = [{...action.editPost}, ...newState.userPosts]
             return newState
+        case GET_USER_POST:
+            newState = {...state, userPosts: []}
+            newState.userPosts = [...action.userPosts.posts];
+            return newState
+
         default:
             return state
     }
