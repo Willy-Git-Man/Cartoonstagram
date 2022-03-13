@@ -16,20 +16,25 @@
   flex-direction: column;
   /* justify-content: center; */
   /* justify-content: center; */
-  overflow: scroll;
+  overflow-y: scroll;
   /* over */
-  overflow-y: hidden;
-  overflow-x: hidden;
+
+
   height: 80vh;
   /* padding-bottom: 5vh; */
   /* height: 75vh; */
 
 }
 
+.mainHomeDiv::-webkit-scrollbar {
+  display: none;
+}
+
 .mainPageDivs {
   display: flex;
   /* outline: black solid 5px; */
   height: 80vh;
+  /* overflow: hidden; */
 
   /* background-color: black; */
   /* height: 90vh; */
@@ -69,7 +74,7 @@
   flex-direction: column;
   /* background-color: black; */
   background-color: white;
-  width: 35vw;
+  width: 25vw;
   min-width: 200px;
   height: 40vh;
   overflow: hidden scroll;
