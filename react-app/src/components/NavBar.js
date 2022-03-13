@@ -19,7 +19,7 @@ const NavBar = () => {
           <NavLink className='navLinkColor' to='/' exact={true}><h1 className='navTitle'>Cartoonstagram</h1></NavLink>
       </div>
       <div className='navLinks'>
-          {/* <NavLink to='/users' className='navLinkColor' exact={true} activeClassName='active'>Users</NavLink> */}
+        
           <NavLink to='/' className='navLinkColor' exact={true} activeClassName='active'><FontAwesomeIcon icon="house" /></NavLink>
           <PostFormModel/>
           <LogoutButton />

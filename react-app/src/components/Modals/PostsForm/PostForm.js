@@ -26,6 +26,9 @@ const PostForm = ({ setShowModal }) => {
         if (results === 'Success'){
             setImageLoading(false)
             setShowModal(false)
+        }else{
+            const data = await results.json()
+            setErrors([data.errors])
         }
 
     }

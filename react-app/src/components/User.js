@@ -9,6 +9,7 @@ import { getUserPosts } from '../store/posts';
 function User() {
   const [followeds, setFolloweds] = useState([]);
   const [followers, setFollowers] = useState([]);
+  const [userPage, setUserPage] = useState();
   const { userId }  = useParams();
   const dispatch = useDispatch()
 
@@ -16,7 +17,7 @@ function User() {
   const postUser  = useSelector(state => state.session.allUsers)
   const currentUserFolloweds = useSelector(state => state.follows)
   const specificUserPosts = useSelector(state => state.post.userPosts)
-  console.log(specificUserPosts, '+++++++++++++++')
+
 
   useEffect(() => {
     dispatch(getUserPosts(userId))
@@ -83,7 +84,7 @@ function User() {
       { specificUserPosts &&
         specificUserPosts.map((post, i) => (
           <SpecificPageModel key={i} modelInfo={post}/>
-          // <img className='profile-img' key={i} src={post.img_src} alt=''/>
+
         ))}
       </div>
     </div>
