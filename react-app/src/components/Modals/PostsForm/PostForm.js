@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { makePost } from '../../../store/posts';
+import { getUserPosts, makePost } from '../../../store/posts';
+import { useParams } from 'react-router-dom';
 import './PostForm.css'
 
 const PostForm = ({ setShowModal }) => {
@@ -9,6 +10,7 @@ const PostForm = ({ setShowModal }) => {
     const [imageLoading, setImageLoading] = useState(false);
     const [caption_content, setCaption] = useState('');
     const [location, setLocation] = useState('');
+    const { userId }  = useParams();
 
     const dispatch = useDispatch();
 
@@ -22,6 +24,9 @@ const PostForm = ({ setShowModal }) => {
 
         const results = await dispatch(makePost(formData))
         if (results === 'Success'){
+            if(userId){
+                dispatch(getUserPosts(userId))
+            }
             setImageLoading(false)
             setShowModal(false)
         }else{
