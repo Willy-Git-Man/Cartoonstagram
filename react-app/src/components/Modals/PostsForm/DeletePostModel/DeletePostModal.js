@@ -75,8 +75,8 @@ function DeleteEditModal({closeModal, modalInfo, deletePost, edit, setDelete, se
                             onChange={updateImage}
                             hidden='hidden'
                             ></input>
-                            <label htmlFor='choose-file-button' className='choose-file-button2' type='button'>Picture Upload</label>
-                            <div className='choose-file-name'>{img_src ? img_src : ''}</div>
+                            <label htmlFor='choose-file-button' className='choose-file-button2' type='button'>Update Picture</label>
+                            <div className='choose-file-name'>{img_src ? img_src.name : ''}</div>
                     </div>
                     <div>
                         <input

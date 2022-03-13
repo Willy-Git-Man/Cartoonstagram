@@ -57,7 +57,10 @@ function CommentSection({ modalInfo }) {
       <div className="rightTopPostCreator">
         <div className="profilePicUsernameModal">
           <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
-          {all_users[modalInfo.user_id].username}
+          <div className="usernameAndLocation">
+            <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
+            <div className="locationOnThePostModal">{modalInfo.location}</div>
+          </div>
         </div>
 
           {user.id === modalInfo.user_id && <DeletePostModal modalInfo={modalInfo}/>}
@@ -68,6 +71,7 @@ function CommentSection({ modalInfo }) {
           <div className='usernameCommentOnCommentSection'>
             <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
             <span>{modalInfo.caption_content}</span>
+
           </div>
         </div>
         <div className="getAllCommentsScroll">
