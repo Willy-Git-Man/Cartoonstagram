@@ -8,10 +8,6 @@
     outline: 5px whitesmoke solid;
 }
 
-.choose-file-button {
-    margin: 5px;
-}
-
 .form-inputs {
     display:flex;
     background-color: white;
@@ -52,4 +48,36 @@
     width: 100%;
     outline: 1px white solid;
     font-family: sans-serif;
+}
+
+.choose-file-button-container {
+    display: flex;
+    justify-content: center;
+    width: 90%
+}
+
+.choose-file-button2 {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    width: 90%;
+    height: 30px;
+    font-family: sans-serif;
+    border: 1px solid black;
+    margin-bottom: 7px;
+    margin-top: 7px;
+}
+
+.choose-file-button2:hover {
+    background-color: lightgrey
+}
+
+.confirm-changes-button:hover {
+    background-color: lightgrey
+}
+
+.cancel-changes-button:hover {
+    background-color: lightgrey
 }

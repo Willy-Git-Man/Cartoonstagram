@@ -37,45 +37,48 @@ const PostForm = ({ setShowModal }) => {
 
     return (
         <div className='post-form-container'>
-
-        <form className='post-form' onSubmit={handleSubmit}>
-            <div className='postErrors'>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                    ))}
-            </div>
-            <div>
+            <form className='post-form' onSubmit={handleSubmit}>
+                <div className='postErrors'>
+                    {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                        ))}
+                </div>
+                <p className='create-post-text'>Create New Post</p>
+                <div className='choose-file-container'>
+                </div>
+                <div>
+                    <input
+                        type='text'
+                        className='caption-content-field'
+                        name='caption_content'
+                        onChange={(e) => setCaption(e.target.value)}
+                        value={caption_content}
+                        placeholder='Caption'
+                        ></input>
+                </div>
+                <div>
+                    <input
+                        type='text'
+                        name='location'
+                        className='location-field'
+                        onChange={(e) => setLocation(e.target.value)}
+                        value={location}
+                        placeholder='Location'
+                        ></input>
+                </div>
                 <input
-                    className='choose-file-button'
-                    type='file'
-                    accept='image/*'
-                    name='img_src'
-                    onChange={updateImage}
-                ></input>
-            </div>
-            <div>
-                <input
-                    type='text'
-                    className='caption-content-field'
-                    name='caption_content'
-                    onChange={(e) => setCaption(e.target.value)}
-                    value={caption_content}
-                    placeholder='Caption'
+                        // className='choose-file-button'
+                        type='file'
+                        id='chooseFileInput'
+                        accept='image/*'
+                        name='img_src'
+                        onChange={updateImage}
+                        hidden='hidden'
                     ></input>
-            </div>
-            <div>
-                <input
-                    type='text'
-                    name='location'
-                    className='location-field'
-                    onChange={(e) => setLocation(e.target.value)}
-                    value={location}
-                    placeholder='Location'
-                    ></input>
-            </div>
-            <button className='post-submit-button' type='submit'>Post</button>
-            {(imageLoading)&& <p>Loading...</p>}
-        </form>
+                    <label for='chooseFileInput' className='choose-file-button'>Picture Upload</label>
+                <button className='post-submit-button' type='submit'>Post</button>
+                {(imageLoading)&& <p>Loading...</p>}
+            </form>
         </div>
     )
 }
