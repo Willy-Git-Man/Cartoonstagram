@@ -22,13 +22,14 @@
 
   height: 80vh;
   /* padding-bottom: 5vh; */
-  /* height: 75vh; */
+  /* height: 75vh; f*/
 
 }
 
 .mainHomeDiv::-webkit-scrollbar {
   display: none;
 }
+
 
 .mainPageDivs {
   display: flex;
