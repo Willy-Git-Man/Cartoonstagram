@@ -1,5 +1,7 @@
 .postDiv {
   outline: black solid 5px;
+  background-color: white;
+  /* margin-top: 5vh; */
 }
 /* .postDiv {
 
@@ -8,22 +10,32 @@
 .mainHomeDiv {
   /* outline: black solid 5px; */
   margin-bottom: 60px;
-  width: 50vw;
-  margin-left: 5vw;
+  width:40vw;
+  margin-left: 10vw;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  overflow: hidden scroll;
+  /* justify-content: center; */
+  overflow-y: scroll;
+  /* over */
+
+
   height: 80vh;
   /* padding-bottom: 5vh; */
-  /* height: 75vh; */
+  /* height: 75vh; f*/
 
 }
+
+.mainHomeDiv::-webkit-scrollbar {
+  display: none;
+}
+
 
 .mainPageDivs {
   display: flex;
   /* outline: black solid 5px; */
   height: 80vh;
+  /* overflow: hidden; */
 
   /* background-color: black; */
   /* height: 90vh; */
@@ -63,7 +75,7 @@
   flex-direction: column;
   /* background-color: black; */
   background-color: white;
-  width: 35vw;
+  width: 25vw;
   min-width: 200px;
   height: 40vh;
   overflow: hidden scroll;
@@ -83,8 +95,16 @@
 .postsDiv {
   display: flex;
   flex-direction: column;
+  background-color: white;
   /* justify-content: center; */
   align-items: center;
+  margin-top: 2.5vh;
+  border: lightgrey 4px solid;
+  width: 40vw;
+  /* margin-left: 1vw;
+  wid 40vw
+  margin-right: 1vw; */
+
 }
 
 .postInfo {
@@ -101,8 +121,10 @@
 }
 
 .postProfileImg {
-  height: 2.5vh;
-  width: 2.5vw;
+  border-radius: 50%;
+  width: 25px;
+  height: 3.125vh;
+  width: 3.125vw;
 }
 
 
@@ -113,9 +135,18 @@
 .postTop {
   width: 40vw;
   display: flex;
+  gap: 20px;
+  outline: lightgrey 1px solid;
+
 }
 
 .locationAndName {
   display: flex;
   flex-direction: column;
+
+}
+
+.postLocationHeader{
+  font-size: 15px;
+  margin: 0;
 }

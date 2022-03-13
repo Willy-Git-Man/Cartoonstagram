@@ -1,6 +1,7 @@
 .followNavLink {
   /* color: white; */
   list-style: none;
+  margin: none;
 }
 
 .followNavLink {
@@ -19,13 +20,10 @@
 }
 
 .pictureImg {
-  padding: 0;
-  width: 3vw;
-  width: 5vw;
-  height: 5vh;
-  margin: 0;
-  margin-right: 5vw;
   border-radius: 50%;
+  width: 25px;
+  height: 3.125vh;
+  width: 3.125vw;
 }
 
 .followDivH1 {
@@ -48,4 +46,9 @@
 
 .followerDivEach {
   /* padding-top: 100px; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /* justify-content: center; */
+  margin-left: 1vw;
 }
