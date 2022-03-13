@@ -12,7 +12,6 @@ follow_routes = Blueprint('follows', __name__)
 def get_followeds(id):
     user = User.query.get(id)
     followeds = user.followed.all()
-    print(followeds, 'were in the follow route')
     return {'follows': [follow.to_dict() for follow in followeds]}
 
 @follow_routes.route('/<int:id>/followers', methods = ['GET'])
@@ -21,7 +20,6 @@ def get_followers(id):
     user = User.query.get(id)
     # followers = user.followed.query.filter(follow.c.followed_id == id).all()
     followers = user.followers.all()
-    print('these are the followers',followers)
     return {'followers': [follow.to_dict() for follow in followers]}
 
 @follow_routes.route('/<int:id>', methods = ['POST'])

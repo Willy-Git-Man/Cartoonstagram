@@ -37,10 +37,7 @@ export const allComments = (id) => async(dispatch) => {
 }
 
 export const makeComment = (comment) => async(dispatch) => {
-    console.log('comment', comment)
-    console.log('comment.post_id:', comment.post_id)
 
-    // const response = await fetch(`/comments/${comment.post_id}`, {
     const response = await fetch(`/comments`, {
 
         method: 'POST',
@@ -68,7 +65,6 @@ export const deleteCommentThunk = (commentId) => async(dispatch) => {
 }
 
 export const updateCommentThunk = (updatedComment, commentId) => async (dispatch) => {
-  console.log('updatedComment:', updatedComment)
   const response = await fetch(`/comments/${commentId}`, {
     method: "POST",
     headers: {'Content-Type': 'application/json'},
@@ -76,7 +72,6 @@ export const updateCommentThunk = (updatedComment, commentId) => async (dispatch
   });
   if (response.ok) {
     const updatedCommentRequest = await response.json();
-    console.log('updatedCommentRequest:', updatedCommentRequest)
     dispatch(updateComment(updatedCommentRequest));
     return updatedCommentRequest
   }
@@ -89,8 +84,6 @@ export default function commentsReducer(state = initialState, action) {
     switch (action.type){
         case GET_COMMENTS:
           newState = {...state, comments: {}, users: {}}
-          console.log('the action',action)
-          console.log('the action.postComments.comments',action.postComments.comments)
           action.postComments.comments.forEach((comment) => newState.comments[comment.id] = comment)
           action.postComments.users.forEach(user => newState.users[user.id] = user)
           return newState;
@@ -102,7 +95,6 @@ export default function commentsReducer(state = initialState, action) {
         case DELETE_COMMENT:
           newState= {...state, comments: {...state.comments}};
           const id = action.comment.id
-          console.log('id:', id)
           delete newState.comments[id]
 
           return newState;

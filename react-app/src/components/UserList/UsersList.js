@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-
 import "./userList.css";
 
 function UsersList() {
   const currentUser = useSelector((state) => state.session.user);
 
-
   const [users, setUsers] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/users/");

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -9,10 +8,6 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const currentUser = useSelector(state => state.session.user);
 
-
-  const handleClick = (e) => {
-    // const dropDown =
-  }
   return (
     <nav className='navBar'>
       <div>
@@ -24,11 +19,9 @@ const NavBar = () => {
           <PostFormModel/>
           <LogoutButton />
           <NavLink to={`/users/${currentUser.id}`}>
-            <img className='navProfilePic' src={currentUser.profile_img_src} onClick ={handleClick}/>
+            <img className='navProfilePic' src={currentUser.profile_img_src} alt='Broken Link'/>
           </NavLink>
-
       </div>
-
     </nav>
   );
 }

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Modal } from '../../../ModalContext/Modal';
 import PostForm from './PostForm';
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 const PostFormModal = () => {
   const [showModal, setShowModal] = useState(false);

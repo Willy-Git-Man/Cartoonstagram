@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCommentThunk } from "../../../../store/comments";
 import './editCommentForm.css'
 
 export default function UpdateCommentForm({ modalInfo, setShowModal }) {
-  console.log('modalInfo:', modalInfo)
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
@@ -21,7 +20,6 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
       post_id: modalInfo.post_id,
       comment_content: newCommentEdit
     };
-    console.log("newComment:", newComment);
 
     dispatch(updateCommentThunk(newComment, modalInfo.id));
 

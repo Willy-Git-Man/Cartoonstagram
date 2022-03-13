@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DeleteEditModal from "./DeletePostModal";
 import { Modal } from '../../../../ModalContext/Modal'
 import './DeletePostSetup.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DeletePostModal({ modalInfo}) {
     const [showModal, setShowModal] = useState(false);

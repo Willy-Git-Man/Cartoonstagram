@@ -12,8 +12,6 @@ function User() {
   const currentUser = useSelector(state => state.session.user)
   const currentUserFolloweds = useSelector(state => state.follows)
 
-  console.log('consoleeeee', currentUserFolloweds[userId])
-  console.log('conditional', currentUserFolloweds[userId])
   useEffect(() => {
     dispatch(userFollowers(parseInt(currentUser.id)))
     if (!userId) {

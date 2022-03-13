@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
-import { getUsers, login } from '../../store/session';
+import { login } from '../../store/session';
 import './loginSignup.css'
-import { userFollowers } from '../../store/followers';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,10 +10,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getUsers())
-  // }, [dispatch, user])
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -45,7 +40,7 @@ const LoginForm = () => {
 
   return (
     <div className='loginDiv'>
-      <img className='loginPic' src='https://www.thesun.co.uk/wp-content/uploads/2020/06/gramgram.png'/>
+      <img className='loginPic' src='https://www.thesun.co.uk/wp-content/uploads/2020/06/gramgram.png' alt='Broken Link'/>
       <div>
 
       <div className='rightDiv'>

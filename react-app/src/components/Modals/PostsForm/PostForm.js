@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makePost } from '../../../store/posts';
 import './PostForm.css'
 
@@ -10,9 +10,7 @@ const PostForm = ({ setShowModal }) => {
     const [caption_content, setCaption] = useState('');
     const [location, setLocation] = useState('');
 
-    const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -70,7 +68,6 @@ const PostForm = ({ setShowModal }) => {
                         ></input>
                 </div>
                 <input
-                        // className='choose-file-button'
                         type='file'
                         id='chooseFileInput'
                         accept='image/*'
