@@ -113,3 +113,14 @@
 .colorHeart{
   color:red;
 }
+
+.usernameAndLocation{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.locationOnThePostModal{
+  color: rgb(161, 161, 161);
+  font-size: small;
+}
