@@ -25,7 +25,7 @@ AWS
 3. Create a **.env** file in the root of your project and add the following lines into the file:
    ```bash
    SECRET_KEY=<your-secret-key-value>
-   DATABASE_URL=postgresql://<your-database-user>>:<your-user-password>>@localhost/<your-database-name>>
+   DATABASE_URL=postgresql://<your-database-user>:<your-user-password>@localhost/<your-database-name>>
    ```
 
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file. Use the following commands in your terminal:
