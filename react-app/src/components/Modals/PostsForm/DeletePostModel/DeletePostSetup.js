@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DeleteEditModal from "./DeletePostModal";
 import { Modal } from '../../../../ModalContext/Modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './DeletePostSetup.css'
 
 function DeletePostModal({ modalInfo}) {
@@ -27,8 +28,8 @@ function DeletePostModal({ modalInfo}) {
     return (
         <div className='edit-delete-modal-container'>
             <div className='edit-delete-modal-buttons'>
-            <i className="fa-regular fa-trash-can"onClick={handleDelete}></i>
-            <i className="fa-regular fa-pen-to-square" onClick={handleEdit}></i>
+            <FontAwesomeIcon icon="fa-regular fa-trash-can" onClick={handleDelete}/>
+            <FontAwesomeIcon icon="fa-regular fa-pen-to-square" onClick={handleEdit}/>
             {showModal && (
                 <Modal onClose={(handleModalClose)}>
                     <DeleteEditModal closeModal={() => setShowModal(false) } setDelete={setDelete} setEdit={setEdit} modalInfo={modalInfo} deletePost={deletePost} edit={edit}/>

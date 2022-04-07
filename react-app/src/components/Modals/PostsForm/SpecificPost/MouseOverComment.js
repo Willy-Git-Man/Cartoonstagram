@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../../store/session";
 import UpdateCommentModal from "../EditCommentModal/editCommentModal";
 import { deleteCommentThunk } from "../../../../store/comments";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MouseOverComment = ({comment}) => {
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ const MouseOverComment = ({comment}) => {
                 alt=""
                 />
               <div className="usernameCommentOnCommentSection">
-        
+
               <span className="usernameOnSection">
 
                   {all_users[comment.user_id].username}
@@ -43,9 +44,7 @@ const MouseOverComment = ({comment}) => {
             </div>
             {(user.id === comment.user_id) && icons ? <div className="deleteEditCommentDiv">
                 {comment.user_id === user.id && (
-                    <i className="fa-regular fa-trash-can"
-                    onClick={() => dispatch(deleteCommentThunk(comment.id))}
-                    ></i>
+                   <FontAwesomeIcon icon="fa-regular fa-trash-can" onClick={() => dispatch(deleteCommentThunk(comment.id))}/>
                 )}
 
                 {comment.user_id === user.id && (

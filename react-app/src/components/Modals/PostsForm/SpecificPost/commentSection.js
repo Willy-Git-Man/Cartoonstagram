@@ -8,7 +8,7 @@ import { allLike, deleteLike, makeLike } from "../../../../store/likes";
 import { getUsers } from "../../../../store/session";
 import DeletePostModal from "../DeletePostModel/DeletePostSetup";
 import MouseOverComment from "./MouseOverComment";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./commentCss.css";
 
 function CommentSection({ modalInfo }) {
@@ -84,8 +84,9 @@ function CommentSection({ modalInfo }) {
 
       <div className="lowerSectionCreateLikeComment">
         <div>
-          {likes[user.id] && <i className="fa-solid fa-heart colorHeart" onClick={handleDeleteLike}></i>}
-          {!likes[user.id] && <i className="fa-regular fa-heart" onClick={handleLike}></i>}
+          {likes[user.id] && <FontAwesomeIcon icon="fa-solid fa-heart" className='colorHeart' onClick={handleDeleteLike}/>}
+          {!likes[user.id] && <FontAwesomeIcon icon="fa-regular fa-heart" className='borderHeart' onClick={handleLike}/>}
+
         </div>
         <form className="commentFormForPost" onSubmit={handleSubmit}>
           <input className="commentInput"
