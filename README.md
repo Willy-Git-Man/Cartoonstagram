@@ -2,7 +2,7 @@
 Cartoonstagram is an Instagram clone designed for our favorite cartoon characters. The current version of the application allows users to sign up for an account, create and manage their own posts, follow other users to create a custom feed based on followed users, comment on posts, and like/unlike other posts.
 
 ## Live Site
-Link to the live version of Cartoonstagram, hosted by Heroku: [Cartoonstagram](https://aa-cartoonstagram.herokuapp.com/)
+Link to the live version of [Cartoonstagram](https://aa-cartoonstagram.herokuapp.com/), hosted by Heroku.
 
 ## Software
 Cartoonstagram is an Instragram style social media site built with the following software:
