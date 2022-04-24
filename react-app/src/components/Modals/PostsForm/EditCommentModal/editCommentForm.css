@@ -1,12 +1,12 @@
-.createNewCommentDiv {
+/* .createNewCommentDiv {
     display: flex;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+} */
 
-.createNewCommentForm {
+/* .createNewCommentForm {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -31,12 +31,45 @@
 .edit-comment-box {
     height: 100px;
     width: 50vw;
-    /* border: none; */
-    /* overflow-wrap: break-word; */
+    border: none;
+    overflow-wrap: break-word;
     outline: 1px white solid;
     background-color: white;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    /* padding: 7px; */
+    padding: 7px;
     font-family: sans-serif;
+} */
+
+.edit-comment-box{
+    border: none;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: large;
+}
+.createNewCommentDiv{
+    border-radius: 3px;
+}
+.createNewCommentForm{
+    border-radius: 3px;
+}
+
+.comment-update-button{
+    text-align: center;
+    padding: 15px;
+    font-size: small;
+    color: rgba(0,149,246);
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+    border-radius: 3px;
+    border-top: 1px solid gray;
+}
+
+
+
+
+.comment-update-button:hover {
+    background-color: lightgrey
 }

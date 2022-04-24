@@ -35,17 +35,17 @@ function App() {
         <Switch>
           <Route path='/login' exact={true}>
             <LoginForm />
-      <Footer />
+            <Footer />
 
           </Route>
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
-      <Footer />
+            <Footer />
 
           </Route>
-          <ProtectedRoute path='/users' exact={true} >
+          {/* <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
-          </ProtectedRoute>
+          </ProtectedRoute> */}
           <ProtectedRoute path='/users/:userId' exact={true} >
             <NavBar />
             <User />

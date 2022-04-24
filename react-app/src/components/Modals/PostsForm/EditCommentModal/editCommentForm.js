@@ -30,15 +30,15 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
   return (
     <div className="createNewCommentDiv">
       <form className="createNewCommentForm" onSubmit={handleCommentEdit}>
-        <label htmlFor="commentLabel"></label>
-        <textarea
+        <input
           type="text"
           className='edit-comment-box'
           value={newCommentEdit}
           onChange={handleNewComment}
           required
         />
-        <button className="updateCommentFormButton" type="submit">Update</button>
+        <div className='comment-update-button' type="submit">Update</div>
+        <div className='cancel-button' onClick={()=>setShowModal(false)}>Cancel</div>
       </form>
     </div>
   );

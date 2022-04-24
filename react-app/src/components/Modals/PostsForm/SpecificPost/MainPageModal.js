@@ -10,10 +10,11 @@ const MainPageModal = ({ modalInfo }) => {
 
         <img className="modalImage" src={modalInfo.img_src} alt="Faulty Url" />
 
-      <div className="leftSideModal">
+
+
 
         <CommentSection className="commentSection" modalInfo={modalInfo} />
-      </div>
+      
     </div>
 
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './loginSignup.css'
 
 const LoginForm = () => {
@@ -48,7 +49,7 @@ const LoginForm = () => {
       <form className='formDiv' onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} className='errorMessage'>{error}</div>
             ))}
         </div>
         <div>
@@ -87,7 +88,7 @@ const LoginForm = () => {
         <p className='text'>
         Don't have an account?
         </p>
-        <NavLink to="/sign-up">Sign Up</NavLink>
+        <NavLink to="/sign-up" className='linkToSignUp'>Sign Up</NavLink>
       </div>
       </div>
     </div>

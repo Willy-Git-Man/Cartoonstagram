@@ -89,6 +89,7 @@ export const editPost = (post, postId) => async (dispatch) => {
         dispatch(edit(editedPost));
         return 'Success!'
     }
+    return response
 }
 
 const initialState = {posts: [], userPosts: []}

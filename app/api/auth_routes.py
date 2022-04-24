@@ -15,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
     return errorMessages
 
 
@@ -60,25 +60,25 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    if "profile_img_src" not in request.files:
-        return {"errors": "image required"}, 400
-
-    img_src = request.files['profile_img_src']
-
-
-    if not allowed_file(img_src.filename):
-        return {"errors": "file type not permitted"}, 400
-
-    img_src.filename = get_unique_filename(img_src.filename)
-
-    upload = upload_file_to_s3(img_src)
-
-    if "url" not in upload:
-        return upload, 400
-    
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        if "profile_img_src" not in request.files:
+            return {"errors": "image required"}, 400
+
+        img_src = request.files['profile_img_src']
+
+
+        if not allowed_file(img_src.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        img_src.filename = get_unique_filename(img_src.filename)
+
+        upload = upload_file_to_s3(img_src)
+
+        if "url" not in upload:
+            return upload, 400
+            
         user = User(
             username=request.form["username"],
             email=request.form['email'],

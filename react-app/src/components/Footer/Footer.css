@@ -25,7 +25,7 @@ text-decoration: none;
 .footer-technologies {
 display: flex;
 font-size: 12px;
-padding-top: 9px;
+/* padding-top: 9px; */
 justify-content: center;
 }
 
@@ -77,3 +77,4 @@ a:active {
     color: rgb(194, 191, 191);
 
 }
+

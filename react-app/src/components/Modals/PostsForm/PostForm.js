@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getUserPosts, makePost } from '../../../store/posts';
 import { useParams } from 'react-router-dom';
 import './PostForm.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PostForm = ({ setShowModal }) => {
     const [errors, setErrors] = useState([]);
@@ -43,44 +44,49 @@ const PostForm = ({ setShowModal }) => {
 
     return (
         <div className='post-form-container'>
+            <p className='create-post-text'>Create New Post</p>
             <form className='post-form' onSubmit={handleSubmit}>
-                <div className='postErrors'>
+                <div className='errorMessagePost'>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                         ))}
                 </div>
-                <p className='create-post-text'>Create New Post</p>
-                <div className='choose-file-container'>
-                </div>
-                <div>
+                {/* <div className='choose-file-container'>
+                </div> */}
+                <div className='all-input-fields'>
+                    <div>
+                        <div className='input-caption-div'>
+                            <input
+                                type='text'
+                                className='input-field'
+                                name='caption_content'
+                                onChange={(e) => setCaption(e.target.value)}
+                                value={caption_content}
+                                placeholder='Caption'
+                                ></input>
+                        </div>
+                        <div className='input-div'>
+                            <input
+                                type='text'
+                                name='location'
+                                className='input-field'
+                                onChange={(e) => setLocation(e.target.value)}
+                                value={location}
+                                placeholder='Location'
+                                ></input>
+                        </div>
+                    </div>
                     <input
-                        type='text'
-                        className='caption-content-field'
-                        name='caption_content'
-                        onChange={(e) => setCaption(e.target.value)}
-                        value={caption_content}
-                        placeholder='Caption'
+                            type='file'
+                            id='chooseFileInput'
+                            accept='image/*'
+                            name='img_src'
+                            onChange={updateImage}
+                            hidden='hidden'
                         ></input>
+                        <label htmlFor='chooseFileInput' className='choose-file-button'><FontAwesomeIcon icon="fa-solid fa-image" size='2x' color='rgba(0,149,246)'/>
+                        {img_src ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color='green' className='checkmark'/> : ''}</label>
                 </div>
-                <div>
-                    <input
-                        type='text'
-                        name='location'
-                        className='location-field'
-                        onChange={(e) => setLocation(e.target.value)}
-                        value={location}
-                        placeholder='Location'
-                        ></input>
-                </div>
-                <input
-                        type='file'
-                        id='chooseFileInput'
-                        accept='image/*'
-                        name='img_src'
-                        onChange={updateImage}
-                        hidden='hidden'
-                    ></input>
-                    <label for='chooseFileInput' className='choose-file-button'>Picture Upload</label>
                 <button className='post-submit-button' type='submit'>Post</button>
                 {(imageLoading)&& <p>Loading...</p>}
             </form>

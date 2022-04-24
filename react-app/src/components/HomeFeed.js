@@ -5,7 +5,7 @@ import "./HomeFeed.css";
 import { userFollowers } from "../store/followers";
 
 import React from "react";
-import SpecificPageModel from "./Modals/PostsForm/SpecificPost/SpecificPostModel";
+import HomeSpecificPageModel from "./Modals/PostsForm/SpecificPost/HomeSpecificPageModal";
 import UsersList from "./UserList/UsersList";
 
 import { NavLink } from "react-router-dom";
@@ -36,7 +36,7 @@ const HomeFeed = () => {
               </div>
             </div>
             </NavLink>
-            <SpecificPageModel modelInfo={post} />
+            <HomeSpecificPageModel modelInfo={post} />
 
           <div className="profileCommentUsernameSectionHomeFeed">
           <img className='imageOnMainPostModal' src={allUsers[post.user_id].profile_img_src} alt=''/>
@@ -50,12 +50,12 @@ const HomeFeed = () => {
         ))}
       </div>
 
-      <div className="followerDivRight">
+      {/* <div className="followerDivRight"> */}
         <div className="followerMap">
           <h3 className="followDivH1">Cartoonstagram Users:</h3>
           <UsersList />
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

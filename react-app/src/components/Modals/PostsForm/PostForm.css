@@ -1,16 +1,14 @@
 .post-form-container {
-    display: flex;
-    position: fixed;
-    justify-content: center;
-    top: 50%;
-    left: 50%;
-    background-color: white;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    border: solid black 1px;
-    outline: 4px whitesmoke solid;
+    width: 500px;
 }
-
+.create-post-text{
+    text-align: center;
+}
+.all-input-fields{
+    border-top: 1px solid gray;
+    display: flex;
+    width: 100%;
+}
 .post-form {
     display: flex;
     justify-content: center;
@@ -22,13 +20,14 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    border-radius: 10px;
+    width: 100%;
+    /* border-radius: 10px;
     width: 80%;
     height: 30px;
     font-family: sans-serif;
     border: 1px solid black;
     margin-bottom: 7px;
-    margin-top: 7px
+    margin-top: 7px */
 }
 
 
@@ -36,21 +35,34 @@
     background-color: lightgrey;
 }
 
-.caption-content-field {
-    margin: 5px;
-}
+.input-field{
+    border: none;
+    padding: 15px;
+    outline: none;
+    width: 250px;
 
-.location-field {
-    margin: 5px;
+}
+.input-caption-div{
+    /* border-top: 1px solid gray; */
+    border-bottom: 1px solid gray;
+    border-right:1px solid gray ;
+}
+.input-div{
+    /* border-bottom: 1px solid gray; */
+    border-right:1px solid gray ;
 }
 
 .post-submit-button {
     background-color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 7px;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    font-size: large;
+    padding: 15px;
     width: 100%;
+    color: rgba(0,149,246);
     font-family: sans-serif;
+    border: none;
+    border-top: 1px solid gray;
 }
 
 .post-submit-button:hover {
@@ -68,4 +80,10 @@
 
 .choose-file-container:hover {
     background-color: lightgrey;
+}
+
+.checkmark{
+    position: relative;
+    left: -8px;
+    top: 14px;
 }
