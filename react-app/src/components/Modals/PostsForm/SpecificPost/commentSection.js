@@ -53,36 +53,38 @@ function CommentSection({ modalInfo }) {
 
   return (
 
-    <div>
-      <div className="rightTopPostCreator">
-        <div className="profilePicUsernameModal">
-          <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
-          <div className="usernameAndLocation">
-            <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
-            <div className="locationOnThePostModal">{modalInfo.location}</div>
+    <div className="overallCommentSection">
+      <div>
+        <div className="rightTopPostCreator">
+          <div className="profilePicUsernameModal">
+            <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
+            <div className="usernameAndLocation">
+              <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
+              <div className="locationOnThePostModal">{modalInfo.location}</div>
+            </div>
           </div>
-        </div>
 
-          {user.id === modalInfo.user_id && <DeletePostModal modalInfo={modalInfo}/>}
-
-        </div>
-        <div className="profileCommentUsernameSection">
-          <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
-          <div className='usernameCommentOnCommentSection'>
-            <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
-            <span>{modalInfo.caption_content}</span>
+            {user.id === modalInfo.user_id && <DeletePostModal modalInfo={modalInfo}/>}
 
           </div>
-        </div>
-        <div className="getAllCommentsScroll">
-        {commentArray.map((comment, i) => (
-          <MouseOverComment comment={comment} key={i}/>
-        ))}
-        </div>
+          <div className="profileCommentUsernameSection">
+            <img className='imageOnMainPostModal' src={all_users[modalInfo.user_id].profile_img_src} alt=''/>
+            <div className='usernameCommentOnCommentSection'>
+              <span className="usernameOnSection">{all_users[modalInfo.user_id].username}</span>
+              <span>{modalInfo.caption_content}</span>
+
+            </div>
+          </div>
+          <div className="getAllCommentsScroll">
+          {commentArray.map((comment, i) => (
+            <MouseOverComment comment={comment} key={i}/>
+          ))}
+          </div>
+      </div>
 
 
 
-      <div className="lowerSectionCreateLikeComment">
+      <footer className="lowerSectionCreateLikeComment">
         <div>
           {likes[user.id] && <FontAwesomeIcon icon="fa-solid fa-heart" className='colorHeart' onClick={handleDeleteLike}/>}
           {!likes[user.id] && <FontAwesomeIcon icon="fa-regular fa-heart" className='borderHeart' onClick={handleLike}/>}
@@ -100,7 +102,7 @@ function CommentSection({ modalInfo }) {
             Post
           </button>
         </form>
-      </div>
+      </footer>
     </div>
 
 

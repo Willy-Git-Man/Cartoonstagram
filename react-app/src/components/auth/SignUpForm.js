@@ -59,17 +59,19 @@ const SignUpForm = () => {
   }
 
   return (
+    <div className='loginDiv'>
+      <img className='loginPic' src='https://www.thesun.co.uk/wp-content/uploads/2020/06/gramgram.png' alt='Broken Link'/>
     <div className='wholeDivSignUp'>
-
+    {/* signupForm */}
     <div className='signupForm'>
-      <div>
-      <h2 className='signupTitle'>Cartoonstagram</h2>
-      <h5 className='signUpMessage'>Sign up to see photos of your friends.</h5>
-      </div>
+    {/* signupTitle' */}
+      <h3 className='loginTitle'>Cartoonstagram</h3>
+      <h5 className='signUpMessage'>Sign up to see photos of your favorite cartoons.</h5>
+
       <form className='formSignUp' onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} className='errorMessage'>{error}</div>
             ))}
         </div>
         <div>
@@ -110,7 +112,7 @@ const SignUpForm = () => {
             name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
-            required={true}
+
             ></input>
         </div>
         <div>
@@ -124,7 +126,7 @@ const SignUpForm = () => {
             hidden='hidden'
           ></input>
           <div className='chooseFileNameAndLabel'>
-            <label htmlFor='chooseFileInput' className='chooseFileInputCss' type='button'>Choose file...</label>
+            <label htmlFor='chooseFileInput' className='chooseFileInputCss' type='button'>Upload Profile Picture</label>
             <div className='nameOfFileForChooseInput'>{profile_img_src ? profile_img_src.name : ''}</div>
           </div>
         </div>
@@ -133,8 +135,9 @@ const SignUpForm = () => {
     </div>
       <div className='lowerSignUp'>
         <p className='text'>Have an account?</p>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login" className='linkToSignUp'>Login</NavLink>
       </div>
+    </div>
     </div>
   );
 };

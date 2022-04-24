@@ -37,14 +37,14 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='individualProgrammer color'>
+        {/* <div className='individualProgrammer color'>
           <div>Project GitHub</div>
           <a href='https://github.com/Willy-Git-Man/Cartoonstagram' target='_blank' rel='noopener noreferrer'>
           <FontAwesomeIcon icon="fa-brands fa-github" size='2x' className='color'/>
           </a>
-        </div>
+        </div> */}
+        <div className='footer-technologies color'>Python • CSS • React • Redux • FlaskAlchemy • Sequelize • PostgreSQL</div>
       </div>
-        <div className='footer-technologies color'>Project Built Using: Python • CSS • React • Redux • FlaskAlchemy • Sequelize • PostgreSQL</div>
     </div>
   );
 };
