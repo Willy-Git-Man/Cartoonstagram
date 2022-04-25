@@ -37,7 +37,7 @@ export default function UpdateCommentForm({ modalInfo, setShowModal }) {
           onChange={handleNewComment}
           required
         />
-        <div className='comment-update-button' type="submit">Update</div>
+        <div className='comment-update-button' type="submit" onClick={handleCommentEdit}>Update</div>
         <div className='cancel-button' onClick={()=>setShowModal(false)}>Cancel</div>
       </form>
     </div>
